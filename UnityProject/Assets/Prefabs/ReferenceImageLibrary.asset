@@ -12,16 +12,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 848409ee8ba454f42a5ddff137688a27, type: 3}
   m_Name: ReferenceImageLibrary
   m_EditorClassIdentifier: 
-  m_GuidLow: 5346294804575590873
-  m_GuidHigh: 8151982823596013214
+  m_GuidLow: 4706430021540791986
+  m_GuidHigh: 9839518827472583049
   m_Images:
   - m_SerializedGuid:
-      m_GuidLow: 4706820968955234169
-      m_GuidHigh: 13941427950099216051
+      m_GuidLow: 4832890237739375457
+      m_GuidHigh: 12077337162692703917
     m_SerializedTextureGuid:
-      m_GuidLow: 2090890600582990175
-      m_GuidHigh: 10126598915253007209
-    m_Size: {x: 0.1, y: 0.06993007}
+      m_GuidLow: 16547422222049874642
+      m_GuidHigh: 11864363075809454873
+    m_Size: {x: 0.1, y: 0.1}
     m_SpecifySize: 1
-    m_Name: 296d68887dd181e06718cca2f7f302ea
-    m_Texture: {fileID: 2800000, guid: 57f3c95f55ec1d0469f382760fe8888c, type: 3}
+    m_Name: Sphere
+    m_Texture: {fileID: 0}
+  - m_SerializedGuid:
+      m_GuidLow: 5184689898117061958
+      m_GuidHigh: 13937441691499691957
+    m_SerializedTextureGuid:
+      m_GuidLow: 6409795583350430536
+      m_GuidHigh: 14659846206754302410
+    m_Size: {x: 0.1, y: 0.1}
+    m_SpecifySize: 1
+    m_Name: testcube
+    m_Texture: {fileID: 0}
