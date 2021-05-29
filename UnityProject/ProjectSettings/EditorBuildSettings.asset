@@ -5,24 +5,7 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 0
-    path: Assets/Scenes/networkTest.unity
-    guid: fc6d45a15a36a4c4695f7e6e10cde0f1
   - enabled: 1
-    path: Assets/Scenes/Test-Imagetracking.unity
-    guid: 071c32157765b264a998f6711b93b42a
-  m_configObjects:
-    Unity.XR.WindowsMR.Settings: {fileID: 11400000, guid: 744b813df90924c169af73489b8325de,
-      type: 2}
-    UnityEditor.XR.ARCore.ARCoreSettings: {fileID: 11400000, guid: be701feca660de34d8836063e8627220,
-      type: 2}
-    UnityEditor.XR.ARKit.ARKitSettings: {fileID: 11400000, guid: de8a8e4f987434338a4b1062feb8d069,
-      type: 2}
-    com.unity.xr.arcore.PlayerSettings: {fileID: 11400000, guid: c2f7b8d7c0bff4d10874cbcf3f24af78,
-      type: 2}
-    com.unity.xr.arkit.PlayerSettings: {fileID: 11400000, guid: b27ec7d82a91a48e69fd689ad6808e5e,
-      type: 2}
-    com.unity.xr.magicleap.magic_leap_settings: {fileID: 11400000, guid: 1eb95d77acb39444e8cf44313496a874,
-      type: 2}
-    com.unity.xr.management.loader_settings: {fileID: 11400000, guid: 58f40b12bbc864f3c96c6505a9a1e1e3,
-      type: 2}
+    path: Assets/SamplesResources/Scenes/0-Main.unity
+    guid: a09cb257d566c489595b16ab37547666
+  m_configObjects: {}
