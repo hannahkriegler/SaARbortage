@@ -18,6 +18,17 @@ public class ManagerImageTargetscript : MonoBehaviour
             New.transform.position = old.transform.position;
             GameObject.Destroy(old);
             New.transform.parent = target.transform;
+            //New.SetActive(false);
         }
+    }
+
+    public void DeactivateChild(GameObject me)
+    {
+        me.transform.GetChild(0).gameObject.SetActive(false);
+    }
+
+    public void ActivateChild(GameObject me)
+    {
+        me.transform.GetChild(0).gameObject.SetActive(true);
     }
 }
