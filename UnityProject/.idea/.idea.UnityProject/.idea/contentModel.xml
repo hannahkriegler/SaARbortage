@@ -203,10 +203,24 @@
           </e>
         </e>
         <e p="Scripts" t="Include">
-          <e p="HelloWorldManager.cs" t="Include" />
-          <e p="HelloWorldPlayer.cs" t="Include" />
-          <e p="imagetrackingtut.cs" t="Include" />
-          <e p="ManagerImageTargetscript.cs" t="Include" />
+          <e p="Android.cs" t="Include" />
+          <e p="Crewmate.cs" t="Include" />
+          <e p="Game.cs" t="Include" />
+          <e p="GameManager.cs" t="Include" />
+          <e p="Item.cs" t="Include" />
+          <e p="MeetingManager.cs" t="Include" />
+          <e p="Player.cs" t="Include" />
+          <e p="Role.cs" t="Include" />
+          <e p="Room.cs" t="Include" />
+          <e p="Roomtask.cs" t="Include" />
+          <e p="Station.cs" t="Include" />
+          <e p="Test" t="Include">
+            <e p="HelloWorldManager.cs" t="Include" />
+            <e p="HelloWorldPlayer.cs" t="Include" />
+            <e p="imagetrackingtut.cs" t="Include" />
+            <e p="ManagerImageTargetscript.cs" t="Include" />
+          </e>
+          <e p="Vote.cs" t="Include" />
         </e>
         <e p="StreamingAssets" t="Include">
           <e p="Vuforia" t="Include">
