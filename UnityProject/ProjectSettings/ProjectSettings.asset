@@ -17,8 +17,8 @@ PlayerSettings:
   defaultCursor: {fileID: 0}
   cursorHotspot: {x: 0, y: 0}
   m_SplashScreenBackgroundColor: {r: 0.13725491, g: 0.12156863, b: 0.1254902, a: 1}
-  m_ShowUnitySplashScreen: 0
-  m_ShowUnitySplashLogo: 0
+  m_ShowUnitySplashScreen: 1
+  m_ShowUnitySplashLogo: 1
   m_SplashScreenOverlayOpacity: 1
   m_SplashScreenAnimation: 1
   m_SplashScreenLogoStyle: 1
@@ -129,7 +129,8 @@ PlayerSettings:
     16:9: 1
     Others: 1
   bundleVersion: 9.8.8
-  preloadedAssets: []
+  preloadedAssets:
+  - {fileID: 11400000, guid: 1eb95d77acb39444e8cf44313496a874, type: 2}
   metroInputSource: 0
   wsaTransparentSwapchain: 0
   m_HolographicPauseOnTrackingLoss: 1
@@ -872,7 +873,7 @@ PlayerSettings:
   metroSplashScreenUseBackgroundColor: 1
   platformCapabilities:
     WindowsStoreApps:
-      CodeGeneration: False
+      EnterpriseAuthentication: False
       OfflineMapsManagement: False
       HumanInterfaceDevice: False
       Location: False
@@ -905,10 +906,10 @@ PlayerSettings:
       PointOfService: False
       RecordedCallsFolder: False
       Contacts: False
-      Proximity: False
       InternetClient: True
+      CodeGeneration: False
       BackgroundMediaPlayback: False
-      EnterpriseAuthentication: False
+      Proximity: False
   metroTargetDeviceFamilies:
     Desktop: False
     Holographic: False

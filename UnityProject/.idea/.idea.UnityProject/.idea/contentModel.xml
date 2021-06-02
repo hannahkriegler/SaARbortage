@@ -4,8 +4,99 @@
     <e p="C:\Users\hanna\.Rider2019.3\system\extResources" t="IncludeRecursive" />
     <e p="C:\Users\hanna\.Rider2019.3\system\resharper-host\local\Transient\ReSharperHost\v193\SolutionCaches\_UnityProject.-1309766416.00" t="ExcludeRecursive" />
     <e p="D:\Unity\Projects\HBK\UnityProject" t="IncludeRecursive">
+      <e p="Assembly-CSharp-Editor.csproj" t="IncludeRecursive" />
       <e p="Assembly-CSharp.csproj" t="IncludeRecursive" />
       <e p="Assets" t="Include">
+        <e p="Common" t="Include">
+          <e p="Editor" t="Include">
+            <e p="CommonEditor.asmdef" t="Include" />
+            <e p="ConfigurePlayerSettings.cs" t="Include" />
+            <e p="OptionsConfigEditor.cs" t="Include" />
+            <e p="VersionChecker" t="Include">
+              <e p="VersionChecker.cs" t="Include" />
+              <e p="VuforiaVersionCheckerScripts.asmdef" t="Include" />
+            </e>
+          </e>
+          <e p="Scripts" t="Include">
+            <e p="AboutManager.cs" t="Include" />
+            <e p="AboutScreenInfo.cs" t="Include" />
+            <e p="AmbientLightManager.cs" t="Include" />
+            <e p="AsyncSceneLoader.cs" t="Include" />
+            <e p="AutoFocusSettings.cs" t="Include" />
+            <e p="CameraSettings.cs" t="Include" />
+            <e p="CloudErrorHandler.cs" t="Include" />
+            <e p="CloudRecoEventHandler.cs" t="Include" />
+            <e p="CloudRecoScanLine.cs" t="Include" />
+            <e p="CommonScripts.asmdef" t="Include" />
+            <e p="FrameRateSettings.cs" t="Include" />
+            <e p="HyperlinkHandler.cs" t="Include" />
+            <e p="InitErrorHandler.cs" t="Include" />
+            <e p="LoadingScreen.cs" t="Include" />
+            <e p="MenuAnimator.cs" t="Include" />
+            <e p="MenuOptions.cs" t="Include" />
+            <e p="MessageBox.cs" t="Include" />
+            <e p="NavigationHandler.cs" t="Include" />
+            <e p="OptionsConfig.cs" t="Include" />
+            <e p="SafeAreaManager.cs" t="Include" />
+            <e p="SamplesMainMenu.cs" t="Include" />
+            <e p="SceneOrientation.cs" t="Include" />
+            <e p="StatusMessage.cs" t="Include" />
+            <e p="TapHandler.cs" t="Include" />
+            <e p="TrackableSettings.cs" t="Include" />
+            <e p="VLog.cs" t="Include" />
+          </e>
+          <e p="TextMeshPro" t="Include">
+            <e p="Resources" t="Include">
+              <e p="LineBreaking Following Characters.txt" t="Include" />
+              <e p="LineBreaking Leading Characters.txt" t="Include" />
+              <e p="Shaders" t="Include">
+                <e p="TMP_Bitmap-Custom-Atlas.shader" t="Include" />
+                <e p="TMP_Bitmap-Mobile.shader" t="Include" />
+                <e p="TMP_Bitmap.shader" t="Include" />
+                <e p="TMP_SDF Overlay.shader" t="Include" />
+                <e p="TMP_SDF-Mobile Masking.shader" t="Include" />
+                <e p="TMP_SDF-Mobile Overlay.shader" t="Include" />
+                <e p="TMP_SDF-Mobile.shader" t="Include" />
+                <e p="TMP_SDF-Surface-Mobile.shader" t="Include" />
+                <e p="TMP_SDF-Surface.shader" t="Include" />
+                <e p="TMP_SDF.shader" t="Include" />
+                <e p="TMP_Sprite.shader" t="Include" />
+                <e p="TMPro.cginc" t="Include" />
+                <e p="TMPro_Properties.cginc" t="Include" />
+                <e p="TMPro_Surface.cginc" t="Include" />
+              </e>
+            </e>
+            <e p="Sprites" t="Include">
+              <e p="EmojiOne Attribution.txt" t="Include" />
+              <e p="EmojiOne.json" t="Include" />
+            </e>
+          </e>
+        </e>
+        <e p="Editor" t="Include">
+          <e p="Migration" t="Include">
+            <e p="AddVuforiaEnginePackage.cs" t="Include" />
+            <e p="EditorMigrationScripts.asmdef" t="Include" />
+          </e>
+          <e p="Vuforia" t="Include">
+            <e p="CylinderTargetTextures" t="Include">
+              <e p="VuforiaMars_Images" t="Include">
+                <e p="authoringinfo.xml" t="Include" />
+              </e>
+            </e>
+            <e p="TargetsetData" t="Include">
+              <e p="VuforiaMars_Object_info.xml" t="Include" />
+            </e>
+            <e p="Vuforia_Marslander_RZR_Toy360" t="Include">
+              <e p="authoringinfo.xml" t="Include" />
+            </e>
+            <e p="VuforiaMars_ModelTarget" t="Include">
+              <e p="authoringinfo.xml" t="Include" />
+            </e>
+            <e p="VuforiaMars_VuMark" t="Include">
+              <e p="authoringinfo.xml" t="Include" />
+            </e>
+          </e>
+        </e>
         <e p="ExampleAssets" t="Include">
           <e p="Scripts" t="Include">
             <e p="AnchorCreator.cs" t="Include" />
@@ -15,15 +106,128 @@
             <e p="FeatheredPlaneShader.shader" t="Include" />
           </e>
         </e>
+        <e p="SamplesResources" t="Include">
+          <e p="AugmentationAssets" t="Include">
+            <e p="Scripts" t="Include">
+              <e p="Augmentations" t="Include">
+                <e p="Astronaut.cs" t="Include" />
+                <e p="Augmentation.cs" t="Include" />
+                <e p="Drone.cs" t="Include" />
+                <e p="Fissure.cs" t="Include" />
+                <e p="Habitat.cs" t="Include" />
+                <e p="OxygenTank.cs" t="Include" />
+                <e p="RockPileController.cs" t="Include" />
+              </e>
+              <e p="InteractionHelpers" t="Include">
+                <e p="DrillController.cs" t="Include" />
+                <e p="FadeObject.cs" t="Include" />
+              </e>
+              <e p="StateMachineBehaviours" t="Include">
+                <e p="AstronautStateMachineBehaviour.cs" t="Include" />
+                <e p="AugmentationStateMachineBehaviour.cs" t="Include" />
+              </e>
+            </e>
+          </e>
+          <e p="SceneAssets" t="Include">
+            <e p="CloudReco" t="Include">
+              <e p="Scripts" t="Include">
+                <e p="CloudContentManager.cs" t="Include" />
+                <e p="CloudTrackableEventHandler.cs" t="Include" />
+              </e>
+            </e>
+            <e p="CylinderTargets" t="Include">
+              <e p="Scripts" t="Include">
+                <e p="RotateAroundCylinder.cs" t="Include" />
+              </e>
+            </e>
+            <e p="GroundPlane" t="Include">
+              <e p="Scripts" t="Include">
+                <e p="GroundPlaneUI.cs" t="Include" />
+                <e p="PlaneManager.cs" t="Include" />
+                <e p="ProductPlacement.cs" t="Include" />
+                <e p="TouchHandler.cs" t="Include" />
+                <e p="UtilityHelper.cs" t="Include" />
+              </e>
+            </e>
+            <e p="ImageTargets" t="Include">
+              <e p="Scripts" t="Include">
+                <e p="VideoController.cs" t="Include" />
+                <e p="VideoTrackableEventHandler.cs" t="Include" />
+              </e>
+            </e>
+            <e p="ModelTargets" t="Include">
+              <e p="Scripts" t="Include">
+                <e p="ModelTargetsManager.cs" t="Include" />
+                <e p="ModelTargetsUIManager.cs" t="Include" />
+                <e p="MTAdvancedTrackableEventHandler.cs" t="Include" />
+                <e p="MTTrackableEventHandler.cs" t="Include" />
+                <e p="SessionRecording" t="Include">
+                  <e p="CustomSessionRecorder.cs" t="Include" />
+                  <e p="Editor" t="Include">
+                    <e p="SampleEditor.asmdef" t="Include" />
+                    <e p="SharingEnabledPostProcessBuildPlayer.cs" t="Include" />
+                  </e>
+                </e>
+              </e>
+              <e p="Shaders" t="Include">
+                <e p="RadialTexture.shader" t="Include" />
+              </e>
+            </e>
+            <e p="MultiTargets" t="Include">
+              <e p="Scripts" t="Include">
+                <e p="MultiTargetTrackableEventHandler.cs" t="Include" />
+              </e>
+            </e>
+            <e p="ObjectReco" t="Include">
+              <e p="Scripts" t="Include">
+                <e p="ObjectRecoTrackableEventHandler.cs" t="Include" />
+              </e>
+            </e>
+            <e p="SamplesScripts.asmdef" t="Include" />
+            <e p="VirtualButtons" t="Include">
+              <e p="Scripts" t="Include">
+                <e p="VirtualButtonEventHandler.cs" t="Include" />
+              </e>
+              <e p="Shaders" t="Include">
+                <e p="Gradient.shader" t="Include" />
+              </e>
+            </e>
+            <e p="VuMarks" t="Include">
+              <e p="Scripts" t="Include">
+                <e p="LookAtObject.cs" t="Include" />
+                <e p="PanelShowHide.cs" t="Include" />
+                <e p="VuMarkHandler.cs" t="Include" />
+                <e p="VuMarkTrackableEventHandler.cs" t="Include" />
+              </e>
+            </e>
+          </e>
+        </e>
         <e p="Scripts" t="Include">
           <e p="HelloWorldManager.cs" t="Include" />
           <e p="HelloWorldPlayer.cs" t="Include" />
+          <e p="imagetrackingtut.cs" t="Include" />
+          <e p="ManagerImageTargetscript.cs" t="Include" />
+        </e>
+        <e p="StreamingAssets" t="Include">
+          <e p="Vuforia" t="Include">
+            <e p="Vuforia_Marslander_RZR_Toy360.xml" t="Include" />
+            <e p="VuforiaMars_Images.xml" t="Include" />
+            <e p="VuforiaMars_ModelTarget.xml" t="Include" />
+            <e p="VuforiaMars_Object_OT.xml" t="Include" />
+            <e p="VuforiaMars_VuMark.xml" t="Include" />
+          </e>
         </e>
       </e>
+      <e p="CommonEditor.csproj" t="IncludeRecursive" />
+      <e p="CommonScripts.csproj" t="IncludeRecursive" />
+      <e p="EditorMigrationScripts.csproj" t="IncludeRecursive" />
       <e p="obj" t="ExcludeRecursive" />
       <e p="Packages" t="ExcludeRecursive" />
+      <e p="SampleEditor.csproj" t="IncludeRecursive" />
+      <e p="SamplesScripts.csproj" t="IncludeRecursive" />
       <e p="Temp\Bin" t="ExcludeRecursive" />
       <e p="UnityProject.sln" t="IncludeFlat" />
+      <e p="VuforiaVersionCheckerScripts.csproj" t="IncludeRecursive" />
     </e>
   </component>
 </project>

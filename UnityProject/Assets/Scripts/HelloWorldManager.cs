@@ -1,7 +1,7 @@
 using MLAPI;
 using UnityEngine;
 
-namespace SaARbotage
+namespace HelloWorld
 {
     public class HelloWorldManager : MonoBehaviour
     {
@@ -24,11 +24,7 @@ namespace SaARbotage
 
         static void StartButtons()
         {
-            if (GUILayout.Button("Host"))
-            {
-                Debug.Log("Starting Host!");
-                NetworkManager.Singleton.StartHost();
-            }
+            if (GUILayout.Button("Host")) NetworkManager.Singleton.StartHost();
             if (GUILayout.Button("Client")) NetworkManager.Singleton.StartClient();
             if (GUILayout.Button("Server")) NetworkManager.Singleton.StartServer();
         }

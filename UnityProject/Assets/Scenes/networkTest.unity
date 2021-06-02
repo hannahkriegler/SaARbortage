@@ -343,8 +343,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 52c005b32a68a254cbe502a4e5cb8eb6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_NickName: SaARbotage
-  m_RoomName: 
+  m_NickName: SaAR
+  m_RoomName: SaAR
   m_MaxPlayers: 16
   m_ChannelIdCodesStartRange: 0
   m_AttachSupportLogger: 0

@@ -3,7 +3,7 @@ using MLAPI.Messaging;
 using MLAPI.NetworkVariable;
 using UnityEngine;
 
-namespace SaARbotage
+namespace HelloWorld
 {
     public class HelloWorldPlayer : NetworkBehaviour
     {
