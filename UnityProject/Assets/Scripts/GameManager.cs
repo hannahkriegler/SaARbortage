@@ -1,22 +1,30 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using MLAPI;
 using UnityEngine;
 
 namespace SaARbotage
 {
-
-    public class GameManager : MonoBehaviour
+    public class GameManager : NetworkBehaviour
     {
-        // Start is called before the first frame update
-        void Start()
-        {
+        public static GameManager instance;
 
+        public void Awake()
+        {
+            instance = this;
         }
 
-        // Update is called once per frame
-        void Update()
+        public void CreateLobby()
         {
-
+            // give players id's
+            foreach (var client in NetworkManager.Singleton.ConnectedClients)
+            {
+                var player = NetworkManager.Singleton.ConnectedClients[client.Value.ClientId].PlayerObject;
+                player.gameObject.GetComponent<Player>().playerId = client.Value.ClientId;
+                Debug.Log("Added Player with " + client.Value.ClientId);
+            }
+            
         }
     }
 

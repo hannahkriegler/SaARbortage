@@ -1,18 +1,16 @@
-using System.Collections;
-using System.Collections.Generic;
+using MLAPI;
 using UnityEngine;
 
 namespace SaARbotage
 {
-    public class Player : MonoBehaviour
+    public class Player : NetworkBehaviour
     {
-        public int playerId;
+        public ulong playerId;
         public Role role;
         public bool isAlive;
 
-        public Player(int playerId, Role role)
+        public void AssignPlayer( Role role)
         {
-            this.playerId = playerId;
             this.role = role;
             this.isAlive = true;
         }
@@ -20,6 +18,12 @@ namespace SaARbotage
         public void Die()
         {
             isAlive = false;
+        }
+        
+        public override void NetworkStart()
+        {
+            //if (!NetworkManager.Singleton.IsServer) return;
+            ConnectionManager.instance.AddPlayerToLobby(this);
         }
     }
 }

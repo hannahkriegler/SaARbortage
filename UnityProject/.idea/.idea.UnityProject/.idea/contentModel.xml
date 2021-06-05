@@ -106,104 +106,9 @@
             <e p="FeatheredPlaneShader.shader" t="Include" />
           </e>
         </e>
-        <e p="SamplesResources" t="Include">
-          <e p="AugmentationAssets" t="Include">
-            <e p="Scripts" t="Include">
-              <e p="Augmentations" t="Include">
-                <e p="Astronaut.cs" t="Include" />
-                <e p="Augmentation.cs" t="Include" />
-                <e p="Drone.cs" t="Include" />
-                <e p="Fissure.cs" t="Include" />
-                <e p="Habitat.cs" t="Include" />
-                <e p="OxygenTank.cs" t="Include" />
-                <e p="RockPileController.cs" t="Include" />
-              </e>
-              <e p="InteractionHelpers" t="Include">
-                <e p="DrillController.cs" t="Include" />
-                <e p="FadeObject.cs" t="Include" />
-              </e>
-              <e p="StateMachineBehaviours" t="Include">
-                <e p="AstronautStateMachineBehaviour.cs" t="Include" />
-                <e p="AugmentationStateMachineBehaviour.cs" t="Include" />
-              </e>
-            </e>
-          </e>
-          <e p="SceneAssets" t="Include">
-            <e p="CloudReco" t="Include">
-              <e p="Scripts" t="Include">
-                <e p="CloudContentManager.cs" t="Include" />
-                <e p="CloudTrackableEventHandler.cs" t="Include" />
-              </e>
-            </e>
-            <e p="CylinderTargets" t="Include">
-              <e p="Scripts" t="Include">
-                <e p="RotateAroundCylinder.cs" t="Include" />
-              </e>
-            </e>
-            <e p="GroundPlane" t="Include">
-              <e p="Scripts" t="Include">
-                <e p="GroundPlaneUI.cs" t="Include" />
-                <e p="PlaneManager.cs" t="Include" />
-                <e p="ProductPlacement.cs" t="Include" />
-                <e p="TouchHandler.cs" t="Include" />
-                <e p="UtilityHelper.cs" t="Include" />
-              </e>
-            </e>
-            <e p="ImageTargets" t="Include">
-              <e p="Scripts" t="Include">
-                <e p="VideoController.cs" t="Include" />
-                <e p="VideoTrackableEventHandler.cs" t="Include" />
-              </e>
-            </e>
-            <e p="ModelTargets" t="Include">
-              <e p="Scripts" t="Include">
-                <e p="ModelTargetsManager.cs" t="Include" />
-                <e p="ModelTargetsUIManager.cs" t="Include" />
-                <e p="MTAdvancedTrackableEventHandler.cs" t="Include" />
-                <e p="MTTrackableEventHandler.cs" t="Include" />
-                <e p="SessionRecording" t="Include">
-                  <e p="CustomSessionRecorder.cs" t="Include" />
-                  <e p="Editor" t="Include">
-                    <e p="SampleEditor.asmdef" t="Include" />
-                    <e p="SharingEnabledPostProcessBuildPlayer.cs" t="Include" />
-                  </e>
-                </e>
-              </e>
-              <e p="Shaders" t="Include">
-                <e p="RadialTexture.shader" t="Include" />
-              </e>
-            </e>
-            <e p="MultiTargets" t="Include">
-              <e p="Scripts" t="Include">
-                <e p="MultiTargetTrackableEventHandler.cs" t="Include" />
-              </e>
-            </e>
-            <e p="ObjectReco" t="Include">
-              <e p="Scripts" t="Include">
-                <e p="ObjectRecoTrackableEventHandler.cs" t="Include" />
-              </e>
-            </e>
-            <e p="SamplesScripts.asmdef" t="Include" />
-            <e p="VirtualButtons" t="Include">
-              <e p="Scripts" t="Include">
-                <e p="VirtualButtonEventHandler.cs" t="Include" />
-              </e>
-              <e p="Shaders" t="Include">
-                <e p="Gradient.shader" t="Include" />
-              </e>
-            </e>
-            <e p="VuMarks" t="Include">
-              <e p="Scripts" t="Include">
-                <e p="LookAtObject.cs" t="Include" />
-                <e p="PanelShowHide.cs" t="Include" />
-                <e p="VuMarkHandler.cs" t="Include" />
-                <e p="VuMarkTrackableEventHandler.cs" t="Include" />
-              </e>
-            </e>
-          </e>
-        </e>
         <e p="Scripts" t="Include">
           <e p="Android.cs" t="Include" />
+          <e p="ConnectionManager.cs" t="Include" />
           <e p="Crewmate.cs" t="Include" />
           <e p="Game.cs" t="Include" />
           <e p="GameManager.cs" t="Include" />
@@ -237,8 +142,6 @@
       <e p="EditorMigrationScripts.csproj" t="IncludeRecursive" />
       <e p="obj" t="ExcludeRecursive" />
       <e p="Packages" t="ExcludeRecursive" />
-      <e p="SampleEditor.csproj" t="IncludeRecursive" />
-      <e p="SamplesScripts.csproj" t="IncludeRecursive" />
       <e p="Temp\Bin" t="ExcludeRecursive" />
       <e p="UnityProject.sln" t="IncludeFlat" />
       <e p="VuforiaVersionCheckerScripts.csproj" t="IncludeRecursive" />
