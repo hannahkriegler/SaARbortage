@@ -12,6 +12,7 @@ namespace SaARbotage
         public static GameManager Instance;
         public Dictionary<Player, ulong> players;
         public GameObject cam;
+        
 
         public void Awake()
         {

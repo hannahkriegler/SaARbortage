@@ -112,6 +112,9 @@
           <e p="Crewmate.cs" t="Include" />
           <e p="Game.cs" t="Include" />
           <e p="GameManager.cs" t="Include" />
+          <e p="Games" t="Include">
+            <e p="AlignGame.cs" t="Include" />
+          </e>
           <e p="Item.cs" t="Include" />
           <e p="MeetingManager.cs" t="Include" />
           <e p="Player.cs" t="Include" />
