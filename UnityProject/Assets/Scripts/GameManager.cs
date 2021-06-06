@@ -8,21 +8,33 @@ namespace SaARbotage
 {
     public class GameManager : NetworkBehaviour
     {
-        public static GameManager instance;
+        public static GameManager Instance;
+        public Dictionary<Player, ulong> players;
+        public GameObject cam;
 
         public void Awake()
         {
-            instance = this;
+            Instance = this;
         }
-
+        
         public void CreateLobby()
         {
+            players = new Dictionary<Player, ulong>();
             // give players id's
             foreach (var client in NetworkManager.Singleton.ConnectedClients)
             {
                 var player = NetworkManager.Singleton.ConnectedClients[client.Value.ClientId].PlayerObject;
                 player.gameObject.GetComponent<Player>().playerId = client.Value.ClientId;
+                // add player to dict
+                players.Add(player.gameObject.GetComponent<Player>(), client.Value.ClientId);
                 Debug.Log("Added Player with " + client.Value.ClientId);
+            }
+
+            cam.SetActive(false);
+            // Launch custom camera foreach player
+            foreach (var pair in players)
+            {
+                pair.Key.ShowUI(true);
             }
             
         }

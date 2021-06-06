@@ -9,6 +9,8 @@
 [Bb]uilds/
 [Ll]ogs/
 [Mm]emoryCaptures/
+[Bb]uilds/
+UnityProject_clone_0/
 
 
 # Asset meta data should only be ignored when the corresponding asset is also ignored
@@ -63,3 +65,4 @@ sysinfo.txt
 # Crashlytics generated file
 crashlytics-build.properties
 
+UnityProject/.idea/.idea.UnityProject/.idea/indexLayout.xml
