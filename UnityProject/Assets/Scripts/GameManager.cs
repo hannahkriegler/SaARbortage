@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using MLAPI;
+using MLAPI.Messaging;
 using UnityEngine;
 
 namespace SaARbotage
@@ -17,7 +18,8 @@ namespace SaARbotage
             Instance = this;
         }
         
-        public void CreateLobby()
+        [ClientRpc]
+        public void CreateLobbyClientRpc()
         {
             players = new Dictionary<Player, ulong>();
             // give players id's

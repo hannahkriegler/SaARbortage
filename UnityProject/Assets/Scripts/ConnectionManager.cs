@@ -26,7 +26,6 @@ namespace SaARbotage
             lobbyUI.SetActive(true);
             NetworkManager.Singleton.ConnectionApprovalCallback += ApprovalCheck;
             NetworkManager.Singleton.StartHost(Vector3.zero, Quaternion.identity);
-            
         }
 
         private void ApprovalCheck(byte[] connectionData, ulong clientID, NetworkManager.ConnectionApprovedDelegate callback)

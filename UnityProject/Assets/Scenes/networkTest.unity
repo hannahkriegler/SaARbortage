@@ -1130,6 +1130,7 @@ GameObject:
   - component: {fileID: 1035460602}
   - component: {fileID: 1035460601}
   - component: {fileID: 1035460600}
+  - component: {fileID: 1035460605}
   m_Layer: 0
   m_Name: ConnectionUI
   m_TagString: Untagged
@@ -1238,6 +1239,23 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &1035460605
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1035460599}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  NetworkInstanceId: 0
+  PrefabHash: 17569606445474906607
+  PrefabHashGenerator: ConnectionUI
+  AlwaysReplicateAsRoot: 0
+  DontDestroyWithOwner: 0
 --- !u!1 &1224665661
 GameObject:
   m_ObjectHideFlags: 0
@@ -1248,6 +1266,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1224665663}
   - component: {fileID: 1224665662}
+  - component: {fileID: 1224665664}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -1282,6 +1301,23 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1224665664
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1224665661}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  NetworkInstanceId: 0
+  PrefabHash: 13494567273885427380
+  PrefabHashGenerator: GameManager
+  AlwaysReplicateAsRoot: 0
+  DontDestroyWithOwner: 0
 --- !u!1 &1481834789
 GameObject:
   m_ObjectHideFlags: 0
@@ -1367,7 +1403,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1224665662}
         m_TargetAssemblyTypeName: SaARbotage.GameManager, Assembly-CSharp
-        m_MethodName: CreateLobby
+        m_MethodName: CreateLobbyClientRpc
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

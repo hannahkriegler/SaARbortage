@@ -78,7 +78,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: New Text
+  m_Text: Name
 --- !u!1 &6484097715583042962
 GameObject:
   m_ObjectHideFlags: 0
@@ -210,6 +210,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cam: {fileID: 6756152211304781390}
+  ui: {fileID: 7122764788905518213}
   playerId: 0
   role: {fileID: 0}
   isAlive: 0
@@ -223,7 +224,6 @@ GameObject:
   m_Component:
   - component: {fileID: 3293192662080485218}
   - component: {fileID: 8671085638285714384}
-  - component: {fileID: 7217174026761729930}
   - component: {fileID: 5352177980938546609}
   m_Layer: 0
   m_Name: PlayerCamera
@@ -289,14 +289,6 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
---- !u!81 &7217174026761729930
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6756152211304781390}
-  m_Enabled: 1
 --- !u!114 &5352177980938546609
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -347,7 +339,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &4256093252921126581
 RectTransform:
   m_ObjectHideFlags: 0

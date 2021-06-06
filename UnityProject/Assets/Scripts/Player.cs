@@ -6,6 +6,7 @@ namespace SaARbotage
     public class Player : NetworkBehaviour
     {
         public GameObject cam;
+        public GameObject ui;
         public ulong playerId;
         public Role role;
         public bool isAlive;
@@ -25,12 +26,21 @@ namespace SaARbotage
         {
             //if (!NetworkManager.Singleton.IsServer) return;
             ConnectionManager.instance.AddPlayerToLobby(this);
+            Debug.Log("Stated Network for: " + OwnerClientId);
         }
 
         public void ShowUI(bool b)
         {
-            cam.SetActive(b);
-            GetComponentInChildren<Canvas>().gameObject.SetActive(b);
+            if (IsLocalPlayer)
+            {
+                cam.SetActive(b);
+                ui.SetActive(b);
+            }
+            else
+            {
+                cam.SetActive(!b);
+                ui.SetActive(!b);
+            }
         }
     }
 }
