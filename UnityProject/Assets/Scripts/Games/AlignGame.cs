@@ -71,9 +71,9 @@ namespace SaARbotage
 
             float OffsetAngle1 = UnityEngine.Random.Range(45,360);
             float OffsetAngle2 = UnityEngine.Random.Range(45, 360);
-            innerRing.transform.Rotate(new Vector3 (OffsetAngle1, OffsetAngle1, 0));
-            middleRing.transform.Rotate(new Vector3(0, OffsetAngle1, OffsetAngle1));
-            outerRing.transform.Rotate(new Vector3( OffsetAngle1, 0, OffsetAngle1));
+            innerRing.transform.Rotate(new Vector3 (OffsetAngle1, OffsetAngle2, 0));
+            middleRing.transform.Rotate(new Vector3(0, OffsetAngle1, OffsetAngle2));
+            outerRing.transform.Rotate(new Vector3( OffsetAngle1, 0, OffsetAngle2));
             Indicator.SetColor("_EmissionColor", new Color (255f, 0f, 0f));
 
         }
