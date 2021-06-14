@@ -13,9 +13,14 @@ namespace SaARbotage
         public GameObject innerRing;
         private Vector3 innerRingUp;
         private Transform InnerEmpty;
+        public Material InnerMat;
         public GameObject outerRing;
         private Vector3 outerRingUP;
         private Transform OuterEmpty;
+        public Material OuterMat;
+
+        private float Duration = 0;
+        public float MaxDur = 2;
 
        
 
@@ -65,18 +70,69 @@ namespace SaARbotage
         {
             //if (!launch) return;
             //if(!IsLocalPlayer) return;   
-            if(Input.GetMouseButtonUp(0)) TestAlignment();
+            if (Input.GetMouseButtonUp(0)) {
+                TestAlignment();
+                DeactivatePulse();
+            }
+            
         }
 
-        public void RotateRing(GameObject ring, float prog)
+        private void DeactivatePulse()
+        {
+            InnerMat.SetFloat("Strength", 0);
+            Duration = 0;
+            OuterMat.SetFloat("Strength", 0);
+            Duration = 0;
+        }
+        public void RotateRingOuterZahnrad(GameObject ring, float prog)
         {
             if (ring == innerRing) {
-                //Lösung aus: https://forum.unity.com/threads/two-rotatearound-calls-lead-to-3-axis-rotation.362943/ ABER is ehrlich gesagt nicht so geil tbh...
-                innerRing.transform.RotateAround(innerRing.transform.position, innerRingUp, prog * RingRotationSpeed);
-                innerRing.transform.RotateAround(innerRing.transform.position, innerRing.transform.right, prog * RingRotationSpeed);
+                if (Duration < MaxDur) {
+                    InnerMat.SetFloat("Strength", Mathf.Lerp(0, 1, Duration / MaxDur));
+                    Duration += Time.deltaTime;
+                } else
+                {
+                    InnerMat.SetFloat("Strength", 1);
+                }
+                innerRing.transform.RotateAround(innerRing.transform.position, innerRing.transform.up, prog * RingRotationSpeed);
             } else
                 {
-                outerRing.transform.RotateAround(outerRing.transform.position, outerRingUP, prog * RingRotationSpeed);
+                if (Duration < MaxDur)
+                {
+                    OuterMat.SetFloat("Strength", Mathf.Lerp(0,1, Duration / MaxDur));
+                    Duration += Time.deltaTime;
+                } else
+                {
+                    OuterMat.SetFloat("Strength", 1);
+                }
+                outerRing.transform.RotateAround(outerRing.transform.position, outerRing.transform.up, prog * RingRotationSpeed);
+            }
+
+        }
+
+        public void RotateRingInnerZahnrad(GameObject ring, float prog)
+        {
+            if (ring == innerRing)
+            {
+               if (Duration < MaxDur) {
+                    InnerMat.SetFloat("Strength", Mathf.Lerp(0, 1, Duration / MaxDur));
+                    Duration += Time.deltaTime;
+                } else
+                {
+                    InnerMat.SetFloat("Strength", 1);
+                }
+                innerRing.transform.RotateAround(innerRing.transform.position, innerRing.transform.right, prog * RingRotationSpeed);
+            }
+            else
+            {
+                if (Duration < MaxDur)
+                {
+                    OuterMat.SetFloat("Strength", Mathf.Lerp(0,1, Duration / MaxDur));
+                    Duration += Time.deltaTime;
+                } else
+                {
+                    OuterMat.SetFloat("Strength", 1);
+                }
                 outerRing.transform.RotateAround(outerRing.transform.position, outerRing.transform.forward, prog * RingRotationSpeed);
             }
 

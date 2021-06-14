@@ -4,12 +4,14 @@ using UnityEngine;
 
 namespace SaARbotage
 {
+    public enum Part { inner, outer };
     public class TurnZahnrad : MonoBehaviour
     {
         //TODO: Einfügen, dass nur Spieler X das benutzen darf, I guess. Hannah Fragen was sie denkt.
         float RotationSpeed = 0f;
         AlignGame AG = null;
-        public GameObject AssignedRing = null; 
+        public GameObject AssignedRing = null;
+        public Part isme; 
 
         private void Awake()
         {
@@ -26,10 +28,11 @@ namespace SaARbotage
 
             //transform.RotateAround(Vector3.up, -rotx);
             //transform.RotateAround(Vector3.right, -roty);
-            transform.Rotate(Vector3.forward, rotx);
+            transform.Rotate(Vector3.up, rotx);
             if (AssignedRing != null)
             {
-                AG.RotateRing(AssignedRing, rotx);
+                if (isme == Part.inner) AG.RotateRingInnerZahnrad(AssignedRing, rotx);
+                if (isme == Part.outer) AG.RotateRingOuterZahnrad(AssignedRing, rotx);
             }
 
 
