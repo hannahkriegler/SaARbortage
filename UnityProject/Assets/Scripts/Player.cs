@@ -10,6 +10,7 @@ namespace SaARbotage
         public ulong playerId;
         public Role role;
         public bool isAlive;
+        public string name;
 
         public void AssignPlayer( Role role)
         {
@@ -24,9 +25,17 @@ namespace SaARbotage
         
         public override void NetworkStart()
         {
-            //if (!NetworkManager.Singleton.IsServer) return;
-            ConnectionManager.instance.AddPlayerToLobby(this);
-            Debug.Log("Stated Network for: " + OwnerClientId);
+            Debug.Log("HERE!");
+            playerId = OwnerClientId;
+            name = "name " + playerId.ToString();
+            if (IsServer)
+            {
+                ConnectionManager.instance.AddPlayerToLobby(playerId, name);
+            }
+            else
+            {
+                ConnectionManager.instance.AddPlayerToLobbyServerRpc(playerId, name);
+            }
         }
 
         public void ShowUI(bool b)

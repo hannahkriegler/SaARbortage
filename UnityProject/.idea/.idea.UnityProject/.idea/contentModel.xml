@@ -114,6 +114,7 @@
           <e p="GameManager.cs" t="Include" />
           <e p="Games" t="Include">
             <e p="AlignGame.cs" t="Include" />
+            <e p="TurnZahnrad.cs" t="Include" />
           </e>
           <e p="Item.cs" t="Include" />
           <e p="MeetingManager.cs" t="Include" />
