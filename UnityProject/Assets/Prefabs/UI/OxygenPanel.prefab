@@ -464,7 +464,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 6581073556500247444}
         m_TargetAssemblyTypeName: SaARbotage.Oxygen, Assembly-CSharp
-        m_MethodName: ChangeTimeServerRpc
+        m_MethodName: ChangeTime
         m_Mode: 4
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -676,7 +676,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 6581073556500247444}
         m_TargetAssemblyTypeName: SaARbotage.Oxygen, Assembly-CSharp
-        m_MethodName: ChangeTimeServerRpc
+        m_MethodName: ChangeTime
         m_Mode: 4
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

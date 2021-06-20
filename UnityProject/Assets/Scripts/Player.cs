@@ -41,21 +41,24 @@ namespace SaARbotage
 
         public void ShowUI(bool b)
         {
-            if (ui == null)
-            {
-                ui = Instantiate(uiPrefab, gameObject.transform, true);
-                if(IsHost)
-                 ui.GetComponent<NetworkObject>().Spawn();
-            }
             if (IsLocalPlayer)
             {
+                if (ui == null)
+                {
+                    ui = Instantiate(uiPrefab, gameObject.transform, true);
+                    if (IsHost)
+                        ui.GetComponent<NetworkObject>().Spawn();
+                }
+                
                 cam.SetActive(b);
                 ui.SetActive(b);
+                
             }
             else
             {
                 cam.SetActive(!b);
-                ui.SetActive(!b);
+                if(ui != null)
+                    ui.SetActive(!b);
             }
         }
 

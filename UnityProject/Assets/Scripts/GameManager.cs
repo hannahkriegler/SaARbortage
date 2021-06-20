@@ -3,7 +3,9 @@ using System.Collections;
 using System.Collections.Generic;
 using MLAPI;
 using MLAPI.Messaging;
+using MLAPI.NetworkVariable;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace SaARbotage
 {
@@ -12,14 +14,25 @@ namespace SaARbotage
         public static GameManager Instance;
         public Dictionary<Player, ulong> players;
         public GameObject cam;
-        public float time;
         
+        public NetworkVariable<float> syncTime = new NetworkVariable<float>();
+
+        [Header("Oxygen:")]
+        public float time;
+
 
         public void Awake()
         {
             Instance = this;
         }
-        
+
+        public override void NetworkStart()
+        {
+            syncTime.Value = time;
+            syncTime.Settings.WritePermission = NetworkVariablePermission.Everyone;
+            syncTime.Settings.ReadPermission = NetworkVariablePermission.Everyone;
+        }
+
         [ClientRpc]
         public void CreateLobbyClientRpc()
         {
@@ -42,7 +55,31 @@ namespace SaARbotage
                 pair.Key.ShowUI(true);
             }
             
+            //SetUpGame();
+            
         }
+
+        public void SetUpGame()
+        {
+            // distribute roles
+            
+            // distribute stations and games
+            
+            // start counter
+            InvokeRepeating(nameof(UpdateOxygen), 1, 1);
+        }
+
+        #region Oxygen
+        public void ChangeTime(float value)
+        {
+            syncTime.Value += value;
+        }
+
+        private void UpdateOxygen()
+        {
+            syncTime.Value --;
+        }
+        #endregion
     }
 
 }

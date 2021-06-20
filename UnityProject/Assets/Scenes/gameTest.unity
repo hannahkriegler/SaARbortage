@@ -401,9 +401,29 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4008153728010673848, guid: ef1a275c0d596f544bc6d639386aae8a,
         type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4008153728010673848, guid: ef1a275c0d596f544bc6d639386aae8a,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4008153728010673848, guid: ef1a275c0d596f544bc6d639386aae8a,
+        type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1224665662}
+    - target: {fileID: 4008153728010673848, guid: ef1a275c0d596f544bc6d639386aae8a,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 1224665662}
+    - target: {fileID: 4008153728010673848, guid: ef1a275c0d596f544bc6d639386aae8a,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 4008153728010673848, guid: ef1a275c0d596f544bc6d639386aae8a,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
@@ -411,8 +431,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4008153728010673848, guid: ef1a275c0d596f544bc6d639386aae8a,
         type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: SetUpGame
+      objectReference: {fileID: 0}
+    - target: {fileID: 4008153728010673848, guid: ef1a275c0d596f544bc6d639386aae8a,
+        type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
       value: SaARbotage.GameManager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 4008153728010673848, guid: ef1a275c0d596f544bc6d639386aae8a,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: SaARbotage.GameManager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 4008153728010673848, guid: ef1a275c0d596f544bc6d639386aae8a,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 4008153728010673854, guid: ef1a275c0d596f544bc6d639386aae8a,
         type: 3}
@@ -1584,6 +1619,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cam: {fileID: 1849560365}
+  syncTime:
+    m_InternalValue: 0
   time: 20
 --- !u!4 &1224665663
 Transform:

@@ -1,10 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
+using MLAPI;
 using UnityEngine;
 
 namespace SaARbotage
 {
-    public class Station : MonoBehaviour
+    public class Station : NetworkBehaviour
     {
         public int stationId;
         public string stationName;
