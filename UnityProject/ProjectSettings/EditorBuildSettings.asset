@@ -47,9 +47,12 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/networkTest.unity
     guid: fc6d45a15a36a4c4695f7e6e10cde0f1
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Vuforia-Imagetrackingscene.unity
     guid: dceea6644d97e23468cf07315f4f1143
+  - enabled: 1
+    path: Assets/Scenes/gameTest.unity
+    guid: 3b29e80d3ee9f584a8abeb4c19e02c77
   m_configObjects:
     Unity.XR.WindowsMR.Settings: {fileID: 11400000, guid: 744b813df90924c169af73489b8325de,
       type: 2}

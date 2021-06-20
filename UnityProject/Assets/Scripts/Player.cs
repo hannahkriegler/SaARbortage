@@ -7,6 +7,7 @@ namespace SaARbotage
     {
         public GameObject cam;
         public GameObject ui;
+        public GameObject uiPrefab;
         public ulong playerId;
         public Role role;
         public bool isAlive;
@@ -25,7 +26,7 @@ namespace SaARbotage
         
         public override void NetworkStart()
         {
-            Debug.Log("HERE!");
+            //ui.SetActive(false);
             playerId = OwnerClientId;
             name = "name " + playerId.ToString();
             if (IsServer)
@@ -40,6 +41,12 @@ namespace SaARbotage
 
         public void ShowUI(bool b)
         {
+            if (ui == null)
+            {
+                ui = Instantiate(uiPrefab, gameObject.transform, true);
+                if(IsHost)
+                 ui.GetComponent<NetworkObject>().Spawn();
+            }
             if (IsLocalPlayer)
             {
                 cam.SetActive(b);

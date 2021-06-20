@@ -13,17 +13,28 @@ namespace SaARbotage
     {
         public static ConnectionManager instance;
         
-        public GameObject lobbyUI;
+        
         public List<GameObject> playerUIs;
         private int _indexLobbyUI = 0;
         public Dictionary<ulong, string> _playersInLobby;
         public int playersCounter;
+
+        [Header("Menu Objects")] 
+        public GameObject buttonHost;
+        public GameObject buttonJoin;
+        public GameObject buttonCreateLobby;
+        public GameObject lobbyUI;
 
         private void Awake()
         {
             instance = this;
             _playersInLobby = new Dictionary<ulong, string>();
             playersCounter = 0;
+            
+            buttonHost.SetActive(true);
+            buttonJoin.SetActive(true);
+            buttonCreateLobby.SetActive(false);
+            lobbyUI.SetActive(false);
         }
 
         public void Host()
@@ -31,6 +42,9 @@ namespace SaARbotage
             lobbyUI.SetActive(true);
             NetworkManager.Singleton.ConnectionApprovalCallback += ApprovalCheck;
             NetworkManager.Singleton.StartHost(Vector3.zero, Quaternion.identity);
+            buttonHost.SetActive(false);
+            buttonJoin.SetActive(false);
+            buttonCreateLobby.SetActive(true);
         }
 
         private void ApprovalCheck(byte[] connectionData, ulong clientID, NetworkManager.ConnectionApprovedDelegate callback)
@@ -42,6 +56,8 @@ namespace SaARbotage
         public void Join()
         {
             NetworkManager.Singleton.StartClient();
+            buttonHost.SetActive(false);
+            buttonJoin.SetActive(false);
         }
 
         /// <summary>
@@ -98,6 +114,28 @@ namespace SaARbotage
                 _indexLobbyUI++;
             }
             
+        }
+
+        public void CreateLobby()
+        {
+            Debug.Log("Create Lobby");
+            var players = new Dictionary<Player, ulong>();
+            // give players id's
+            foreach (var client in NetworkManager.Singleton.ConnectedClients)
+            {
+                var player = NetworkManager.Singleton.ConnectedClients[client.Value.ClientId].PlayerObject;
+                player.gameObject.GetComponent<Player>().playerId = client.Value.ClientId;
+                // add player to dict
+                players.Add(player.gameObject.GetComponent<Player>(), client.Value.ClientId);
+                Debug.Log("Added Player with " + client.Value.ClientId);
+            }
+
+            //cam.SetActive(false);
+            // Launch custom camera foreach player
+            foreach (var pair in players)
+            {
+                pair.Key.ShowUI(true);
+            }
         }
         
         

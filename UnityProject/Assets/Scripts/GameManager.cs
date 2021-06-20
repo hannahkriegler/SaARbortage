@@ -12,6 +12,7 @@ namespace SaARbotage
         public static GameManager Instance;
         public Dictionary<Player, ulong> players;
         public GameObject cam;
+        public float time;
         
 
         public void Awake()
@@ -22,6 +23,7 @@ namespace SaARbotage
         [ClientRpc]
         public void CreateLobbyClientRpc()
         {
+            Debug.Log("Create Lobby");
             players = new Dictionary<Player, ulong>();
             // give players id's
             foreach (var client in NetworkManager.Singleton.ConnectedClients)
