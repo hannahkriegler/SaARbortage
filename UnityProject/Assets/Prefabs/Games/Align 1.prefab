@@ -99,6 +99,121 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!1 &699271669
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 699271670}
+  - component: {fileID: 699271672}
+  - component: {fileID: 699271671}
+  m_Layer: 0
+  m_Name: "Kreis-au\xDFen (1)"
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &699271670
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 699271669}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 2.1943817, z: 0}
+  m_LocalScale: {x: 0.2687803, y: 0.2687803, z: 0.2687803}
+  m_Children:
+  - {fileID: 1009329446}
+  m_Father: {fileID: 8646493217238896847}
+  m_RootOrder: 11
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!33 &699271672
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 699271669}
+  m_Mesh: {fileID: 7133999774619414517, guid: b2c55dcbafe27ce49acb9cf7d0cab424, type: 3}
+--- !u!23 &699271671
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 699271669}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: 1a68db67e3e88e548a66f486e6d421b9, type: 2}
+  - {fileID: 2100000, guid: 12d4018e588de1c41ad13559e698500c, type: 2}
+  - {fileID: 2100000, guid: b108b24ec8e6a454bb3e2f826380693d, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
+--- !u!1 &1009329445
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1009329446}
+  m_Layer: 0
+  m_Name: Distance outer
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1009329446
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1009329445}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 5.91}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 699271670}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1736042129
 GameObject:
   m_ObjectHideFlags: 0
@@ -139,7 +254,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2023018468}
   m_Layer: 0
-  m_Name: Distance outer
+  m_Name: Distance mitte
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -540,7 +655,7 @@ GameObject:
   - component: {fileID: 7848808854026578389}
   - component: {fileID: 819246730900989591}
   m_Layer: 0
-  m_Name: "Kreis-au\xDFen"
+  m_Name: Kreis-mitte
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1113,12 +1228,16 @@ MonoBehaviour:
   leftZahnrad: {fileID: 7755814261678741301}
   innerRing: {fileID: 8912710006090220425}
   InnerMat: {fileID: 2100000, guid: 0dc9470b6fe18d745a94f4bedcb16589, type: 2}
-  outerRing: {fileID: 3160526052302502982}
+  middleRing: {fileID: 3160526052302502982}
+  middleMat: {fileID: 2100000, guid: 2aaea32c5f80479498adac3b4678f81c, type: 2}
+  outerRing: {fileID: 699271669}
   OuterMat: {fileID: 2100000, guid: 1a68db67e3e88e548a66f486e6d421b9, type: 2}
   MaxDur: 2
   mesh: {fileID: 6886624676174273709}
   Indicator: {fileID: 2100000, guid: b108b24ec8e6a454bb3e2f826380693d, type: 2}
-  RingRotationSpeed: 1
+  outerRingRotationSpeed: 1
+  middleRingRotationSpeed: 1
+  innerRingRotationSpeed: 1
   RotationSpeed: 20
   FairnessThreshold: 3
 --- !u!1 &6886624676174273709
@@ -1159,6 +1278,7 @@ Transform:
   - {fileID: 5852871665959664493}
   - {fileID: 6262373840107219395}
   - {fileID: 4821804218197752175}
+  - {fileID: 699271670}
   m_Father: {fileID: 5864481311967449828}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
