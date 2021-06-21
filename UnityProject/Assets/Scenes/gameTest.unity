@@ -1621,7 +1621,7 @@ MonoBehaviour:
   cam: {fileID: 1849560365}
   syncTime:
     m_InternalValue: 0
-  time: 20
+  time: 500
 --- !u!4 &1224665663
 Transform:
   m_ObjectHideFlags: 0
