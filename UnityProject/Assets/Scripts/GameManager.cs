@@ -4,8 +4,10 @@ using System.Collections.Generic;
 using MLAPI;
 using MLAPI.Messaging;
 using MLAPI.NetworkVariable;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
+using Random = UnityEngine.Random;
 
 namespace SaARbotage
 {
@@ -20,6 +22,12 @@ namespace SaARbotage
         [Header("Oxygen:")]
         public float time;
 
+        [Header("Game Settings")]
+        [SerializeField]
+        public List<RoomSettings> stationsPerRoom;
+        public Station[] stationPrefabs;
+        public GameObject roomHolder;
+        public GameObject roomPrefab;
 
         public void Awake()
         {
@@ -64,6 +72,27 @@ namespace SaARbotage
             // distribute roles
             
             // distribute stations and games
+            if (IsHost)
+            {
+                foreach (var roomSettingse in stationsPerRoom)
+                {
+                    // create new room
+                    var roomObj = Instantiate(roomPrefab, roomHolder.transform, true);
+                    //Room room = roomObj.AddComponent(typeof(Room)) as Room;
+                    /*
+                    // fill room with station
+                    for (int i = 0; i < roomSettingse.stations; i++)
+                    {
+                        var stationIndex = Random.Range(0, stationPrefabs.Length - 1);
+                        var stationObj = Instantiate(stationPrefabs[stationIndex], roomObj.transform, true);
+                        var station = stationObj.GetComponent<Station>();
+                        
+                        // get a game for the station
+                        // TODO
+                    }*/
+                    //room = new Room(roomSettingse.GetHashCode(), roomSettingse.name, );
+                }
+            }
             
             // start counter
             InvokeRepeating(nameof(UpdateOxygen), 1, 1);
@@ -80,6 +109,14 @@ namespace SaARbotage
             syncTime.Value --;
         }
         #endregion
+    }
+    
+    [System.Serializable]
+
+    public class RoomSettings
+    {
+        public string name;
+        public int stations;
     }
 
 }

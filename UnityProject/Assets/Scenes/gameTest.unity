@@ -1493,7 +1493,7 @@ RectTransform:
   - {fileID: 1481834790}
   - {fileID: 197718436}
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -1622,6 +1622,13 @@ MonoBehaviour:
   syncTime:
     m_InternalValue: 0
   time: 500
+  stationsPerRoom:
+  - name: testRoom
+    stations: 1
+  stationPrefabs: []
+  roomHolder: {fileID: 1638484201}
+  roomPrefab: {fileID: 1766945307028939236, guid: 0f4ddfa38272afa44931bf8b6e876203,
+    type: 3}
 --- !u!4 &1224665663
 Transform:
   m_ObjectHideFlags: 0
@@ -1840,7 +1847,7 @@ PrefabInstance:
     - target: {fileID: 5864481311967449828, guid: 9096a737eb945eb4aba93adc7b16a9e4,
         type: 3}
       propertyPath: m_RootOrder
-      value: 7
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 5864481311967449828, guid: 9096a737eb945eb4aba93adc7b16a9e4,
         type: 3}
@@ -2248,6 +2255,36 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1408532016}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1638484201
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1638484202}
+  m_Layer: 0
+  m_Name: Rooms
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1638484202
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1638484201}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!224 &1792286251 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 4008153728010673855, guid: ef1a275c0d596f544bc6d639386aae8a,

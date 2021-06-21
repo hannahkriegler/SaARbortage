@@ -1,34 +1,35 @@
 using System.Collections;
 using System.Collections.Generic;
 using MLAPI;
+using MLAPI.NetworkVariable;
 using UnityEngine;
 
 namespace SaARbotage
 {
     public class Station : NetworkBehaviour
     {
-        public int stationId;
-        public string stationName;
-        private bool _isActive;
-        private bool _isDone;
-        private bool _isManipulated;
+        public NetworkVariable<int> stationId;
+        public NetworkVariable<string> stationName;
+        private NetworkVariable<bool> _isActive;
+        private NetworkVariable<bool> _isDone;
+        private NetworkVariable<bool> _isManipulated;
         private Room _room;
         private Item[] _items;
         private Game _game;
-        private int _failures;
+        private NetworkVariable<int> _failures;
 
         public Station(int stationId, string stationName, bool isActive, Room room,
             Item[] items, Game game, int failures = 0, bool isDone = false, bool isManipulated = false)
         {
-            this.stationId = stationId;
-            this.stationName = stationName;
-            _isActive = isActive;
-            _isDone = isDone;
-            _isManipulated = isManipulated;
+            this.stationId.Value = stationId;
+            this.stationName.Value = stationName;
+            _isActive.Value = isActive;
+            _isDone.Value = isDone;
+            _isManipulated.Value = isManipulated;
             _room = room;
             _items = items;
             _game = game;
-            _failures = failures;
+            _failures.Value = failures;
         }
     }
 }
