@@ -118,6 +118,7 @@
           </e>
           <e p="Item.cs" t="Include" />
           <e p="MeetingManager.cs" t="Include" />
+          <e p="Oxygen.cs" t="Include" />
           <e p="Player.cs" t="Include" />
           <e p="Role.cs" t="Include" />
           <e p="Room.cs" t="Include" />

@@ -77,7 +77,11 @@ namespace SaARbotage
                 foreach (var roomSettingse in stationsPerRoom)
                 {
                     // create new room
-                    var roomObj = Instantiate(roomPrefab, roomHolder.transform, true);
+                    Debug.Log("Stations: " + stationsPerRoom.Count);
+                    SpawnRoomsServerRpc();
+                    //Debug.Log("Done Server, Next Clients");
+                    //SpawnRoomsClientRpc();
+                    //var roomObj = Instantiate(roomPrefab, roomHolder.transform, true);
                     //Room room = roomObj.AddComponent(typeof(Room)) as Room;
                     /*
                     // fill room with station
@@ -88,7 +92,7 @@ namespace SaARbotage
                         var station = stationObj.GetComponent<Station>();
                         
                         // get a game for the station
-                        // TODO
+                        // TODO 
                     }*/
                     //room = new Room(roomSettingse.GetHashCode(), roomSettingse.name, );
                 }
@@ -97,6 +101,21 @@ namespace SaARbotage
             // start counter
             InvokeRepeating(nameof(UpdateOxygen), 1, 1);
         }
+
+        [ServerRpc]
+        public void SpawnRoomsServerRpc()
+        {
+            Debug.Log("start server");
+            var roomObj = Instantiate(roomPrefab, roomHolder.transform, true);
+            
+            Debug.Log("Network Object: " + roomObj.GetComponent<NetworkObject>());
+       
+            roomObj.GetComponent<NetworkObject>().Spawn();
+            roomObj.GetComponent<Room>().Setup();
+            Debug.Log("end server");
+        }
+        
+        
 
         #region Oxygen
         public void ChangeTime(float value)

@@ -1257,6 +1257,9 @@ MonoBehaviour:
     - Prefab: {fileID: 6088030462034256656, guid: c670d343bb3b1934f8b5f4ae498c409d,
         type: 3}
       PlayerPrefab: 0
+    - Prefab: {fileID: 1766945307028939236, guid: 0f4ddfa38272afa44931bf8b6e876203,
+        type: 3}
+      PlayerPrefab: 0
     - Prefab: {fileID: 6484097715583042962, guid: 4ed22f4aff0a58c49b6cfe62921991a8,
         type: 3}
       PlayerPrefab: 1
@@ -1623,7 +1626,11 @@ MonoBehaviour:
     m_InternalValue: 0
   time: 500
   stationsPerRoom:
-  - name: testRoom
+  - name: room2
+    stations: 1
+  - name: room2
+    stations: 1
+  - name: room2
     stations: 1
   stationPrefabs: []
   roomHolder: {fileID: 1638484201}
