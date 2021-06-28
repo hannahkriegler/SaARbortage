@@ -31,5 +31,6 @@ namespace SaARbotage
             _game = game;
             _failures.Value = failures;
         }
+        
     }
 }
