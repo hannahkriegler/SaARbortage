@@ -719,7 +719,7 @@ GameObject:
   - component: {fileID: 8000047719785946923}
   - component: {fileID: -5473112032526233556}
   m_Layer: 0
-  m_Name: Align
+  m_Name: AlignOLd
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

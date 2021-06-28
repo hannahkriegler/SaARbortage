@@ -61,12 +61,6 @@ namespace SaARbotage
                     ui.SetActive(!b);
             }
         }
-
-        public void FindGame()
-        {
-            var obj = GameObject.FindWithTag("Game");
-            var game = obj.GetComponent<AlignGame>();
-            game.RegisterPlayer(this);
-        }
+        
     }
 }

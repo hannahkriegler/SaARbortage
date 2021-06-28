@@ -16,12 +16,18 @@ namespace SaARbotage
         private bool _isClosed;
         private Roomtask _roomtask;
 
-        public void Setup()
+        public void Setup(int roomId, string roomName, int numStations)
         {
-            Debug.Log("Start Setup");
-            roomId.Settings.WritePermission = NetworkVariablePermission.Everyone;
-            roomId.Settings.ReadPermission = NetworkVariablePermission.Everyone;
-            Debug.Log("End Setup");
+
+            this.roomId.Settings.WritePermission = NetworkVariablePermission.Everyone;
+            this.roomId.Settings.ReadPermission = NetworkVariablePermission.Everyone;
+
+            this.roomId.Value = roomId;
+            this.roomName = roomName;
+            
+            stations = new Station[numStations];
+
+            gameObject.name += this.roomId.Value;
         }
         
         /*public Room(int roomId, string roomName, Station[] stations, bool isClosed = false, Roomtask roomtask = null)

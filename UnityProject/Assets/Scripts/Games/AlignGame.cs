@@ -27,9 +27,7 @@ namespace SaARbotage
 
         private float Duration = 0;
         public float MaxDur = 2;
-
-       
-
+        
         private float _targetdistance1;
         private float _targetdistance2;
 
@@ -80,7 +78,7 @@ namespace SaARbotage
 
         private void Update()
         {
-            //if (!launch) return;
+            if (!launch.Value) return;
             //if(!IsLocalPlayer) return;   
             if (Input.GetMouseButtonUp(0)) {
                 TestAlignment();
@@ -183,6 +181,7 @@ namespace SaARbotage
         {
             Debug.Log("End");
             Indicator.SetColor("_EmissionColor", new Color(0f, 255f, 0f));
+            FinishGame();
         }
 
         public override void LaunchGame()
@@ -190,21 +189,6 @@ namespace SaARbotage
             base.LaunchGame();
             mesh.SetActive(true);
         }
-
         
-        private void RotateRing(Player player, GameObject ring)
-        {
-            // first player action
-            if (player.Equals(players[0])) 
-            {
-                
-            }
-
-            // second player action
-            else
-            {
-                
-            }
-        }
     }
 }

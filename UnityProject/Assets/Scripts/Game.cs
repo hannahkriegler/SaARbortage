@@ -2,64 +2,44 @@ using System.Collections;
 using System.Collections.Generic;
 using MLAPI;
 using MLAPI.Messaging;
+using MLAPI.NetworkVariable;
 using UnityEngine;
 
 namespace SaARbotage
 {
     public class Game : NetworkBehaviour
     {
-        public List<Player> players;
-        public int requiredPlayers;
-        public bool launch = false;
-        private int _registerdPlayers = 0;
+        //public List<Player> players;
+        public NetworkVariable<int> requiredPlayers;
+        public NetworkVariable<bool> launch ;
+        public NetworkVariable<int> registerdPlayers;
 
-        public virtual void Start()
+        public void Setup()
         {
-            players = new List<Player>();
-        }
-        
-        public virtual void LaunchGame()
-        {
-            launch = true;
-            Debug.Log("Launch Game!!");
-        }
-        
-        public void RegisterPlayer(Player player)
-        {
-            Debug.Log("Register player: " + player.playerId);
-            RegisterPlayerTestServerRpc(player.playerId);
-            Debug.Log("Done");
+            launch.Value = false;
+            registerdPlayers.Value = 0;
         }
 
-        [ServerRpc(RequireOwnership = false)]
-        void RegisterPlayerTestServerRpc(ulong clientID)
+        public virtual void RegisterPlayer()
         {
-            Debug.Log("StartedServer RPC");
-            RegisterPlayersClientRpc(clientID);
-            Debug.Log("Finished ClientRPC");
-            var player = NetworkManager.Singleton.ConnectedClients[clientID].PlayerObject;
-            if (players.Contains(player.gameObject.GetComponent<Player>()))
-            {
-                Debug.Log("Player already registered");
-                return;
-            }
-            
-            players.Add(player.gameObject.GetComponent<Player>());
-            Debug.Log("FinishedServer RPC");
-            
-        }
-
-        [ClientRpc]
-        void RegisterPlayersClientRpc(ulong clientID)
-        {
-            Debug.Log("registerd client: " + clientID);
-            _registerdPlayers++;
-            
-            if (requiredPlayers == _registerdPlayers)
+            registerdPlayers.Value++;
+            if (requiredPlayers.Value == registerdPlayers.Value)
             {
                 LaunchGame();
             }
-            Debug.Log("Finished Client RPC");
         }
+
+        public virtual void LaunchGame()
+        {
+            launch.Value = true;
+        }
+
+        public virtual void FinishGame()
+        {
+            launch.Value = false;
+        }
+
+       
+       
     }
 }

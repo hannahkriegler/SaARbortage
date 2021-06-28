@@ -25,9 +25,14 @@ namespace SaARbotage
         [Header("Game Settings")]
         [SerializeField]
         public List<RoomSettings> stationsPerRoom;
-        public Station[] stationPrefabs;
+        public GameObject stationPrefab;
         public GameObject roomHolder;
         public GameObject roomPrefab;
+
+        public GameObject[] gamePrefabsMultiplayer;
+
+
+        public GameObject dummyScannedStation;
 
         public void Awake()
         {
@@ -70,52 +75,69 @@ namespace SaARbotage
         public void SetUpGame()
         {
             // distribute roles
-            
+
             // distribute stations and games
             if (IsHost)
             {
-                foreach (var roomSettingse in stationsPerRoom)
+                for (int i = 0; i < stationsPerRoom.Count; i++)
                 {
-                    // create new room
-                    Debug.Log("Stations: " + stationsPerRoom.Count);
-                    SpawnRoomsServerRpc();
-                    //Debug.Log("Done Server, Next Clients");
-                    //SpawnRoomsClientRpc();
-                    //var roomObj = Instantiate(roomPrefab, roomHolder.transform, true);
-                    //Room room = roomObj.AddComponent(typeof(Room)) as Room;
-                    /*
-                    // fill room with station
-                    for (int i = 0; i < roomSettingse.stations; i++)
-                    {
-                        var stationIndex = Random.Range(0, stationPrefabs.Length - 1);
-                        var stationObj = Instantiate(stationPrefabs[stationIndex], roomObj.transform, true);
-                        var station = stationObj.GetComponent<Station>();
-                        
-                        // get a game for the station
-                        // TODO 
-                    }*/
-                    //room = new Room(roomSettingse.GetHashCode(), roomSettingse.name, );
+                    // spawn new rooms with stations
+                    SpawnRoomsServerRpc(i, stationsPerRoom[i].name, stationsPerRoom[i].stations);
                 }
+                
+                // start counter
+                InvokeRepeating(nameof(UpdateOxygen), 1, 1);
             }
-            
-            // start counter
-            InvokeRepeating(nameof(UpdateOxygen), 1, 1);
         }
 
         [ServerRpc]
-        public void SpawnRoomsServerRpc()
+        private void SpawnRoomsServerRpc(int roomId, string roomName, int numStations)
         {
-            Debug.Log("start server");
             var roomObj = Instantiate(roomPrefab, roomHolder.transform, true);
-            
-            Debug.Log("Network Object: " + roomObj.GetComponent<NetworkObject>());
-       
             roomObj.GetComponent<NetworkObject>().Spawn();
-            roomObj.GetComponent<Room>().Setup();
-            Debug.Log("end server");
+            roomObj.GetComponent<Room>().Setup(roomId, roomName, numStations);
+
+            for (int i = 0; i < numStations; i++)
+            {
+                SpawnStationsPerRoom(roomObj, i);
+            }
+            
         }
-        
-        
+    
+        private void SpawnStationsPerRoom(GameObject room, int stationNumber)
+        {
+            var stationObj = Instantiate(stationPrefab, room.transform, true);
+            stationObj.GetComponent<NetworkObject>().Spawn();
+            stationObj.GetComponent<Station>().Setup(room.GetComponent<Room>(), stationNumber);
+
+            var gameObj = Instantiate(gamePrefabsMultiplayer[0], stationObj.transform, true);
+            gameObj.GetComponent<NetworkObject>().Spawn();
+            gameObj.GetComponent<Game>().Setup();
+            
+            
+            
+
+        }
+
+        public void ScanStation()
+        {
+            var allStations = FindObjectsOfType<Station>();
+            foreach (var staton in allStations)
+            {
+                if (staton.stationId.Value == 0)
+                {
+                    staton.ScanStation();
+                    dummyScannedStation = staton.gameObject;
+                }
+            }
+        }
+
+        public void PlayGame()
+        {
+            dummyScannedStation.GetComponent<Station>().StartGame();
+            
+        }
+    
 
         #region Oxygen
         public void ChangeTime(float value)
