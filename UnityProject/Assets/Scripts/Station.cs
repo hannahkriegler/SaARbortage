@@ -5,6 +5,7 @@ using MLAPI;
 using MLAPI.NetworkVariable;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace SaARbotage
 {
@@ -13,18 +14,42 @@ namespace SaARbotage
     {
         public NetworkVariable<int> stationId;
         public NetworkVariable<string> stationName;
-        private NetworkVariable<bool> _isActive;
+        public NetworkVariable<bool> _isActive;
         private NetworkVariable<bool> _isDone;
         private NetworkVariable<bool> _isManipulated;
         private Room _room;
         private Item[] _items;
+        private StationStatus _stationStatus;
+        private enum StationStatus
+        {
+            Active, Inactive, Manipulated, Failed
+        }
+
+        public GameObject vuforiaTargetObj;
         //private Game _game;
         private NetworkVariable<int> _failures;
+        //[Serialize]
+        //public NetworkVariable<GameObject> buffer;
 
-        public void Setup(Room room, int stationNumber)
+        [Header("UI")] public GameObject uiStationPanel;
+        public Text uiStationTitel;
+        public Text uiStationInfo;
+        public Text uiStationStatus;
+
+        private void Start()
+        {
+            _isManipulated.OnValueChanged += UpdateStationUi;
+            _isActive.OnValueChanged += UpdateStationUi;
+        }
+
+        public void Setup(Room room, int stationNumber, bool status)
         {
             stationId.Value = room.roomId.Value * 10 + stationNumber;
             gameObject.name += stationId.Value;
+
+            uiStationTitel.text = gameObject.name;
+
+            _isActive.Value = status;
         }
 
         public void StartGame()
@@ -34,9 +59,19 @@ namespace SaARbotage
 
         public void ScanStation()
         {
-            // TODO Enable station UI
-            
             Debug.Log("Scanned Station " + stationId.Value);
+        }
+
+        private void UpdateStationUi(bool previousValue, bool newValue)
+        {
+            uiStationStatus.text = _stationStatus switch
+            {
+                StationStatus.Active => "Active",
+                StationStatus.Inactive => "Inactive",
+                StationStatus.Manipulated => "Manipulated",
+                StationStatus.Failed => "Failed",
+                _ => uiStationStatus.text
+            };
         }
 
         /*public Station(int stationId, string stationName, bool isActive, Room room,

@@ -1221,6 +1221,9 @@ MonoBehaviour:
     - gameTest
     AllowRuntimeSceneChanges: 0
     NetworkPrefabs:
+    - Prefab: {fileID: 6496726145425000542, guid: 9096a737eb945eb4aba93adc7b16a9e4,
+        type: 3}
+      PlayerPrefab: 0
     - Prefab: {fileID: 3741708292745514289, guid: e28ea30ef1557584ab9e945bdb70770d,
         type: 3}
       PlayerPrefab: 0
@@ -1530,6 +1533,7 @@ MonoBehaviour:
   stationsPerRoom:
   - name: room2
     stations: 1
+    status: 1
   stationPrefab: {fileID: 3741708292745514289, guid: e28ea30ef1557584ab9e945bdb70770d,
     type: 3}
   roomHolder: {fileID: 1638484201}

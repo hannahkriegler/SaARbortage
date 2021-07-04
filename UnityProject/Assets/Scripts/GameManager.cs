@@ -82,7 +82,7 @@ namespace SaARbotage
                 for (int i = 0; i < stationsPerRoom.Count; i++)
                 {
                     // spawn new rooms with stations
-                    SpawnRoomsServerRpc(i, stationsPerRoom[i].name, stationsPerRoom[i].stations);
+                    SpawnRoomsServerRpc(i, stationsPerRoom[i].name, stationsPerRoom[i].stations, stationsPerRoom[i].status);
                 }
                 
                 // start counter
@@ -91,7 +91,7 @@ namespace SaARbotage
         }
 
         [ServerRpc]
-        private void SpawnRoomsServerRpc(int roomId, string roomName, int numStations)
+        private void SpawnRoomsServerRpc(int roomId, string roomName, int numStations, bool stationStatus)
         {
             var roomObj = Instantiate(roomPrefab, roomHolder.transform, true);
             roomObj.GetComponent<NetworkObject>().Spawn();
@@ -99,24 +99,24 @@ namespace SaARbotage
 
             for (int i = 0; i < numStations; i++)
             {
-                SpawnStationsPerRoom(roomObj, i);
+                SpawnStationsPerRoom(roomObj, i, stationStatus);
             }
             
         }
     
-        private void SpawnStationsPerRoom(GameObject room, int stationNumber)
+        private void SpawnStationsPerRoom(GameObject room, int stationNumber, bool status)
         {
             var stationObj = Instantiate(stationPrefab, room.transform, true);
             stationObj.GetComponent<NetworkObject>().Spawn();
-            stationObj.GetComponent<Station>().Setup(room.GetComponent<Room>(), stationNumber);
+            stationObj.GetComponent<Station>().Setup(room.GetComponent<Room>(), stationNumber, status);
+            
+            if(!status) return;
 
-            var gameObj = Instantiate(gamePrefabsMultiplayer[0], stationObj.transform, true);
+            var gameObj = Instantiate(gamePrefabsMultiplayer[0], stationObj.GetComponent<Station>().vuforiaTargetObj.transform, true);
+            gameObj = stationObj.GetComponentInChildren<Game>().gameObject;
+            gameObj.GetComponent<Game>().Setup(stationObj.GetComponent<Station>().stationId.Value);
             gameObj.GetComponent<NetworkObject>().Spawn();
-            gameObj.GetComponent<Game>().Setup();
             
-            
-            
-
         }
 
         public void ScanStation()
@@ -158,6 +158,7 @@ namespace SaARbotage
     {
         public string name;
         public int stations;
+        public bool status;
     }
 
 }
