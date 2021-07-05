@@ -112,7 +112,7 @@ namespace SaARbotage
             
             if(!status) return;
 
-            var gameObj = Instantiate(gamePrefabsMultiplayer[0], stationObj.GetComponent<Station>().vuforiaTargetObj.transform, true);
+            var gameObj = Instantiate(gamePrefabsMultiplayer[0], stationObj.GetComponent<Station>().vuforiaTargetObj.transform);
             gameObj = stationObj.GetComponentInChildren<Game>().gameObject;
             gameObj.GetComponent<Game>().Setup(stationObj.GetComponent<Station>().stationId.Value);
             gameObj.GetComponent<NetworkObject>().Spawn();
