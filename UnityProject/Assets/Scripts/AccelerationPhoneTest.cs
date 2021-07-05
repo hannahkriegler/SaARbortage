@@ -19,6 +19,7 @@ public class AccelerationPhoneTest : MonoBehaviour
     private GameObject _maincam;
     private Transform _targetHolding;
     private Boolean _finished = false;
+    private Boolean _started = false;
 
     [Range(0,1f)]
     public float balanceMultiplier = 1f;
@@ -53,7 +54,7 @@ public class AccelerationPhoneTest : MonoBehaviour
     void Update()
     {
         //Debug.Log(Input.acceleration.magnitude);
-        if (Input.acceleration.magnitude > 2f)
+        if (Input.acceleration.magnitude > threshold && _started)
         {   //PLAN: Also Hannah und Zukunfts Niklas. Wir machen das einfach so: Falls die acceleration über nen bestimmten Punkt kommt (public) dann adden wir force und es macht sich was im Kanister. 
             Debug.Log("WOHOOOOO");
             Vector3 accel = Input.acceleration;
@@ -100,6 +101,7 @@ public class AccelerationPhoneTest : MonoBehaviour
 
         capsule.transform.parent = _maincam.transform;
         startButton.gameObject.SetActive(false);
+        _started = true;
     }
 
     public void FinishChallenge()
