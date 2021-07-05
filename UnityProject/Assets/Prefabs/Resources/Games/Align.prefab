@@ -1472,7 +1472,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   requiredPlayers:
-    m_InternalValue: 1
+    m_InternalValue: 2
   launch:
     m_InternalValue: 0
   registerdPlayers:
