@@ -1944,6 +1944,11 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4322045673428284381, guid: 2ffd76e845c55274b994f2218d91447b,
+        type: 3}
+      propertyPath: mWorldCenterMode
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 4322045673428284383, guid: 2ffd76e845c55274b994f2218d91447b,
         type: 3}
       propertyPath: m_Name
