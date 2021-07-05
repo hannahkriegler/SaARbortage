@@ -56,6 +56,7 @@ namespace SaARbotage
                 
                 cam.SetActive(b);
                 ui.SetActive(b);
+                GameManager.Instance.arCam.SetActive(true);
                 
             }
             else

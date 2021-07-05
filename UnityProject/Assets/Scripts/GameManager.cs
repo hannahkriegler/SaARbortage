@@ -16,6 +16,7 @@ namespace SaARbotage
         public static GameManager Instance;
         public Dictionary<Player, ulong> players;
         public GameObject cam;
+        public GameObject arCam;
         
         public NetworkVariable<float> syncTime = new NetworkVariable<float>();
 
