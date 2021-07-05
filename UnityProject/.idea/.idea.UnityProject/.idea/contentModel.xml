@@ -7,6 +7,31 @@
       <e p="Assembly-CSharp-Editor.csproj" t="IncludeRecursive" />
       <e p="Assembly-CSharp.csproj" t="IncludeRecursive" />
       <e p="Assets" t="Include">
+        <e p="Bitgem" t="Include">
+          <e p="StylisedWater" t="Include">
+            <e p="URP" t="Include">
+              <e p="Scripts" t="Include">
+                <e p="Bitgem" t="Include">
+                  <e p="Core" t="Include">
+                    <e p="FlagEnumAttribute.cs" t="Include" />
+                  </e>
+                  <e p="Editor" t="Include">
+                    <e p="FlagEnumAttributeDrawer.cs" t="Include" />
+                  </e>
+                  <e p="VFX" t="Include">
+                    <e p="StylisedWater" t="Include">
+                      <e p="WaterVolumeBase.cs" t="Include" />
+                      <e p="WaterVolumeBox.cs" t="Include" />
+                      <e p="WaterVolumeHelper.cs" t="Include" />
+                      <e p="WaterVolumeTransforms.cs" t="Include" />
+                      <e p="WateverVolumeFloater.cs" t="Include" />
+                    </e>
+                  </e>
+                </e>
+              </e>
+            </e>
+          </e>
+        </e>
         <e p="Common" t="Include">
           <e p="Editor" t="Include">
             <e p="CommonEditor.asmdef" t="Include" />
@@ -107,6 +132,7 @@
           </e>
         </e>
         <e p="Scripts" t="Include">
+          <e p="AccelerationPhoneTest.cs" t="Include" />
           <e p="Android.cs" t="Include" />
           <e p="ConnectionManager.cs" t="Include" />
           <e p="Crewmate.cs" t="Include" />
@@ -121,6 +147,7 @@
           <e p="MeetingManager.cs" t="Include" />
           <e p="Oxygen.cs" t="Include" />
           <e p="Player.cs" t="Include" />
+          <e p="Recolors.cs" t="Include" />
           <e p="Role.cs" t="Include" />
           <e p="Room.cs" t="Include" />
           <e p="Roomtask.cs" t="Include" />

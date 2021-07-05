@@ -187,7 +187,7 @@ namespace SaARbotage
         public override void LaunchGame()
         {
             base.LaunchGame();
-            mesh.SetActive(true);
+            //mesh.SetActive(true);
         }
         
     }

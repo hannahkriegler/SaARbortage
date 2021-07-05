@@ -1,4 +1,6 @@
+using System;
 using MLAPI;
+using MLAPI.NetworkVariable;
 using UnityEngine;
 
 namespace SaARbotage
@@ -12,6 +14,8 @@ namespace SaARbotage
         public Role role;
         public bool isAlive;
         public string name;
+        
+        
 
         public void AssignPlayer( Role role)
         {
@@ -61,6 +65,8 @@ namespace SaARbotage
                     ui.SetActive(!b);
             }
         }
+
+      
         
     }
 }

@@ -96,7 +96,7 @@ Material:
     m_Ints: []
     m_Floats:
     - Strenght: 0
-    - Strength: 0.8065624
+    - Strength: 0
     - _AlphaClip: 0
     - _Blend: 0
     - _BumpScale: 1

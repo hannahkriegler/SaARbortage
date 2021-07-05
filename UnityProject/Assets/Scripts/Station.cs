@@ -26,15 +26,16 @@ namespace SaARbotage
         }
 
         public GameObject vuforiaTargetObj;
-        //private Game _game;
         private NetworkVariable<int> _failures;
-        //[Serialize]
-        //public NetworkVariable<GameObject> buffer;
 
         [Header("UI")] public GameObject uiStationPanel;
         public Text uiStationTitel;
         public Text uiStationInfo;
         public Text uiStationStatus;
+        public GameObject uiStartGameButton;
+        public GameObject uiWaitObj;
+
+        public GameObject uiGameInfoPanel;
 
         private void Start()
         {
@@ -54,7 +55,28 @@ namespace SaARbotage
 
         public void StartGame()
         {
-            gameObject.GetComponentInChildren<Game>().RegisterPlayer();
+            var game = gameObject.GetComponentInChildren<Game>();
+            game.RegisterPlayer();
+
+            if (game.waitForPlayersToRegister.Value)
+            {
+                uiStationPanel.SetActive(false);
+                uiWaitObj.SetActive(true);
+                uiStartGameButton.SetActive(false);
+            }
+            else
+            {
+                uiStationPanel.SetActive(false);
+                uiGameInfoPanel.SetActive(false);
+            }
+        }
+
+        public void FinishedGame(bool successful)
+        {
+            if (!successful)
+            {
+                _failures.Value++;
+            }
         }
 
         public void ScanStation()

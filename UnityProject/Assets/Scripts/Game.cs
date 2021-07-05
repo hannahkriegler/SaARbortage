@@ -15,13 +15,14 @@ namespace SaARbotage
         public NetworkVariable<bool> launch ;
         public NetworkVariable<int> registerdPlayers;
         public NetworkVariable<int> stationID;
+        public NetworkVariable<bool> waitForPlayersToRegister;
 
         public void Setup(int stationID)
         {
             launch.Value = false;
             registerdPlayers.Value = 0;
             this.stationID.Value = stationID;
-            //gameObject.transform.SetParent(station.vuforiaTargetObj.transform); 
+            waitForPlayersToRegister.Value = true;
         }
 
         private void OnEnable()
@@ -41,6 +42,7 @@ namespace SaARbotage
             registerdPlayers.Value++;
             if (requiredPlayers.Value == registerdPlayers.Value)
             {
+                waitForPlayersToRegister.Value = false;
                 LaunchGame();
             }
         }
