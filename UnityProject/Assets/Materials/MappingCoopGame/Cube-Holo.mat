@@ -95,10 +95,10 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - InnerPointStrength: 1.66
+    - InnerPointStrength: 0
     - Scrollingspeed: 0.021
     - TextureLeftRight: 1
-    - Turnaround: -1
+    - Turnaround: 1
     - ZoomInTexture: 0.085
     - _AlphaClip: 0
     - _Blend: 0
@@ -126,7 +126,7 @@ Material:
     - _Surface: 0
     - _WorkflowMode: 1
     - _ZWrite: 1
-    - flickerspeed: 0.031
+    - flickerspeed: 0
     m_Colors:
     - Emission_Color: {r: 1.8518976, g: 0, b: 0.9981905, a: 0}
     - GroundColor: {r: 1, g: 1, b: 1, a: 0}
