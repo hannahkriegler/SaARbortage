@@ -1477,6 +1477,10 @@ MonoBehaviour:
     m_InternalValue: 0
   registerdPlayers:
     m_InternalValue: 0
+  stationID:
+    m_InternalValue: 0
+  waitForPlayersToRegister:
+    m_InternalValue: 0
   rightZahnrad: {fileID: 6262373840107219404}
   leftZahnrad: {fileID: 7755814261678741301}
   innerRing: {fileID: 8912710006090220425}
@@ -1535,7 +1539,7 @@ Transform:
   m_GameObject: {fileID: 6886624676174273709}
   m_LocalRotation: {x: -0, y: 0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
+  m_LocalScale: {x: 0.05, y: 0.05, z: 0.05}
   m_Children:
   - {fileID: 5058995928206062412}
   - {fileID: 6287642786359404786}
