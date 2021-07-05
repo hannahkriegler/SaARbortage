@@ -96,6 +96,11 @@ namespace SaARbotage
             };
         }
 
+        public void TestCall()
+        {
+            Debug.Log("I GOT CALLED!!!");
+        }
+
         /*public Station(int stationId, string stationName, bool isActive, Room room,
             Item[] items, Game game, int failures = 0, bool isDone = false, bool isManipulated = false)
         {
