@@ -7,7 +7,7 @@ namespace SaARbotage
     public enum Part { inner, outer };
     public class TurnZahnrad : MonoBehaviour
     {
-        //TODO: Einfügen, dass nur Spieler X das benutzen darf, I guess. Hannah Fragen was sie denkt.
+        //TODO: EinfÃ¼gen, dass nur Spieler X das benutzen darf, I guess. Hannah Fragen was sie denkt.
         float RotationSpeed = 0f;
         AlignGame AG = null;
         public GameObject AssignedRing = null;
@@ -22,7 +22,7 @@ namespace SaARbotage
 
         private void OnMouseDrag()
         {
-            Debug.Log("Hello this is RotationSpeed" + RotationSpeed.ToString());
+            //Debug.Log("Hello this is RotationSpeed" + RotationSpeed.ToString());
             float rotx = Input.GetAxis("Mouse X") * RotationSpeed * Mathf.Deg2Rad;
             //float roty = Input.GetAxis("Mouse Y") * RotationSpeed * Mathf.Deg2Rad;
 

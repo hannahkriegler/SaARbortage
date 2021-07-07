@@ -9,7 +9,9 @@ namespace SaARbotage
     public class AlignGame : Game
     {
 
-        public NetworkVariable<Vector3> test; 
+        public NetworkVariable<int> outerRingX;
+        public NetworkVariable<int> outerRingY;
+        public NetworkVariable<int> outerRingZ;
         
         public GameObject rightZahnrad;
         public GameObject leftZahnrad;
@@ -116,7 +118,12 @@ namespace SaARbotage
                     InnerMat.SetFloat("Strength", 1);
                 }
                 innerRing.transform.RotateAround(innerRing.transform.position, innerRing.transform.up, prog * innerRingRotationSpeed);
+                
                 outerRing.transform.RotateAround(outerRing.transform.position, outerRing.transform.right, prog * outerRingRotationSpeed);
+                Debug.Log("Outer Ring: " + outerRing.transform.localRotation.x +  outerRing.transform.localRotation.y +  outerRing.transform.localRotation.z);
+                outerRingX.Value = (int) (outerRing.transform.localRotation.x * 180);
+                outerRingY.Value = (int) (outerRing.transform.localRotation.y* 180);
+                outerRingZ.Value = (int) (outerRing.transform.localRotation.z* 180);
             } else
                 {
                 if (Duration < MaxDur)

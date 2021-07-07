@@ -21,8 +21,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: outline-inner-ring
-  m_Shader: {fileID: -6465566751694194690, guid: 7f28c96ffccf3dc4980065f5c7af6840,
-    type: 3}
+  m_Shader: {fileID: -6465566751694194690, guid: 7f28c96ffccf3dc4980065f5c7af6840, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 2
   m_EnableInstancingVariants: 1
@@ -96,7 +95,7 @@ Material:
     m_Ints: []
     m_Floats:
     - Strenght: 0
-    - Strength: 0
+    - Strength: 1
     - _AlphaClip: 0
     - _Blend: 0
     - _BumpScale: 1
