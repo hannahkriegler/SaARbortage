@@ -1,12 +1,16 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using MLAPI.NetworkVariable;
 using UnityEngine;
 
 namespace SaARbotage
 {
     public class AlignGame : Game
     {
+
+        public NetworkVariable<Vector3> test; 
+        
         public GameObject rightZahnrad;
         public GameObject leftZahnrad;
 
@@ -60,7 +64,7 @@ namespace SaARbotage
             middleRingUp = outerRing.transform.up;
             outerRing.transform.Rotate(new Vector3(OffsetAngl, OffsetAngl, OffsetAngl));
             outerRingUP = outerRing.transform.up;
-            Debug.Log("Lösung " + innerRing.transform.rotation.ToString());
+            Debug.Log("Lï¿½sung " + innerRing.transform.rotation.ToString());
 
             _targetdistance1 = Vector3.Distance(InnerEmpty.position, middleEmpty.position);
             _targetdistance2 = Vector3.Distance(middleEmpty.position, OuterEmpty.position);
@@ -99,7 +103,7 @@ namespace SaARbotage
             Duration = 0;
         }
 
-        // Das rotieren des äußeren Zahnrads dreht um die y Achse des 1 und 2. Rings, aber um die X-Achse des 3. Rings. 
+        // Das rotieren des ï¿½uï¿½eren Zahnrads dreht um die y Achse des 1 und 2. Rings, aber um die X-Achse des 3. Rings. 
         public void RotateRingOuterZahnrad(GameObject ring, float prog)
         {
             if (ring == innerRing) {
@@ -130,7 +134,7 @@ namespace SaARbotage
 
         }
 
-        // Das rotieren des äußeren Zahnrads dreht um die x und Z Achse des 1 und 2. Rings, aber um die Z-Achse des 3. Rings. 
+        // Das rotieren des ï¿½uï¿½eren Zahnrads dreht um die x und Z Achse des 1 und 2. Rings, aber um die Z-Achse des 3. Rings. 
         public void RotateRingInnerZahnrad(GameObject ring, float prog)
         {
             if (ring == innerRing)
@@ -170,7 +174,7 @@ namespace SaARbotage
 
             Debug.Log(Vector3.Distance(InnerEmpty.position, OuterEmpty.position));
             if (Vector3.Distance(InnerEmpty.position, middleEmpty.position) <= _targetdistance1 + FairnessThreshold/100 && Vector3.Distance(middleEmpty.position, OuterEmpty.position) <= _targetdistance2 + FairnessThreshold / 100) EndGame();
-            /*//Problem: Manchmal tackt das beim rotieren doch noch die angles slighty. Also wird die achse die bspw. nicht rotiert werden soll auf einmal -179,999 anstatt 0 bspw. Das könnte problematisch werden..
+            /*//Problem: Manchmal tackt das beim rotieren doch noch die angles slighty. Also wird die achse die bspw. nicht rotiert werden soll auf einmal -179,999 anstatt 0 bspw. Das kï¿½nnte problematisch werden..
             Debug.Log(Quaternion.Angle(innerRing.transform.rotation, outerRing.transform.rotation).ToString());
             if (Quaternion.Angle(innerRing.transform.rotation, outerRing.transform.rotation) <= FairnessThreshold)
             {
