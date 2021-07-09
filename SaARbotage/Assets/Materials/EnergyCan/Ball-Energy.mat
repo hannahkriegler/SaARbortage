@@ -21,8 +21,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Ball-Energy
-  m_Shader: {fileID: -6465566751694194690, guid: 78d03c32a15d8bf4c87f5ea1a8ca7995,
-    type: 3}
+  m_Shader: {fileID: -6465566751694194690, guid: 78d03c32a15d8bf4c87f5ea1a8ca7995, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 2
   m_EnableInstancingVariants: 1

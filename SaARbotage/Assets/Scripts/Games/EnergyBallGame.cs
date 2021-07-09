@@ -11,10 +11,13 @@ public class EnergyBallGame : Game
 
     //TODO: Umbauen auf Slider, Farbe von Holding ändern usw!
     public Text hpBar;
+    private float _hp = 100f;
 
     public Button startButton;
     public Button finishButton;
-    public Text endmessage; 
+    public Text endmessage;
+
+    public float timeConstraint = 60f;
 
     public GameObject capsule;
     private Vector3 _mypos;
@@ -51,6 +54,7 @@ public class EnergyBallGame : Game
     private void Update()
     {
         if (!launch.Value) return;
+        TickingTimer();
         //Debug.Log(Input.acceleration.magnitude);
         if (!(Input.acceleration.magnitude > threshold)
         ) return; //PLAN: Also Hannah und Zukunfts Niklas. Wir machen das einfach so: Falls die acceleration über nen bestimmten Punkt kommt (public) dann adden wir force und es macht sich was im Kanister. 
@@ -61,17 +65,32 @@ public class EnergyBallGame : Game
         
     }
 
+    private void TickingTimer()
+    {
+        _hp -= (100f / timeConstraint * Time.deltaTime);
+        if (_hp <= 0)
+        {
+            //Do the Failstate
+            hpBar.text = "0";
+        }
+        else
+        {
+            int hpI = (int)_hp;
+            hpBar.text = hpI.ToString();
+        }
+
+    }
+
     private void DrainLife(Vector3 accel)
     {
-        var hp = float.Parse(hpBar.text);
-        hp -= accel.magnitude * balanceMultiplier;
-        if (hp <= 0) hp = 0;
+        _hp -= accel.magnitude * balanceMultiplier;
+        if (_hp <= 0) _hp = 0;
         if (energyBall != null)
         {
             var duration = 1.0f;
             StartCoroutine(ColorChange(Color.red, duration));
         }
-        var sHP = (int)hp;
+        var sHP = (int)_hp;
         hpBar.text = sHP.ToString();
     }
 
