@@ -95,7 +95,7 @@ public class EnergyBallGame : Game
         //Here the cannister is detached from the holding mechanism and attached to the camera. 
         // The player then needs to transport it to the Target Holding thing. 
         // If it collides with the target a button should appear to finish the task.
-
+        base.LaunchGame();
         capsule.transform.parent = _maincam.transform;
         startButton.gameObject.SetActive(false);
         

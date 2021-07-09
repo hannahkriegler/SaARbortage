@@ -42,6 +42,8 @@ namespace SaARbotage
             registerdPlayers.Value++;
             if (requiredPlayers.Value == registerdPlayers.Value)
             {
+                Debug.Log("Register Player: " + registerdPlayers.Value + requiredPlayers.Value);
+
                 waitForPlayersToRegister.Value = false;
                 LaunchGame();
             }
@@ -49,6 +51,7 @@ namespace SaARbotage
 
         public virtual void LaunchGame()
         {
+
             launch.Value = true;
         }
 
