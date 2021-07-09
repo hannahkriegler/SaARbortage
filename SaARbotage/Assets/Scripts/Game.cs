@@ -16,6 +16,7 @@ namespace SaARbotage
         public NetworkVariable<int> registerdPlayers;
         public NetworkVariable<int> stationID;
         public NetworkVariable<bool> waitForPlayersToRegister;
+        
 
         public void Setup(int stationID)
         {
@@ -51,11 +52,10 @@ namespace SaARbotage
 
         public virtual void LaunchGame()
         {
-
             launch.Value = true;
         }
 
-        public virtual void FinishGame()
+        public virtual void FinishGame(bool successful)
         {
             launch.Value = false;
         }

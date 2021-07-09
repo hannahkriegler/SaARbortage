@@ -20,6 +20,7 @@ namespace SaARbotage
         public GameObject uiConnection;
         
         public NetworkVariable<float> syncTime = new NetworkVariable<float>();
+        public List<Station> stations;
 
         [Header("Oxygen:")]
         public float time;
@@ -90,6 +91,8 @@ namespace SaARbotage
                 
                 // start counter
                 InvokeRepeating(nameof(UpdateOxygen), 1, 1);
+                
+               
             }
         }
 
