@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<QCARConfig xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="qcar_config.xsd">
+  <Tracking>
+    <ImageTarget name="Bridge" size="0.148000 0.209977" />
+    <ImageTarget name="R2-pink" size="0.148000 0.209977" />
+    <ImageTarget name="R1-pink" size="0.148000 0.209977" />
+    <ImageTarget name="R3-pink" size="0.148000 0.209977" />
+    <ImageTarget name="S10" size="0.148000 0.209977" />
+    <ImageTarget name="S9" size="0.148000 0.209977" />
+    <ImageTarget name="S8" size="0.148000 0.209977" />
+    <ImageTarget name="S7" size="0.148000 0.209977" />
+    <ImageTarget name="S6" size="0.148000 0.209977" />
+    <ImageTarget name="S5" size="0.148000 0.209977" />
+    <ImageTarget name="S4" size="0.148000 0.209977" />
+    <ImageTarget name="S3" size="0.148000 0.209977" />
+    <ImageTarget name="S2" size="0.148000 0.209977" />
+    <ImageTarget name="S1" size="0.148000 0.209977" />
+    <ImageTarget name="Ufo" size="1.000000 1.000000" />
+  </Tracking>
+</QCARConfig>

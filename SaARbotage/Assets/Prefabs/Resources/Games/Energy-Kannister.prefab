@@ -96,7 +96,6 @@ GameObject:
   - component: {fileID: 1354843431304831533}
   - component: {fileID: 1354843431304831532}
   - component: {fileID: 2947763532338744476}
-  - component: {fileID: 2947763532338744547}
   m_Layer: 0
   m_Name: inner-tesseract
   m_TagString: Untagged
@@ -214,29 +213,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &2947763532338744547
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1354843431304831535}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9f984c55efce1c04d9d08affd5ffea09, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  hpBar: {fileID: 2947763533606452426}
-  startButton: {fileID: 2947763533710640661}
-  finishButton: {fileID: 2947763532488188551}
-  endmessage: {fileID: 1207991385118595124}
-  capsule: {fileID: 2690737573895886791}
-  balanceMultiplier: 0.303
-  energyBall: {fileID: 2100000, guid: 1afc1f246d6adfb44957b5d3c846602e, type: 2}
-  outerTesseract: {fileID: 2100000, guid: fa4d674f3e376ad4cb2c11d6590bb9f1, type: 2}
-  oldcol: {r: 0.024262428, g: 0, b: 1, a: 0}
-  outerStrength: 1
-  threshold: 0.65
 --- !u!1 &1733046304279021964
 GameObject:
   m_ObjectHideFlags: 0
@@ -443,6 +419,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3414351038230359965}
+  - component: {fileID: 2558152078284166159}
   m_Layer: 0
   m_Name: Energy-Kannister
   m_TagString: Untagged
@@ -459,12 +436,46 @@ Transform:
   m_GameObject: {fileID: 2605867303258338599}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 1.85, y: 0.33, z: -2.68}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 5, y: 5, z: 5}
   m_Children:
   - {fileID: 3500414664980157233}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2558152078284166159
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2605867303258338599}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9f984c55efce1c04d9d08affd5ffea09, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  requiredPlayers:
+    m_InternalValue: 1
+  launch:
+    m_InternalValue: 0
+  registerdPlayers:
+    m_InternalValue: 0
+  stationID:
+    m_InternalValue: 0
+  waitForPlayersToRegister:
+    m_InternalValue: 0
+  hpBar: {fileID: 2947763533606452426}
+  startButton: {fileID: 2947763533710640661}
+  finishButton: {fileID: 2947763532488188551}
+  endmessage: {fileID: 1207991385118595124}
+  capsule: {fileID: 2690737573895886791}
+  balanceMultiplier: 0.303
+  energyBall: {fileID: 2100000, guid: 1afc1f246d6adfb44957b5d3c846602e, type: 2}
+  outerTesseract: {fileID: 2100000, guid: fa4d674f3e376ad4cb2c11d6590bb9f1, type: 2}
+  oldcol: {r: 0.024262428, g: 0, b: 1, a: 0}
+  outerStrength: 1
+  ballthingRigidbody: {fileID: 2947763532338744476}
+  threshold: 0.65
 --- !u!1 &2690737573895886791
 GameObject:
   m_ObjectHideFlags: 0
@@ -475,7 +486,7 @@ GameObject:
   m_Component:
   - component: {fileID: 9160451093837626895}
   m_Layer: 0
-  m_Name: Capsule
+  m_Name: EnergyBall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -490,7 +501,7 @@ Transform:
   m_GameObject: {fileID: 2690737573895886791}
   m_LocalRotation: {x: 0.00000008940697, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0.0011999999}
-  m_LocalScale: {x: 0.9, y: 0.90000015, z: 0.90000015}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 7723529563559787547}
   - {fileID: 1846022087485864546}
@@ -809,7 +820,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2947763532338744547}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: AccelerationPhoneTest, Assembly-CSharp
         m_MethodName: FinishChallenge
         m_Mode: 1
@@ -1101,7 +1112,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2947763533710640660
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1204,7 +1215,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2947763532338744547}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: AccelerationPhoneTest, Assembly-CSharp
         m_MethodName: StartChallenge
         m_Mode: 1
@@ -1713,14 +1724,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4312240877512001931}
-  m_LocalRotation: {x: -0.7071068, y: -0, z: -0, w: 0.7071067}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 100, y: 100, z: 100}
+  m_LocalRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
+  m_LocalPosition: {x: 0, y: 0.103, z: -0.085}
+  m_LocalScale: {x: 5, y: 5, z: 5}
   m_Children:
   - {fileID: 9160451093837626895}
   m_Father: {fileID: 3414351038230359965}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
 --- !u!33 &521330151699176596
 MeshFilter:
   m_ObjectHideFlags: 0

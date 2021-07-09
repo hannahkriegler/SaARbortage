@@ -39,6 +39,8 @@ namespace SaARbotage
 
         private void Start()
         {
+            _isManipulated = new NetworkVariable<bool>(false);
+            _isActive = new NetworkVariable<bool>();
             _isManipulated.OnValueChanged += UpdateStationUi;
             _isActive.OnValueChanged += UpdateStationUi;
         }
