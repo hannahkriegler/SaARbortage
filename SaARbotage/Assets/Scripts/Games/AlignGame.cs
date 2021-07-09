@@ -192,7 +192,7 @@ namespace SaARbotage
         {
             Debug.Log("End");
             Indicator.SetColor("_EmissionColor", new Color(0f, 255f, 0f));
-            FinishGame();
+            FinishGame(true);
         }
 
         public override void LaunchGame()

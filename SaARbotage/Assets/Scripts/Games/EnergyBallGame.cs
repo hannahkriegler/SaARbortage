@@ -101,7 +101,7 @@ public class EnergyBallGame : Game
         
     }
 
-    public override void FinishGame()
+    public override void FinishGame(bool successful)
     {
         //When the finishButton is pressed. 
         // The cannister will be positioned as child of the target. 
@@ -110,7 +110,7 @@ public class EnergyBallGame : Game
         capsule.transform.localRotation = Quaternion.Euler(0, 0, 0);
         endmessage.gameObject.SetActive(true);
         _finished = true;
-        base.FinishGame();
+        base.FinishGame(successful);
     }
 
     private void OnTriggerEnter(Collider other)
