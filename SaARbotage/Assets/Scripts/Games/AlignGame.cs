@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using MLAPI.NetworkVariable;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace SaARbotage
 {
@@ -25,6 +26,10 @@ namespace SaARbotage
         private Vector3 middleRingUp;
         private Transform middleEmpty;
         public Material middleMat;
+
+        public float timeConstraint = 60f;
+        public Text timerLeft;
+        public Text timerRight;
 
         public GameObject outerRing;
         private Vector3 outerRingUP;
@@ -80,17 +85,43 @@ namespace SaARbotage
             outerRing.transform.Rotate(new Vector3( OffsetAngle1, 0, OffsetAngle2));
             Indicator.SetColor("_EmissionColor", new Color (255f, 0f, 0f));
 
+            // TODO: Kommt hier irgendwo noch LaunchGame hin? Hannah weiß das besser.
+
         }
 
         private void Update()
         {
             if (!launch.Value) return;
+            TickingCountDown();
             //if(!IsLocalPlayer) return;   
             if (Input.GetMouseButtonUp(0)) {
                 TestAlignment();
                 DeactivatePulse();
             }
             
+        }
+
+        private void TickingCountDown()
+        {
+            if (timeConstraint <= 0)
+            {
+                FinishGame(false);
+                return;
+            }
+            var min = 0;
+            var seconds = 0;
+            if (timeConstraint >= 60)
+            {
+                min = (int) (timeConstraint / 60); 
+            }
+            seconds = (int)(timeConstraint % 60);
+
+            timerLeft.text = (min.ToString() + ":" + seconds.ToString());
+            timerRight.text = (min.ToString() + ":" + seconds.ToString());
+
+            timeConstraint -= Time.deltaTime; 
+            // der folgende Part ist für TextFelder da. 
+
         }
 
         private void DeactivatePulse()
@@ -180,7 +211,7 @@ namespace SaARbotage
         {
 
             Debug.Log(Vector3.Distance(InnerEmpty.position, OuterEmpty.position));
-            if (Vector3.Distance(InnerEmpty.position, middleEmpty.position) <= _targetdistance1 + FairnessThreshold/100 && Vector3.Distance(middleEmpty.position, OuterEmpty.position) <= _targetdistance2 + FairnessThreshold / 100) EndGame();
+            if (Vector3.Distance(InnerEmpty.position, middleEmpty.position) <= _targetdistance1 + FairnessThreshold/100 && Vector3.Distance(middleEmpty.position, OuterEmpty.position) <= _targetdistance2 + FairnessThreshold / 100) FinishGame(true);
             /*//Problem: Manchmal tackt das beim rotieren doch noch die angles slighty. Also wird die achse die bspw. nicht rotiert werden soll auf einmal -179,999 anstatt 0 bspw. Das k�nnte problematisch werden..
             Debug.Log(Quaternion.Angle(innerRing.transform.rotation, outerRing.transform.rotation).ToString());
             if (Quaternion.Angle(innerRing.transform.rotation, outerRing.transform.rotation) <= FairnessThreshold)
@@ -188,11 +219,21 @@ namespace SaARbotage
                 EndGame(); } */
         }
 
-        private void EndGame()
+
+        public override void FinishGame(bool successful)
         {
-            Debug.Log("End");
-            Indicator.SetColor("_EmissionColor", new Color(0f, 255f, 0f));
-            FinishGame(true);
+            if (successful)
+            {
+                //Debug.Log("End");
+                // TODO: Was passiert hier, wenn beide es gleichzeitig finishen?? Gibt das Probleme??
+                //TODO: Auch hier sollte noch eine UI (am Besten für alle Games so wie GameUI) aufploppen mit einer Erklärung, dass man verloren hat, nun gesperrt ist fr die Station und ein Button mit okay oderso. 
+                Indicator.SetColor("_EmissionColor", new Color(0f, 255f, 0f));
+            } else
+            {
+                Indicator.SetColor("_EmissionColor", new Color(255f, 0f, 0f));
+                //Debug.Log("Lost");
+            }
+            base.FinishGame(successful);
         }
 
         public override void LaunchGame()

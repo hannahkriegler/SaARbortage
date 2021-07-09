@@ -20,6 +20,7 @@ public class EnergyBallGame : Game
     public float timeConstraint = 60f;
 
     public GameObject capsule;
+    public GameObject austausch;
     private Vector3 _mypos;
     private GameObject _maincam;
     private Transform _targetHolding;
@@ -72,6 +73,7 @@ public class EnergyBallGame : Game
         {
             //Do the Failstate
             hpBar.text = "0";
+            FinishGame(false);
         }
         else
         {
@@ -84,13 +86,13 @@ public class EnergyBallGame : Game
     private void DrainLife(Vector3 accel)
     {
         _hp -= accel.magnitude * balanceMultiplier;
-        if (_hp <= 0) _hp = 0;
+        var sHP = 0;
         if (energyBall != null)
         {
             var duration = 1.0f;
             StartCoroutine(ColorChange(Color.red, duration));
         }
-        var sHP = (int)_hp;
+        sHP = (int)_hp;
         hpBar.text = sHP.ToString();
     }
 
@@ -116,6 +118,8 @@ public class EnergyBallGame : Game
         // If it collides with the target a button should appear to finish the task.
         base.LaunchGame();
         capsule.transform.parent = _maincam.transform;
+        capsule.transform.localPosition = austausch.transform.localPosition;
+        capsule.transform.localRotation = austausch.transform.localRotation;
         startButton.gameObject.SetActive(false);
         
     }
@@ -123,11 +127,19 @@ public class EnergyBallGame : Game
     public override void FinishGame(bool successful)
     {
         //When the finishButton is pressed. 
-        // The cannister will be positioned as child of the target. 
-        capsule.transform.parent = _targetHolding;
-        capsule.transform.localPosition = _mypos;
-        capsule.transform.localRotation = Quaternion.Euler(0, 0, 0);
-        endmessage.gameObject.SetActive(true);
+        // The cannister will be positioned as child of the target.
+        if (successful)
+        {
+            capsule.transform.parent = _targetHolding;
+            capsule.transform.localPosition = _mypos;
+            capsule.transform.localRotation = Quaternion.Euler(0, 0, 0);
+            endmessage.gameObject.SetActive(true);
+        }
+        else
+        {
+            //@TODO: Failstate, Es soll was aufploppen, das machen wir aber lieber über Game weil ja bei allen was aufploppt.. Die Station sollte ausserdem für den Spieler gesperrt werden. Machen wir das lokal oder Network?
+            hpBar.color = Color.red;
+        }
         _finished = true;
         base.FinishGame(successful);
     }
