@@ -92,6 +92,7 @@ namespace SaARbotage
         private void Update()
         {
             if (!launch.Value) return;
+            if (isOnCoolDown) return;
             TickingCountDown();
             //if(!IsLocalPlayer) return;   
             if (Input.GetMouseButtonUp(0)) {

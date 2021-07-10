@@ -7,6 +7,13 @@ namespace SaARbotage
 {
     public class EnergyBallReturnGame : Game
     {
+        private EnergyBallGame _firstPart;
+
+        protected override void SetupGame()
+        {
+            base.SetupGame();
+            _firstPart = GameObject.FindObjectOfType<EnergyBallGame>();
+        }
 
         private GameObject capsule;
         private void OnTriggerEnter(Collider other)
@@ -17,6 +24,7 @@ namespace SaARbotage
             //finishButton.gameObject.SetActive(true);
             //B_targetHolding = other.transform;
             FinishGame(true);
+            _firstPart.FinishGame(true);
         }
         
         public override void FinishGame(bool successful)
@@ -28,7 +36,7 @@ namespace SaARbotage
             capsule.transform.localRotation = Quaternion.Euler(0, 0, 0);
             //endmessage.gameObject.SetActive(true);
             //_finished = true;
-            base.FinishGame(true);
+            base.FinishGame(false);
         }
     }
 }

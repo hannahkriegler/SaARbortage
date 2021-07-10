@@ -40,7 +40,7 @@ public class EnergyBallGame : Game
     [Range(0, 5f)]
     public float threshold = 2f;
 
-    void Start()
+    protected override void SetupGame()
     {
         //ballthingRigidbody = GetComponent<Rigidbody>();
         if (ballthingRigidbody == null)
@@ -73,7 +73,8 @@ public class EnergyBallGame : Game
         {
             //Do the Failstate
             hpBar.text = "0";
-            FinishGame(false);
+            // TODO INTERRUPT GAME! 
+            //FinishGame(false);
         }
         else
         {

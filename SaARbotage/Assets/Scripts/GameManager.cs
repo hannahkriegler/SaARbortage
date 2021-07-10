@@ -118,25 +118,14 @@ namespace SaARbotage
             
             if(!status) return;
 
-            var gameObj = Instantiate(gamePrefabsMultiplayer[0], stationObj.GetComponent<Station>().vuforiaTargetObj.transform);
-            gameObj = stationObj.GetComponentInChildren<Game>().gameObject;
-            gameObj.GetComponent<Game>().Setup(stationObj.GetComponent<Station>().stationId.Value);
-            gameObj.GetComponent<NetworkObject>().Spawn();
+            //var gameObj = Instantiate(gamePrefabsMultiplayer[0], stationObj.GetComponent<Station>().vuforiaTargetObj.transform);
+            //gameObj = stationObj.GetComponentInChildren<Game>().gameObject;
+            //gameObj.GetComponent<Game>().Setup(stationObj.GetComponent<Station>().stationId.Value);
+            //gameObj.GetComponent<NetworkObject>().Spawn();
             
         }
 
-        public void ScanStation()
-        {
-            var allStations = FindObjectsOfType<Station>();
-            foreach (var staton in allStations)
-            {
-                if (staton.stationId.Value == 0)
-                {
-                    staton.ScanStation();
-                    dummyScannedStation = staton.gameObject;
-                }
-            }
-        }
+
 
         public void PlayGame()
         {

@@ -17,25 +17,47 @@ namespace SaARbotage
         public NetworkVariable<bool> _isActive;
         private NetworkVariable<bool> _isDone;
         private NetworkVariable<bool> _isManipulated;
+        private NetworkVariable<bool> _isCurrentlyPlaying;
+        private bool _isInCooldown;
         private Room _room;
+        private Game _game;
         private Item[] _items;
         private StationStatus _stationStatus;
         private enum StationStatus
         {
-            Active, Inactive, Manipulated, Failed
+            Active, Inactive, Manipulated, Failed, Cooldown
         }
 
-        public GameObject vuforiaTargetObj;
+        //public GameObject vuforiaTargetObj;
         private NetworkVariable<int> _failures;
 
         [Header("UI")] public GameObject uiStationPanel;
+
+        public GameObject uiStationInfoPanel;
         public Text uiStationTitel;
         public Text uiStationInfo;
         public Text uiStationStatus;
-        public GameObject uiStartGameButton;
-        public GameObject uiWaitObj;
-
+        
+        
+        [Header("GameInfo UI")]
         public GameObject uiGameInfoPanel;
+        [Header("GameInfo UI")]
+        public GameObject gameInstructionPanel;
+        public GameObject uiStartGameButton;
+        
+        [Header("Wait For Players")]
+        public GameObject uiWaitForPlayersPanel;
+        
+        [Header("Cooldown UI")] 
+        public GameObject uiCooldownPanel;
+        public Text uiCooldownValue;
+        
+        [Header("Game Finished Status UI")] 
+        public GameObject uiStatusPanel;
+        
+        [Header("Game Played by Another Player")] 
+        public GameObject uiPlayedByAnotherPanel;
+        
 
         private void Start()
         {
@@ -43,6 +65,7 @@ namespace SaARbotage
             _isActive = new NetworkVariable<bool>();
             _isManipulated.OnValueChanged += UpdateStationUi;
             _isActive.OnValueChanged += UpdateStationUi;
+            _game = GetComponentInChildren<Game>();
         }
 
         public void Setup(Room room, int stationNumber, bool status)
@@ -57,34 +80,51 @@ namespace SaARbotage
 
         public void StartGame()
         {
-            var game = gameObject.GetComponentInChildren<Game>();
-            game.RegisterPlayer();
+            _game.registerdPlayers.Value++;
 
-            if (game.waitForPlayersToRegister.Value)
+            if (_game.requiredPlayers == _game.registerdPlayers)
             {
+                uiWaitForPlayersPanel.SetActive(false);
+                _game.waitForPlayersToRegister.Value = false;
                 uiStationPanel.SetActive(false);
-                uiWaitObj.SetActive(true);
-                uiStartGameButton.SetActive(false);
+                _game.LaunchGame();
             }
             else
             {
-                uiStationPanel.SetActive(false);
-                uiGameInfoPanel.SetActive(false);
+                
             }
+
+            if (_game.waitForPlayersToRegister.Value)
+            {
+                uiWaitForPlayersPanel.SetActive(true);
+                
+            }
+        }
+
+        IEnumerator WaitUntilAllPlayersAreRegistered()
+        {
+            uiWaitForPlayersPanel.SetActive(true);
+            yield return new WaitUntil(_game.registerdPlayers.Value == _game.requiredPlayers.Value);
+            while (_game.registerdPlayers.Value < _game.requiredPlayers.Value)
+            {
+                
+            }
+            uiWaitForPlayersPanel.SetActive(false);
+            _game.waitForPlayersToRegister.Value = false;
+            uiStationPanel.SetActive(false);
+            _game.LaunchGame();
+            yield break;
         }
 
         public void FinishedGame(bool successful)
         {
+            ShowCooldownUi(false);
             if (!successful)
             {
                 _failures.Value++;
             }
         }
-
-        public void ScanStation()
-        {
-            Debug.Log("Scanned Station " + stationId.Value);
-        }
+        
 
         private void UpdateStationUi(bool previousValue, bool newValue)
         {
@@ -98,24 +138,105 @@ namespace SaARbotage
             };
         }
 
-        public void TestCall()
+        
+        
+        public void ScanStation()
         {
-            Debug.Log("I GOT CALLED!!!");
+            uiStationPanel.SetActive(true);
+
+            // Station is not active
+            if (!_isActive.Value)
+            {
+                uiStationInfoPanel.SetActive(true);
+                uiGameInfoPanel.SetActive(false);
+                
+                // set all to false, and only enable the one that is needed:
+                gameInstructionPanel.SetActive(false);
+                uiWaitForPlayersPanel.SetActive(false);
+                uiCooldownPanel.SetActive(false);
+                uiStatusPanel.SetActive(false);
+                uiPlayedByAnotherPanel.SetActive(false);
+            }
+            else
+            {
+                uiGameInfoPanel.SetActive(true);
+                // Station is active - someone is playing already
+                if (_isCurrentlyPlaying.Value)
+                {
+                    uiPlayedByAnotherPanel.SetActive(true);
+                }
+                // Station is active, game is finished successfully
+                else if (_isDone.Value)
+                {
+                    uiStatusPanel.SetActive(true);
+                }
+                // Station is active, game is on cooldown because it failed previously
+                else if (_isInCooldown)
+                {
+                    uiCooldownPanel.SetActive(true);
+                }
+                // Station is active, no one plays / it requires players
+                else
+                {
+                    gameInstructionPanel.SetActive(true);
+                }
+            }
+
+            // Station is manipulated
+            if (_isManipulated.Value)
+            {
+                
+            }
+            
+            
+            if (_game.GetType() == typeof(EnergyBallReturnGame))
+            {
+                uiGameInfoPanel.SetActive(false);
+            }
+            
+            
         }
 
-        /*public Station(int stationId, string stationName, bool isActive, Room room,
-            Item[] items, Game game, int failures = 0, bool isDone = false, bool isManipulated = false)
+
+        #region Cooldown
+
+        public void StartCooldownCounter()
         {
-            this.stationId.Value = stationId;
-            this.stationName.Value = stationName;
-            _isActive.Value = isActive;
-            _isDone.Value = isDone;
-            _isManipulated.Value = isManipulated;
-            _room = room;
-            _items = items;
-            _game = game;
-            _failures.Value = failures;
-        }*/
+            ShowCooldownUi(true);
+            StartCoroutine(Countdown(20));
+        }
+
+        private IEnumerator Countdown(float timeToWait)
+        {
+            while (timeToWait > 0)
+            {
+                timeToWait -= Time.deltaTime;
+                uiCooldownValue.text = ((int) timeToWait).ToString() + "s";
+            }
+            _game.isOnCoolDown = false;
+            ShowCooldownUi(false);
+            yield break;
+        }
         
+        private void ShowCooldownUi(bool b)
+        {
+            if (b)
+            {
+                uiStationPanel.SetActive(true);
+            }
+            uiGameInfoPanel.SetActive(!b);
+            uiCooldownPanel.SetActive(b);
+        }
+
+        #endregion
+
+        
+        public void ShowStatusUi(bool b)
+        {
+            uiGameInfoPanel.SetActive(!b);
+            uiCooldownPanel.SetActive(b);
+
+        }
+
     }
 }

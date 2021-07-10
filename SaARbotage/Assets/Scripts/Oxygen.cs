@@ -28,12 +28,7 @@ namespace SaARbotage
             _fillAmount = GameManager.Instance.syncTime.Value / _timeTotal ;
             oxygenBar.fillAmount = _fillAmount;
         }
-
-        public void TestScanButton()
-        {
-            GameManager.Instance.ScanStation();
-        }
-
+        
         public void TestPlayGameButton()
         {
             GameManager.Instance.PlayGame();
