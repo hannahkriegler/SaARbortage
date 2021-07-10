@@ -10,12 +10,14 @@ namespace SaARbotage
     {
         public int rounds = 1;
         public int solutionLength = 5;
-        public float animTime = 1f;
-        public float time = 10f;
+        public float animTime = 2f;
         public int life = 3;
-
+        public float roundTimer = 10f;
+        private float _oldroundTimer;
         private bool _isstarted = false;
         private bool _playing = false;
+
+        private Text _statusUI;
 
         public Image[] imageField;
         private bool[] _rdyCheck;
@@ -42,8 +44,11 @@ namespace SaARbotage
             if (_maincam)
             {
                 Debug.Log("Found");
-                transform.GetChild(0).GetComponent<Canvas>().worldCamera = _maincam;
+                transform.GetChild(0).transform.GetChild(0).GetComponent<Canvas>().worldCamera = _maincam;
+                transform.GetChild(0).transform.GetChild(1).GetComponent<Canvas>().worldCamera = _maincam;
             }
+            _statusUI = GetComponentInChildren<Text>();
+            _oldroundTimer = roundTimer;
 
 
         }
@@ -54,7 +59,6 @@ namespace SaARbotage
         {
             _initialCol = imageField[0].color;
             SetUpRound();
-            _isstarted = true;
             base.LaunchGame();
         }
 
@@ -70,7 +74,7 @@ namespace SaARbotage
 
             }
            */
-
+           //TODO: JA NE, da funktioniert was nach der zweiten Runde nit.
             if (_isstarted&&!_playing && rounds > 0)
             {
                 bool rdy = true;
@@ -83,6 +87,26 @@ namespace SaARbotage
 
             if (_playing && rounds > 0)
             {
+                Debug.Log("HI");
+                roundTimer -= Time.deltaTime;
+                if(roundTimer<= 0)
+                {
+                    life -= 1;
+                    _isstarted = false;
+                    _playing = false;
+                    _counter = 0;
+                    rounds--;
+                    for (int i = 0; i < _rdyCheck.Length; i++)
+                    {
+                        _rdyCheck[i] = false;
+                    }
+                    foreach (Image im in imageField)
+                    {
+                        im.color = _initialCol;
+                    }
+                    if (rounds > 0) SetUpRound();
+
+                }
                 if (life <= 0) {
                     Debug.Log("COMPLETE FAILURE!!!");
                     base.FinishGame(false);
@@ -101,7 +125,8 @@ namespace SaARbotage
                     {
                         im.color = _initialCol;
                     }
-                        }
+                    if (rounds >0) SetUpRound();
+                }
                 if (rounds <= 0)
                 {
                     //TODO: Wird hier sonst noch was gemacht?
@@ -109,20 +134,29 @@ namespace SaARbotage
                     Debug.Log("Complete Success!!");
                 }
             }
-            //LookAtPlayer();
+
+            PrintStatus();
+            LookAtPlayer();
 
 
         }
 
+        private void PrintStatus()
+        {
+            _statusUI.text = "Time left in this Round: " + ((int) roundTimer).ToString() + "\n Lifes left: " + life.ToString() + "\n Rounds left: " + rounds.ToString();
+        }
+
         private void LookAtPlayer()
         {
-            transform.GetChild(0).transform.LookAt(_maincam.transform);
+            var rotator = transform.GetChild(0);
+            rotator.transform.LookAt(rotator.position - (_maincam.transform.position - rotator.position));
         }
 
         private void SetUpRound()
         {
             for (int i = 0; i < solutionLength; i++)
             {
+                roundTimer = _oldroundTimer;
                 int num = (int)UnityEngine.Random.Range(0, imageField.Length);
                 _solution[i] = num;
                 //Start Color animation which goes to Color X and back to standard.
@@ -130,6 +164,7 @@ namespace SaARbotage
                 //imageField[_solution[i]].color = signalColor;
                 Debug.Log("the " + i.ToString() + " value is: " + num.ToString());
             }
+            _isstarted = true;
         }
 
 
@@ -150,6 +185,7 @@ namespace SaARbotage
                 Debug.Log("false");
                 life -= 1;
                 imageField[numb].color = failColor;
+                //TDODO Sollte man irgendwie die Reihenfolge wiederholen.
             }
 
         }
