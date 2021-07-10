@@ -104,7 +104,7 @@ namespace SaARbotage
         IEnumerator WaitUntilAllPlayersAreRegistered()
         {
             uiWaitForPlayersPanel.SetActive(true);
-            yield return new WaitUntil(_game.registerdPlayers.Value == _game.requiredPlayers.Value);
+            //yield return new WaitUntil(_game.registerdPlayers.Value == _game.requiredPlayers.Value);
             while (_game.registerdPlayers.Value < _game.requiredPlayers.Value)
             {
                 
