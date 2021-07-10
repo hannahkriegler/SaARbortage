@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 namespace SaARbotage
 {
-    public class ShortTimeMemoryGame : MonoBehaviour
+    public class ShortTimeMemoryGame : Game
     {
         public int rounds = 1;
         public int solutionLength = 5;
@@ -23,6 +23,7 @@ namespace SaARbotage
         private int[] _solution;
         private int _counter = 0;
         private List<int> _input;
+        private Camera _maincam;
 
         public Color signalColor;
         private Color _initialCol;
@@ -37,21 +38,40 @@ namespace SaARbotage
             {
                 _rdyCheck[i] = false;
             }
+            _maincam = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
+            if (_maincam)
+            {
+                Debug.Log("Found");
+                transform.GetChild(0).GetComponent<Canvas>().worldCamera = _maincam;
+            }
 
+
+        }
+
+        //TODO: Lebensanzeige und Zeit für jede Runde left.
+
+        public override void LaunchGame()
+        {
+            _initialCol = imageField[0].color;
+            SetUpRound();
+            _isstarted = true;
+            base.LaunchGame();
         }
 
         // Update is called once per frame
         void Update()
         {
-            if (!_playing && !_isstarted && rounds > 0)
+            //TODO: Hier gibt es nen Bug. Die buttons sind nicht anwählbar wenn wir den Canvas rotieren..
+           /* if (!_playing && !_isstarted && rounds > 0)
             {
                 _initialCol = imageField[0].color;
                 SetUpRound();
                 _isstarted = true;
 
             }
+           */
 
-            if (!_playing && rounds > 0)
+            if (_isstarted&&!_playing && rounds > 0)
             {
                 bool rdy = true;
                 foreach(bool a in _rdyCheck)
@@ -63,7 +83,10 @@ namespace SaARbotage
 
             if (_playing && rounds > 0)
             {
-                if (life <= 0) Debug.Log("COMPLETE FAILURE!!!");
+                if (life <= 0) {
+                    Debug.Log("COMPLETE FAILURE!!!");
+                    base.FinishGame(false);
+                            }
                 if (_counter == solutionLength) {
                     Debug.Log("ROUND SUCCEESSS!!!");
                     _isstarted = false;
@@ -81,11 +104,19 @@ namespace SaARbotage
                         }
                 if (rounds <= 0)
                 {
+                    //TODO: Wird hier sonst noch was gemacht?
+                    base.FinishGame(true);
                     Debug.Log("Complete Success!!");
                 }
             }
+            //LookAtPlayer();
 
 
+        }
+
+        private void LookAtPlayer()
+        {
+            transform.GetChild(0).transform.LookAt(_maincam.transform);
         }
 
         private void SetUpRound()
@@ -105,6 +136,7 @@ namespace SaARbotage
 
         public void InputField(int numb)
         {
+            Debug.Log("Hi");
             if (!_playing) return;
             if (numb == _solution[_counter])
             {
