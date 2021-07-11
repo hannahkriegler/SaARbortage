@@ -53,7 +53,7 @@ namespace SaARbotage
 
         }
 
-        //TODO: Lebensanzeige und Zeit für jede Runde left.
+        //TODO: Lebensanzeige und Zeit fÃ¼r jede Runde left.
 
         public override void LaunchGame()
         {
@@ -65,7 +65,7 @@ namespace SaARbotage
         // Update is called once per frame
         void Update()
         {
-            //TODO: Hier gibt es nen Bug. Die buttons sind nicht anwählbar wenn wir den Canvas rotieren..
+            //TODO: Hier gibt es nen Bug. Die buttons sind nicht anwÃ¤hlbar wenn wir den Canvas rotieren..
            /* if (!_playing && !_isstarted && rounds > 0)
             {
                 _initialCol = imageField[0].color;

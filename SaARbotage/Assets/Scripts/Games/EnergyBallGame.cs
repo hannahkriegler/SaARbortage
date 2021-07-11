@@ -131,26 +131,26 @@ public class EnergyBallGame : Game
         // The cannister will be positioned as child of the target.
         if (successful)
         {
-            capsule.transform.parent = _targetHolding;
-            capsule.transform.localPosition = _mypos;
-            capsule.transform.localRotation = Quaternion.Euler(0, 0, 0);
-            endmessage.gameObject.SetActive(true);
+            //capsule.transform.parent = _targetHolding;
+            //capsule.transform.localPosition = _mypos;
+            //capsule.transform.localRotation = Quaternion.Euler(0, 0, 0);
+            //endmessage.gameObject.SetActive(true);
         }
         else
         {
             //@TODO: Failstate, Es soll was aufploppen, das machen wir aber lieber über Game weil ja bei allen was aufploppt.. Die Station sollte ausserdem für den Spieler gesperrt werden. Machen wir das lokal oder Network?
-            hpBar.color = Color.red;
+            //hpBar.color = Color.red;
         }
         _finished = true;
         base.FinishGame(successful);
     }
 
-    private void OnTriggerEnter(Collider other)
+    /*private void OnTriggerEnter(Collider other)
     {
         if(other.tag == "Cannister" && !_finished)
         {
             finishButton.gameObject.SetActive(true);
             _targetHolding = other.transform;
         }
-    }
+    }*/
 }

@@ -20,6 +20,7 @@ namespace SaARbotage
         public GameObject uiConnection;
         
         public NetworkVariable<float> syncTime = new NetworkVariable<float>();
+        public NetworkVariable<int> openStationsForDay = new NetworkVariable<int>();
         public List<Station> stations;
 
         [Header("Oxygen:")]
@@ -48,6 +49,8 @@ namespace SaARbotage
             syncTime.Value = time;
             syncTime.Settings.WritePermission = NetworkVariablePermission.Everyone;
             syncTime.Settings.ReadPermission = NetworkVariablePermission.Everyone;
+            openStationsForDay.Settings.WritePermission = NetworkVariablePermission.Everyone;
+            openStationsForDay.Settings.ReadPermission = NetworkVariablePermission.Everyone;
         }
 
         [ClientRpc]
@@ -92,9 +95,28 @@ namespace SaARbotage
                 // start counter
                 InvokeRepeating(nameof(UpdateOxygen), 1, 1);
                 
-               
+                // Call Setup on all stations
+                var id = 0;
+                foreach (var station in FindObjectsOfType<Station>())
+                {
+                    //SetupStationServerRpc(station, id);
+                    id++;
+                }
             }
         }
+
+        /*[ServerRpc]
+        private void SetupStationServerRpc(Station station, int id)
+        {
+            station.Setup(null, id, true );
+            SetupStationClientRpc(station, id);
+        }
+
+        [ClientRpc]
+        private void SetupStationClientRpc(Station station, int id)
+        {
+            station.Setup(null, id, true );
+        }*/
 
         [ServerRpc]
         private void SpawnRoomsServerRpc(int roomId, string roomName, int numStations, bool stationStatus)
@@ -134,7 +156,7 @@ namespace SaARbotage
         }
     
 
-        #region Oxygen
+        #region Oxygen and ui
         public void ChangeTime(float value)
         {
             syncTime.Value += value;
@@ -144,6 +166,7 @@ namespace SaARbotage
         {
             syncTime.Value --;
         }
+        
         #endregion
     }
     

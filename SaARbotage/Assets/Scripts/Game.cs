@@ -23,20 +23,12 @@ namespace SaARbotage
 
         public void Start()
         {
-            Debug.Log("!!!!!!!!!!!!!!!!! Start Game got called");
             launch.Value = false;
             registerdPlayers.Value = 0;
-            this.stationID.Value = transform.parent.GetComponent<Station>().stationId.Value;
+            _station = transform.parent.GetComponent<Station>();
+            this.stationID.Value = _station.stationId.Value;
             waitForPlayersToRegister.Value = true;
             
-            foreach (var station in FindObjectsOfType<Station>())
-            {
-                if (station.stationId.Value.Equals(stationID))
-                {
-                    _station = station;
-                }
-            }
-
             if (_station == null)
             {
                 Debug.Log("No station was found for: " + gameObject.name);

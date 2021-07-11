@@ -14,22 +14,23 @@ namespace SaARbotage
     {
         public NetworkVariable<int> stationId;
         public NetworkVariable<string> stationName;
-        public NetworkVariable<bool> _isActive;
-        private NetworkVariable<bool> _isDone;
-        private NetworkVariable<bool> _isManipulated;
-        private NetworkVariable<bool> _isCurrentlyPlaying;
-        private bool _isInCooldown;
+        public NetworkVariable<bool> _isActive = new NetworkVariable<bool>();
+        public NetworkVariable<bool> _isDone = new NetworkVariable<bool>();
+        public NetworkVariable<bool> _isManipulated = new NetworkVariable<bool>();
+        public NetworkVariable<bool> _isCurrentlyPlaying = new NetworkVariable<bool>();
+        public bool _iCurrentlyPlayIt = false;
+        public bool _isInCooldown;
         private Room _room;
         private Game _game;
         private Item[] _items;
         private StationStatus _stationStatus;
         private enum StationStatus
         {
-            Active, Inactive, Manipulated, Failed, Cooldown
+            Active, Inactive, Manipulated, Completed, Cooldown
         }
 
         //public GameObject vuforiaTargetObj;
-        private NetworkVariable<int> _failures;
+        private NetworkVariable<int> _failures = new NetworkVariable<int>();
 
         [Header("UI")] public GameObject uiStationPanel;
 
@@ -61,43 +62,44 @@ namespace SaARbotage
 
         private void Start()
         {
-            _isManipulated = new NetworkVariable<bool>(false);
-            _isActive = new NetworkVariable<bool>();
+            //_isManipulated = new NetworkVariable<bool>(false);
+            //_isActive = new NetworkVariable<bool>();
             _isManipulated.OnValueChanged += UpdateStationUi;
             _isActive.OnValueChanged += UpdateStationUi;
+            _isDone.OnValueChanged += UpdateStationUi;
             _game = GetComponentInChildren<Game>();
+            _isInCooldown = false;
+            
+            Setup(null, 0, true);
         }
 
         public void Setup(Room room, int stationNumber, bool status)
         {
-            stationId.Value = room.roomId.Value * 10 + stationNumber;
+            //stationId.Value = room.roomId.Value * 10 + stationNumber;
             gameObject.name += stationId.Value;
 
             uiStationTitel.text = gameObject.name;
 
-            _isActive.Value = status;
+            //_isActive.Value = status;
         }
 
         public void StartGame()
         {
             _game.registerdPlayers.Value++;
 
-            if (_game.requiredPlayers == _game.registerdPlayers)
+            if (_game.requiredPlayers.Value == _game.registerdPlayers.Value)
             {
                 uiWaitForPlayersPanel.SetActive(false);
                 _game.waitForPlayersToRegister.Value = false;
                 uiStationPanel.SetActive(false);
                 _game.LaunchGame();
+                _isCurrentlyPlaying.Value = true;
+                _iCurrentlyPlayIt = true;
             }
-            else
-            {
-                
-            }
-
-            if (_game.waitForPlayersToRegister.Value)
+            else 
             {
                 uiWaitForPlayersPanel.SetActive(true);
-                
+                gameInstructionPanel.SetActive(false);
             }
         }
 
@@ -107,7 +109,7 @@ namespace SaARbotage
             //yield return new WaitUntil(_game.registerdPlayers.Value == _game.requiredPlayers.Value);
             while (_game.registerdPlayers.Value < _game.requiredPlayers.Value)
             {
-                
+                // TODO
             }
             uiWaitForPlayersPanel.SetActive(false);
             _game.waitForPlayersToRegister.Value = false;
@@ -118,7 +120,16 @@ namespace SaARbotage
 
         public void FinishedGame(bool successful)
         {
-            ShowCooldownUi(false);
+            Debug.Log("### Station is called Finish ###" + successful);
+            if (!successful)
+                _isInCooldown = true;
+            else
+            {
+                _isInCooldown = false;
+                _isDone.Value = true;
+            }
+            ScanStation();
+            
             if (!successful)
             {
                 _failures.Value++;
@@ -133,29 +144,27 @@ namespace SaARbotage
                 StationStatus.Active => "Active",
                 StationStatus.Inactive => "Inactive",
                 StationStatus.Manipulated => "Manipulated",
-                StationStatus.Failed => "Failed",
+                StationStatus.Completed => "Completed",
                 _ => uiStationStatus.text
             };
         }
-
-        
         
         public void ScanStation()
         {
             uiStationPanel.SetActive(true);
+            
+            // set all to false, and only enable the one that is needed:
+            gameInstructionPanel.SetActive(false);
+            uiWaitForPlayersPanel.SetActive(false);
+            uiCooldownPanel.SetActive(false);
+            uiStatusPanel.SetActive(false);
+            uiPlayedByAnotherPanel.SetActive(false);
 
             // Station is not active
-            if (!_isActive.Value)
+            if (!_isActive.Value || _iCurrentlyPlayIt)
             {
                 uiStationInfoPanel.SetActive(true);
                 uiGameInfoPanel.SetActive(false);
-                
-                // set all to false, and only enable the one that is needed:
-                gameInstructionPanel.SetActive(false);
-                uiWaitForPlayersPanel.SetActive(false);
-                uiCooldownPanel.SetActive(false);
-                uiStatusPanel.SetActive(false);
-                uiPlayedByAnotherPanel.SetActive(false);
             }
             else
             {
@@ -183,18 +192,17 @@ namespace SaARbotage
             }
 
             // Station is manipulated
-            if (_isManipulated.Value)
-            {
+            //if (_isManipulated.Value)
+            //{
                 
-            }
+            //}
             
             
-            if (_game.GetType() == typeof(EnergyBallReturnGame))
+            if (_game is EnergyBallReturnGame && (!_isInCooldown && !_isManipulated.Value))
             {
+                Debug.Log("###### HERE");
                 uiGameInfoPanel.SetActive(false);
             }
-            
-            
         }
 
 
@@ -220,11 +228,6 @@ namespace SaARbotage
         
         private void ShowCooldownUi(bool b)
         {
-            if (b)
-            {
-                uiStationPanel.SetActive(true);
-            }
-            uiGameInfoPanel.SetActive(!b);
             uiCooldownPanel.SetActive(b);
         }
 

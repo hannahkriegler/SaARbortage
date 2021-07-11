@@ -19,16 +19,20 @@ namespace SaARbotage
         private void OnTriggerEnter(Collider other)
         {
             if (!other.CompareTag("EnergyBall")) return;
-            capsule = GameObject.FindWithTag("EnergyBallParent");
-            capsule.transform.SetParent(gameObject.transform);
-            //finishButton.gameObject.SetActive(true);
-            //B_targetHolding = other.transform;
+            
             FinishGame(true);
             _firstPart.FinishGame(true);
         }
         
         public override void FinishGame(bool successful)
         {
+            launch.Value = false;
+            capsule = GameObject.FindWithTag("EnergyBallParent");
+            capsule.transform.SetParent(gameObject.transform);
+            capsule.transform.position = new Vector3(0,0,0.0012f);
+            //finishButton.gameObject.SetActive(true);
+            //B_targetHolding = other.transform;
+            
             //When the finishButton is pressed. 
             // The cannister will be positioned as child of the target. 
             //capsule.transform.parent = _targetHolding;

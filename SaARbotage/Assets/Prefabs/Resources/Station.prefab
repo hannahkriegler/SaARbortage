@@ -348,18 +348,18 @@ MonoBehaviour:
   _isActive:
     m_InternalValue: 0
   uiStationPanel: {fileID: 3282453143648624833}
-  uiStationInfoPanel: {fileID: 0}
+  uiStationInfoPanel: {fileID: 3282453143575920851}
   uiStationTitel: {fileID: 3282453143780903333}
   uiStationInfo: {fileID: 3282453143840748486}
   uiStationStatus: {fileID: 3282453143973039983}
   uiGameInfoPanel: {fileID: 3282453144771547563}
-  gameInstructionPanel: {fileID: 0}
+  gameInstructionPanel: {fileID: 8781244199613636368}
   uiStartGameButton: {fileID: 1878651037529689640}
-  uiWaitForPlayersPanel: {fileID: 0}
-  uiCooldownPanel: {fileID: 0}
-  uiCooldownValue: {fileID: 0}
-  uiStatusPanel: {fileID: 0}
-  uiPlayedByAnotherPanel: {fileID: 0}
+  uiWaitForPlayersPanel: {fileID: 3282453143402221339}
+  uiCooldownPanel: {fileID: 858572475634471296}
+  uiCooldownValue: {fileID: 3275000838313556764}
+  uiStatusPanel: {fileID: 7542359031855306480}
+  uiPlayedByAnotherPanel: {fileID: 4911076786830149239}
 --- !u!114 &3282453143333718336
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -569,8 +569,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 453.08472}
-  m_SizeDelta: {x: 0, y: -906.16943}
+  m_AnchoredPosition: {x: 0, y: -444.88342}
+  m_SizeDelta: {x: 0, y: -545.5269}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3282453143575920860
 CanvasRenderer:
@@ -824,7 +824,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 0.45502, y: 631.94}
+  m_AnchoredPosition: {x: -0.45501, y: 451.62}
   m_SizeDelta: {x: 916, y: 176.29382}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3282453143780903332
@@ -1358,7 +1358,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &8386954473700285487
 RectTransform:
   m_ObjectHideFlags: 0
