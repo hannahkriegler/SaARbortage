@@ -13,7 +13,6 @@ namespace SaARbotage
     {
         public static ConnectionManager instance;
         
-        
         public List<GameObject> playerUIs;
         private int _indexLobbyUI = 0;
         public Dictionary<ulong, string> _playersInLobby;
@@ -24,6 +23,7 @@ namespace SaARbotage
         public GameObject buttonJoin;
         public GameObject buttonCreateLobby;
         public GameObject lobbyUI;
+        public InputField inputField;
 
         private void Awake()
         {
@@ -45,6 +45,7 @@ namespace SaARbotage
             buttonHost.SetActive(false);
             buttonJoin.SetActive(false);
             buttonCreateLobby.SetActive(true);
+            inputField.gameObject.SetActive(false);
         }
 
         private void ApprovalCheck(byte[] connectionData, ulong clientID, NetworkManager.ConnectionApprovedDelegate callback)
@@ -56,6 +57,7 @@ namespace SaARbotage
         public void Join()
         {
             NetworkManager.Singleton.StartClient();
+            inputField.gameObject.SetActive(false);
             buttonHost.SetActive(false);
             buttonJoin.SetActive(false);
         }
@@ -96,6 +98,7 @@ namespace SaARbotage
         {
             if (_playersInLobby.ContainsKey(clientID)) return;
             _playersInLobby.Add(clientID, playerName);
+            
             UpdateLobby();
         }
 

@@ -14,9 +14,9 @@ namespace SaARbotage
         public Role role;
         public bool isAlive;
         public string name;
+        public Sprite icon;
+        public Color color;
         
-        
-
         public void AssignPlayer( Role role)
         {
             this.role = role;
@@ -32,7 +32,15 @@ namespace SaARbotage
         {
             //ui.SetActive(false);
             playerId = OwnerClientId;
-            name = "name " + playerId.ToString();
+            var input = ConnectionManager.instance.inputField.text;
+            if (input.Length > 1)
+            {
+                name = input;
+            }
+            else
+            {
+                name = "name " + playerId.ToString();
+            }
             if (IsServer)
             {
                 ConnectionManager.instance.AddPlayerToLobby(playerId, name);
