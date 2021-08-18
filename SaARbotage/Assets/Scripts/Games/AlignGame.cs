@@ -96,7 +96,21 @@ namespace SaARbotage
 
             outerRingX.Value += -OffsetAngle1;
             outerRingZ.Value += -OffsetAngle1;
+            GivePermissions();
             Indicator.SetColor("_EmissionColor", new Color (255f, 0f, 0f));
+
+        }
+
+        private void GivePermissions()
+        {
+            innerRingX.Settings.WritePermission = NetworkVariablePermission.Everyone;
+            innerRingZ.Settings.ReadPermission = NetworkVariablePermission.Everyone;
+
+            middleRingX.Settings.WritePermission = NetworkVariablePermission.Everyone;
+            middleRingZ.Settings.ReadPermission = NetworkVariablePermission.Everyone;
+
+            outerRingX.Settings.WritePermission = NetworkVariablePermission.Everyone;
+            outerRingZ.Settings.ReadPermission = NetworkVariablePermission.Everyone;
 
         }
 
