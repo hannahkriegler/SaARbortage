@@ -10,15 +10,15 @@ namespace SaARbotage
     public class AlignGame : Game
     {
 
-        public NetworkVariable<float> innerRingX;
-        public NetworkVariable<float> innerRingZ;
+        public NetworkVariable<float> innerRingX = new NetworkVariable<float>();
+        public NetworkVariable<float> innerRingZ = new NetworkVariable<float>();
 
 
-        public NetworkVariable<float> middleRingX;
-        public NetworkVariable<float> middleRingZ;
+        public NetworkVariable<float> middleRingX = new NetworkVariable<float>();
+        public NetworkVariable<float> middleRingZ = new NetworkVariable<float>();
 
-        public NetworkVariable<float> outerRingX;
-        public NetworkVariable<float> outerRingZ;
+        public NetworkVariable<float> outerRingX = new NetworkVariable<float>();
+        public NetworkVariable<float> outerRingZ = new NetworkVariable<float>();
 
         public GameObject rightZahnrad;
         public GameObject leftZahnrad;
@@ -64,6 +64,7 @@ namespace SaARbotage
             InnerEmpty = innerRing.transform.GetChild(0).transform;
             middleEmpty = middleRing.transform.GetChild(0).transform;
             OuterEmpty = outerRing.transform.GetChild(0).transform;
+            GivePermissions();
             SetUpAlign();
         }
 
@@ -96,7 +97,6 @@ namespace SaARbotage
 
             outerRingX.Value += -OffsetAngle1;
             outerRingZ.Value += -OffsetAngle1;
-            GivePermissions();
             Indicator.SetColor("_EmissionColor", new Color (255f, 0f, 0f));
 
         }
