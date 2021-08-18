@@ -104,13 +104,22 @@ namespace SaARbotage
         private void GivePermissions()
         {
             innerRingX.Settings.WritePermission = NetworkVariablePermission.Everyone;
+            innerRingX.Settings.ReadPermission = NetworkVariablePermission.Everyone;
+
+            innerRingZ.Settings.WritePermission = NetworkVariablePermission.Everyone;
             innerRingZ.Settings.ReadPermission = NetworkVariablePermission.Everyone;
 
             middleRingX.Settings.WritePermission = NetworkVariablePermission.Everyone;
+            middleRingX.Settings.ReadPermission = NetworkVariablePermission.Everyone;
+            middleRingZ.Settings.WritePermission = NetworkVariablePermission.Everyone;
             middleRingZ.Settings.ReadPermission = NetworkVariablePermission.Everyone;
 
             outerRingX.Settings.WritePermission = NetworkVariablePermission.Everyone;
+            outerRingX.Settings.ReadPermission = NetworkVariablePermission.Everyone;
+            outerRingZ.Settings.WritePermission = NetworkVariablePermission.Everyone;
             outerRingZ.Settings.ReadPermission = NetworkVariablePermission.Everyone;
+
+
 
         }
 
