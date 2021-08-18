@@ -14,6 +14,7 @@ namespace SaARbotage
         AlignGame AG = null;
         public Part isme;
         public Side side;
+        private bool _activated = false;
 
         private void Awake()
         {
@@ -21,25 +22,34 @@ namespace SaARbotage
             RotationSpeed = AG.RotationSpeed;
   
         }
-
-        private void OnMouseDown()
+        private void Update()
         {
-            //float rotx = Input.GetAxis("Mouse X") * RotationSpeed * Mathf.Deg2Rad;
+            if (!_activated) return;
             float rotx = 0;
             if (isme == Part.inner)
             {
                 rotx = RotationSpeed * Time.deltaTime;
-            } else
+            }
+            else
             {
                 rotx = -RotationSpeed * Time.deltaTime;
             }
             transform.Rotate(Vector3.up, rotx);
-            
+
             AG.RotateZahnrad(side, rotx);
             AG.RotateZahnrad(side, rotx);
-            
+        }
+
+        private void OnMouseDown()
+        {
+            //float rotx = Input.GetAxis("Mouse X") * RotationSpeed * Mathf.Deg2Rad;
+            _activated = true;   
 
 
+        }
+        private void OnMouseUp()
+        {
+            _activated = false;
         }
 
     }

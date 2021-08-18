@@ -178,6 +178,7 @@ namespace SaARbotage
         private void AssignRoles()
         {
             var numPlayers = NetworkManager.Singleton.ConnectedClientsList.Count;
+            if (numPlayers <= 1) return;
             var numCrew = 0;
             var numAndroid = 0;
             

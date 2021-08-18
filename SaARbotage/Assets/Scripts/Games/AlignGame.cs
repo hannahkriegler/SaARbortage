@@ -87,16 +87,15 @@ namespace SaARbotage
             
             // Here we randomly set the angle of the Rings.
             // This may need a pure rework for the network variables.
-            float OffsetAngle1 = UnityEngine.Random.Range(45,360);
-            float OffsetAngle2 = UnityEngine.Random.Range(45, 360);
+            float OffsetAngle1 = UnityEngine.Random.Range(45,90);
             innerRingX.Value +=  OffsetAngle1;
             innerRingZ.Value +=  OffsetAngle1;
 
             middleRingX.Value += OffsetAngle1;
-            middleRingZ.Value += OffsetAngle2;
+            middleRingZ.Value += -OffsetAngle1;
 
-            outerRingX.Value += OffsetAngle2;
-            outerRingZ.Value += OffsetAngle2;
+            outerRingX.Value += -OffsetAngle1;
+            outerRingZ.Value += -OffsetAngle1;
             Indicator.SetColor("_EmissionColor", new Color (255f, 0f, 0f));
 
         }
