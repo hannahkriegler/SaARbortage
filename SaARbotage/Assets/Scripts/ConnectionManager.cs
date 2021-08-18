@@ -119,7 +119,7 @@ namespace SaARbotage
             
         }
 
-        public void CreateLobby()
+        /*public void CreateLobby()
         {
             Debug.Log("Create Lobby");
             var players = new Dictionary<Player, ulong>();
@@ -132,16 +132,21 @@ namespace SaARbotage
                 players.Add(player.gameObject.GetComponent<Player>(), client.Value.ClientId);
                 Debug.Log("Added Player with " + client.Value.ClientId);
             }
+            
+            // do role logic
+            AssignRoles();
+            // give players roles
+            foreach (var client in NetworkManager.ConnectedClientsList)
+            {
+                
+            }
 
             //cam.SetActive(false);
             // Launch custom camera foreach player
             foreach (var pair in players)
             {
                 pair.Key.ShowUI(true);
-            }
-        }
-        
-        
+            }*/
         
     }
 }

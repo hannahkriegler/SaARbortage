@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using MLAPI;
 using MLAPI.Messaging;
 using MLAPI.NetworkVariable;
@@ -67,6 +68,11 @@ namespace SaARbotage
                 players.Add(player.gameObject.GetComponent<Player>(), client.Value.ClientId);
                 Debug.Log("Added Player with " + client.Value.ClientId);
             }
+            
+            // assign roles
+            AssignRoles();
+            
+            
             uiConnection.SetActive(false);
             cam.SetActive(false);
             // Launch custom camera foreach player
@@ -168,6 +174,39 @@ namespace SaARbotage
         }
         
         #endregion
+        
+        private void AssignRoles()
+        {
+            var numPlayers = NetworkManager.Singleton.ConnectedClientsList.Count;
+            var numCrew = 0;
+            var numAndroid = 0;
+            
+            // 20% of all players are androids
+            numAndroid = (int)Mathf.Ceil((float) (numPlayers * 0.2));
+            numCrew = numPlayers - numAndroid;
+            Debug.Log("Android: " + numAndroid + ", Crew: " + numCrew + ", Players: " + numPlayers);
+
+            var playersList = players.Keys.ToList();
+
+            for (var i = numAndroid; i >= 0; i --)
+            {
+                var randomIndex = Random.Range(0, playersList.Count);
+                var player = playersList[randomIndex];
+                player.roleString.Value = "Android";
+                playersList.Remove(player);
+            }
+            
+            if(playersList.Count != numCrew)
+                Debug.Log("WROONG player calculation!");
+
+            foreach (var player in playersList)
+            {
+                player.roleString.Value = "Crew";
+            }
+            
+        }
+        
+        
     }
     
     [System.Serializable]

@@ -347,6 +347,14 @@ MonoBehaviour:
     m_InternalValue: 1_Station
   _isActive:
     m_InternalValue: 0
+  _isDone:
+    m_InternalValue: 0
+  _isManipulated:
+    m_InternalValue: 0
+  _isCurrentlyPlaying:
+    m_InternalValue: 0
+  _iCurrentlyPlayIt: 0
+  _isInCooldown: 0
   uiStationPanel: {fileID: 3282453143648624833}
   uiStationInfoPanel: {fileID: 3282453143575920851}
   uiStationTitel: {fileID: 3282453143780903333}

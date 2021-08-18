@@ -200,7 +200,7 @@ namespace SaARbotage
             
             if (_game is EnergyBallReturnGame && (!_isInCooldown && !_isManipulated.Value))
             {
-                Debug.Log("###### HERE");
+                //Debug.Log("###### HERE");
                 uiGameInfoPanel.SetActive(false);
             }
         }

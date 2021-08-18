@@ -12,12 +12,13 @@ namespace SaARbotage
         public GameObject uiPrefab;
         public ulong playerId;
         public Role role;
+        public NetworkVariable<string> roleString = new NetworkVariable<string>();
         public bool isAlive;
         public string name;
         public Sprite icon;
         public Color color;
         
-        public void AssignPlayer( Role role)
+        public void AssignPlayer(Role role)
         {
             this.role = role;
             this.isAlive = true;
@@ -30,6 +31,7 @@ namespace SaARbotage
         
         public override void NetworkStart()
         {
+            if (!IsLocalPlayer) return;
             //ui.SetActive(false);
             playerId = OwnerClientId;
             var input = ConnectionManager.instance.inputField.text;
@@ -49,6 +51,9 @@ namespace SaARbotage
             {
                 ConnectionManager.instance.AddPlayerToLobbyServerRpc(playerId, name);
             }
+            
+            roleString.Settings.WritePermission = NetworkVariablePermission.Everyone;
+            roleString.Settings.ReadPermission = NetworkVariablePermission.Everyone;
         }
 
         public void ShowUI(bool b)
