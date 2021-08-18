@@ -10,7 +10,7 @@ namespace SaARbotage
     public class AlignGame : Game
     {
 
-        public NetworkVariable<float> innerRingX = new NetworkVariable<float>();
+        public NetworkVariable<float> innerRingX = new NetworkVariable<float>();        
         public NetworkVariable<float> innerRingZ = new NetworkVariable<float>();
 
 
@@ -19,6 +19,13 @@ namespace SaARbotage
 
         public NetworkVariable<float> outerRingX = new NetworkVariable<float>();
         public NetworkVariable<float> outerRingZ = new NetworkVariable<float>();
+
+        private float _iRX;
+        private float _iRZ;
+        private float _mRX;
+        private float _mRZ;
+        private float _oRX;
+        private float _oRZ;
 
         public GameObject rightZahnrad;
         public GameObject leftZahnrad;
@@ -71,6 +78,9 @@ namespace SaARbotage
         // Also hier werden die Winkel erstmals verstellt, dass es replayable is.
         private void SetUpAlign()
         {
+            UnScrubScribe();
+            ScrubScribe();
+
             // Changes the solution. So its not always the rings at normal horizontal level, but slightly different. There might be more solutions to it though.
             float OffsetAngl = UnityEngine.Random.Range(1, 359);
             innerRing.transform.Rotate(new Vector3(OffsetAngl, OffsetAngl, OffsetAngl));
@@ -98,10 +108,32 @@ namespace SaARbotage
             outerRingX.Value += -OffsetAngle1;
             outerRingZ.Value += -OffsetAngle1;
 
-            middleRingX.OnValueChanged += UpdateRingRotation;
-            middleRingZ.OnValueChanged += UpdateRingRotation;
             Indicator.SetColor("_EmissionColor", new Color (255f, 0f, 0f));
 
+        }
+
+        private void ScrubScribe()
+        {
+            innerRingX.OnValueChanged += UpdateInnerX;
+            innerRingZ.OnValueChanged += UpdateInnerZ;
+
+            middleRingX.OnValueChanged += UpdateMiddleX;
+            middleRingZ.OnValueChanged += UpdateMiddleZ;
+
+            outerRingX.OnValueChanged += UpdateOuterX;
+            outerRingZ.OnValueChanged += UpdateOuterZ;
+        }
+
+        private void UnScrubScribe()
+        {
+            innerRingX.OnValueChanged -= UpdateInnerX;
+            innerRingZ.OnValueChanged -= UpdateInnerZ;
+
+            middleRingX.OnValueChanged -= UpdateMiddleX;
+            middleRingZ.OnValueChanged -= UpdateMiddleZ;
+
+            outerRingX.OnValueChanged -= UpdateOuterX;
+            outerRingZ.OnValueChanged -= UpdateOuterZ;
         }
 
         private void GivePermissions()
@@ -130,7 +162,7 @@ namespace SaARbotage
         {
             if (!launch.Value) return;
             if (isOnCoolDown) return;
-            //UpdateRingRotation();
+            UpdateRingRotation();
             TickingCountDown();  
             if (Input.GetMouseButtonUp(0)) {
                 TestAlignment();
@@ -139,14 +171,45 @@ namespace SaARbotage
             
         }
 
-        void UpdateRingRotation(float oldval, float newvalue)
+        void UpdateRingRotation()
         {
-            Vector3 innerRingRot = new Vector3(innerRingX.Value, 0f,innerRingZ.Value);
-            Vector3 middleRingRot = new Vector3(middleRingX.Value, 0f, middleRingZ.Value);
-            Vector3 outerRingRot = new Vector3(outerRingX.Value, 0f, outerRingZ.Value);
+            Vector3 innerRingRot = new Vector3(_iRX, 0f,_iRZ);
+            Vector3 middleRingRot = new Vector3(_mRX, 0f, _mRZ);
+            Vector3 outerRingRot = new Vector3(_oRX, 0f, _oRZ);
             innerRing.transform.rotation = Quaternion.Euler(innerRingRot);
             middleRing.transform.rotation = Quaternion.Euler(middleRingRot);
             outerRing.transform.rotation = Quaternion.Euler(outerRingRot);
+        }
+
+        void UpdateInnerX(float old, float newval)
+        {
+            _iRX = newval;
+        }
+
+        void UpdateInnerZ(float old, float newval)
+        {
+            _iRZ = newval;
+        }
+
+        void UpdateMiddleX(float old, float newval)
+        {
+            _mRX = newval
+        }
+
+        void UpdateMiddleZ(float old, float newval)
+        {
+            _mRZ = newval;
+
+        }
+
+        void UpdateOuterX(float old, float newval)
+        {
+            _oRX = newval;
+        }
+
+        void UpdateOuterZ(float old, float newval)
+        {
+            _oRZ = newval;
         }
 
         private void TickingCountDown()
