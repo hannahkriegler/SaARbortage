@@ -183,33 +183,34 @@ namespace SaARbotage
 
         void UpdateInnerX(float old, float newval)
         {
-            _iRX = newval;
+            if (IsLocalPlayer)  _iRX = newval;
+            
         }
 
         void UpdateInnerZ(float old, float newval)
         {
-            _iRZ = newval;
+            if (IsLocalPlayer) _iRZ = newval;
         }
 
         void UpdateMiddleX(float old, float newval)
         {
-            _mRX = newval
+            if (IsLocalPlayer) _mRX = newval;
         }
 
         void UpdateMiddleZ(float old, float newval)
         {
-            _mRZ = newval;
+            if (IsLocalPlayer) _mRZ = newval;
 
         }
 
         void UpdateOuterX(float old, float newval)
         {
-            _oRX = newval;
+            if (IsLocalPlayer) _oRX = newval;
         }
 
         void UpdateOuterZ(float old, float newval)
         {
-            _oRZ = newval;
+            if (IsLocalPlayer) _oRZ = newval;
         }
 
         private void TickingCountDown()
