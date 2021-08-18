@@ -140,7 +140,6 @@ GameObject:
   - component: {fileID: 1296909852}
   - component: {fileID: 1296909856}
   - component: {fileID: 1296909855}
-  - component: {fileID: 1296909853}
   m_Layer: 0
   m_Name: "Kreis-au\xDFen"
   m_TagString: Untagged
@@ -215,23 +214,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &1296909853
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1296909851}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  NetworkInstanceId: 0
-  PrefabHash: 13084632247762516008
-  PrefabHashGenerator: "Kreis-au\xDFen"
-  AlwaysReplicateAsRoot: 0
-  DontDestroyWithOwner: 0
 --- !u!1 &1736042129
 GameObject:
   m_ObjectHideFlags: 0
@@ -688,16 +670,16 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2987783383039480930}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -0.381}
-  m_LocalScale: {x: 0.36942, y: 0.36942, z: 0.36942}
+  m_LocalPosition: {x: 0, y: 0, z: -11.8}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 0.3}
   m_Children: []
   m_Father: {fileID: 8822057703011462208}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 39.2, y: 2.2}
-  m_SizeDelta: {x: 112.74, y: 21.14}
+  m_AnchoredPosition: {x: 1.7, y: 11.6}
+  m_SizeDelta: {x: 100, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4476611025782328480
 CanvasRenderer:
@@ -731,7 +713,7 @@ MonoBehaviour:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
     m_FontSize: 0
     m_FontStyle: 0
-    m_BestFit: 1
+    m_BestFit: 0
     m_MinSize: 0
     m_MaxSize: 100
     m_Alignment: 1
@@ -754,7 +736,6 @@ GameObject:
   - component: {fileID: 5058995928206062412}
   - component: {fileID: 7848808854026578389}
   - component: {fileID: 819246730900989591}
-  - component: {fileID: 1526955784}
   m_Layer: 0
   m_Name: Kreis-mitte
   m_TagString: Untagged
@@ -829,23 +810,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &1526955784
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3160526052302502982}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  NetworkInstanceId: 0
-  PrefabHash: 13084632247762516008
-  PrefabHashGenerator: "Kreis-au\xDFen"
-  AlwaysReplicateAsRoot: 0
-  DontDestroyWithOwner: 0
 --- !u!1 &3770157126418763557
 GameObject:
   m_ObjectHideFlags: 0
@@ -1098,16 +1062,16 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5203957823518555028}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -0.218}
-  m_LocalScale: {x: 0.36942, y: 0.36942, z: 0.36942}
+  m_LocalPosition: {x: 0, y: 0, z: -0.246}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 0.3}
   m_Children: []
   m_Father: {fileID: 2138660430170727792}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.9, y: -1.46}
-  m_SizeDelta: {x: 112.74, y: 21.14}
+  m_AnchoredPosition: {x: 1.8, y: 1.2}
+  m_SizeDelta: {x: 100, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6348175498118202359
 CanvasRenderer:
@@ -1141,7 +1105,7 @@ MonoBehaviour:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
     m_FontSize: 0
     m_FontStyle: 0
-    m_BestFit: 1
+    m_BestFit: 0
     m_MinSize: 0
     m_MaxSize: 100
     m_Alignment: 1
@@ -1181,7 +1145,7 @@ RectTransform:
   m_GameObject: {fileID: 5476522408752618499}
   m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: -0.022}
-  m_LocalScale: {x: 0.005, y: 0.005, z: 0.1}
+  m_LocalScale: {x: 0.002, y: 0.002, z: 0.002}
   m_Children:
   - {fileID: 2830434427759454339}
   m_Father: {fileID: 1989174610198570902}
@@ -1189,8 +1153,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: -0.194, y: -0.013}
-  m_SizeDelta: {x: 1080, y: 1920}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!223 &2240376775351941035
 Canvas:
@@ -1281,7 +1245,7 @@ RectTransform:
   m_GameObject: {fileID: 5494394416421298272}
   m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.005000001, y: 0.0050000004, z: 0.10000001}
+  m_LocalScale: {x: 0.002, y: 0.002, z: 0.08754901}
   m_Children:
   - {fileID: 2372034729416907127}
   m_Father: {fileID: 4821804218197752175}
@@ -1290,7 +1254,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 1080, y: 1920}
+  m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!223 &5699872119344777117
 Canvas:
@@ -1626,7 +1590,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   requiredPlayers:
-    m_InternalValue: 1
+    m_InternalValue: 0
   launch:
     m_InternalValue: 0
   registerdPlayers:
@@ -1666,7 +1630,7 @@ MonoBehaviour:
   middleRingRotationSpeed: 1
   innerRingRotationSpeed: 1
   RotationSpeed: 20
-  FairnessThreshold: 3
+  FairnessThreshold: 2
 --- !u!114 &5132321676714279557
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2080,7 +2044,6 @@ GameObject:
   - component: {fileID: 6287642786359404786}
   - component: {fileID: 1540345871356103222}
   - component: {fileID: 5394702160987846304}
-  - component: {fileID: 1147771593}
   m_Layer: 0
   m_Name: Kreis-innen
   m_TagString: Untagged
@@ -2154,20 +2117,3 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &1147771593
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8912710006090220425}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  NetworkInstanceId: 0
-  PrefabHash: 15906646772583075628
-  PrefabHashGenerator: Kreis-innen
-  AlwaysReplicateAsRoot: 0
-  DontDestroyWithOwner: 0
