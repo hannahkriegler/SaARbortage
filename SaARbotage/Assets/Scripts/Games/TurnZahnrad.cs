@@ -5,13 +5,15 @@ using UnityEngine;
 namespace SaARbotage
 {
     public enum Part { inner, outer };
+    public enum Side { left, right};
     public class TurnZahnrad : MonoBehaviour
     {
         //TODO: Einfügen, dass nur Spieler X das benutzen darf, I guess. Hannah Fragen was sie denkt.
-        float RotationSpeed = 0f;
+        [Range(0f,360f)]
+        public float RotationSpeed = 0f;
         AlignGame AG = null;
-        public GameObject AssignedRing = null;
-        public Part isme; 
+        public Part isme;
+        public Side side;
 
         private void Awake()
         {
@@ -20,20 +22,22 @@ namespace SaARbotage
   
         }
 
-        private void OnMouseDrag()
+        private void OnMouseDown()
         {
-            //Debug.Log("Hello this is RotationSpeed" + RotationSpeed.ToString());
-            float rotx = Input.GetAxis("Mouse X") * RotationSpeed * Mathf.Deg2Rad;
-            //float roty = Input.GetAxis("Mouse Y") * RotationSpeed * Mathf.Deg2Rad;
-
-            //transform.RotateAround(Vector3.up, -rotx);
-            //transform.RotateAround(Vector3.right, -roty);
-            transform.Rotate(Vector3.up, rotx);
-            if (AssignedRing != null)
+            //float rotx = Input.GetAxis("Mouse X") * RotationSpeed * Mathf.Deg2Rad;
+            float rotx = 0;
+            if (isme == Part.inner)
             {
-                if (isme == Part.inner) AG.RotateRingInnerZahnrad(AssignedRing, rotx);
-                if (isme == Part.outer) AG.RotateRingOuterZahnrad(AssignedRing, rotx);
+                rotx = RotationSpeed * Time.deltaTime;
+            } else
+            {
+                rotx = -RotationSpeed * Time.deltaTime;
             }
+            transform.Rotate(Vector3.up, rotx);
+            
+            AG.RotateZahnrad(side, rotx);
+            AG.RotateZahnrad(side, rotx);
+            
 
 
         }

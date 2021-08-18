@@ -10,10 +10,16 @@ namespace SaARbotage
     public class AlignGame : Game
     {
 
-        public NetworkVariable<int> outerRingX;
-        public NetworkVariable<int> outerRingY;
-        public NetworkVariable<int> outerRingZ;
-        
+        public NetworkVariable<float> innerRingX;
+        public NetworkVariable<float> innerRingZ;
+
+
+        public NetworkVariable<float> middleRingX;
+        public NetworkVariable<float> middleRingZ;
+
+        public NetworkVariable<float> outerRingX;
+        public NetworkVariable<float> outerRingZ;
+
         public GameObject rightZahnrad;
         public GameObject leftZahnrad;
 
@@ -53,17 +59,18 @@ namespace SaARbotage
 
         public float FairnessThreshold = 5f;
 
-        private void Awake()
+        protected override void SetupGame()
         {
             InnerEmpty = innerRing.transform.GetChild(0).transform;
             middleEmpty = middleRing.transform.GetChild(0).transform;
             OuterEmpty = outerRing.transform.GetChild(0).transform;
-            SetUpGame();
+            SetUpAlign();
         }
 
         // Also hier werden die Winkel erstmals verstellt, dass es replayable is.
-        private void SetUpGame()
+        private void SetUpAlign()
         {
+            // Changes the solution. So its not always the rings at normal horizontal level, but slightly different. There might be more solutions to it though.
             float OffsetAngl = UnityEngine.Random.Range(1, 359);
             innerRing.transform.Rotate(new Vector3(OffsetAngl, OffsetAngl, OffsetAngl));
             innerRingUp = innerRing.transform.up;
@@ -73,19 +80,24 @@ namespace SaARbotage
             outerRingUP = outerRing.transform.up;
             Debug.Log("L�sung " + innerRing.transform.rotation.ToString());
 
+            // Here we save the wanted distance of the empty target objects located at the inner Rings. 
             _targetdistance1 = Vector3.Distance(InnerEmpty.position, middleEmpty.position);
             _targetdistance2 = Vector3.Distance(middleEmpty.position, OuterEmpty.position);
             Debug.Log(_targetdistance1 + " " + _targetdistance2);
             
-
+            // Here we randomly set the angle of the Rings.
+            // This may need a pure rework for the network variables.
             float OffsetAngle1 = UnityEngine.Random.Range(45,360);
             float OffsetAngle2 = UnityEngine.Random.Range(45, 360);
-            innerRing.transform.Rotate(new Vector3 (OffsetAngle1, OffsetAngle2, 0));
-            middleRing.transform.Rotate(new Vector3(0, OffsetAngle1, OffsetAngle2));
-            outerRing.transform.Rotate(new Vector3( OffsetAngle1, 0, OffsetAngle2));
-            Indicator.SetColor("_EmissionColor", new Color (255f, 0f, 0f));
+            innerRingX.Value +=  OffsetAngle1;
+            innerRingZ.Value +=  OffsetAngle1;
 
-            // TODO: Kommt hier irgendwo noch LaunchGame hin? Hannah weiß das besser.
+            middleRingX.Value += OffsetAngle1;
+            middleRingZ.Value += OffsetAngle2;
+
+            outerRingX.Value += OffsetAngle2;
+            outerRingZ.Value += OffsetAngle2;
+            Indicator.SetColor("_EmissionColor", new Color (255f, 0f, 0f));
 
         }
 
@@ -93,6 +105,7 @@ namespace SaARbotage
         {
             if (!launch.Value) return;
             if (isOnCoolDown) return;
+            UpdateRingRotation();
             TickingCountDown();
             //if(!IsLocalPlayer) return;   
             if (Input.GetMouseButtonUp(0)) {
@@ -100,6 +113,16 @@ namespace SaARbotage
                 DeactivatePulse();
             }
             
+        }
+
+        private void UpdateRingRotation()
+        {
+            Vector3 innerRingRot = new Vector3(innerRingX.Value, 0f,innerRingZ.Value);
+            Vector3 middleRingRot = new Vector3(middleRingX.Value, 0f, middleRingZ.Value);
+            Vector3 outerRingRot = new Vector3(outerRingX.Value, 0f, outerRingZ.Value);
+            innerRing.transform.rotation = Quaternion.Euler(innerRingRot);
+            middleRing.transform.rotation = Quaternion.Euler(middleRingRot);
+            outerRing.transform.rotation = Quaternion.Euler(outerRingRot);
         }
 
         private void TickingCountDown()
@@ -138,6 +161,7 @@ namespace SaARbotage
         }
 
         // Das rotieren des �u�eren Zahnrads dreht um die y Achse des 1 und 2. Rings, aber um die X-Achse des 3. Rings. 
+        /*
         public void RotateRingOuterZahnrad(GameObject ring, float prog)
         {
             if (ring == innerRing) {
@@ -204,6 +228,53 @@ namespace SaARbotage
                 }
                 middleRing.transform.RotateAround(middleRing.transform.position, middleRing.transform.forward, prog * middleRingRotationSpeed);
                 outerRing.transform.RotateAround(outerRing.transform.position, outerRing.transform.forward, prog * outerRingRotationSpeed);
+            }
+
+        }
+        */
+
+        public void RotateZahnrad(Side side , float Rotationspeed)
+        {
+            if (side == Side.left)
+            {
+                if (Duration < MaxDur)
+                {
+                    InnerMat.SetFloat("Strength", Mathf.Lerp(0, 1, Duration / MaxDur));
+                    middleMat.SetFloat("Strength", Mathf.Lerp(0, 1, Duration / MaxDur));
+                    Duration += Time.deltaTime;
+                }
+                else
+                {
+                    InnerMat.SetFloat("Strength", 1);
+                    middleMat.SetFloat("Strength", 1);
+                }
+                // Change the network variables affiliated with it and in Update change the rotation of the Rings I guess..
+                //Note: Also need to change the network variables at the start of the minigame. 
+                // Get the online Variables. 
+                innerRingX.Value += Rotationspeed;
+                innerRingZ.Value += Rotationspeed;
+                middleRingX.Value += Rotationspeed;
+
+            }
+            else
+            {
+                if (Duration < MaxDur)
+                {
+                    OuterMat.SetFloat("Strength", Mathf.Lerp(0, 1, Duration / MaxDur));
+                    middleMat.SetFloat("Strength", Mathf.Lerp(0, 1, Duration / MaxDur));
+                    Duration += Time.deltaTime;
+                }
+                else
+                {
+                    OuterMat.SetFloat("Strength", 1);
+                    middleMat.SetFloat("Strength", 1);
+                }
+                // Change the network variables affiliated with it and in Update change the rotation of the Rings I guess..
+                //Note: Also need to change the network variables at the start of the minigame. 
+
+                middleRingZ.Value += Rotationspeed;
+                outerRingX.Value += Rotationspeed;
+                outerRingZ.Value += Rotationspeed;
             }
 
         }

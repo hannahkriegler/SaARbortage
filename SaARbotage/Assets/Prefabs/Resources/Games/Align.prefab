@@ -140,7 +140,6 @@ GameObject:
   - component: {fileID: 1296909852}
   - component: {fileID: 1296909856}
   - component: {fileID: 1296909855}
-  - component: {fileID: 1296909854}
   - component: {fileID: 1296909853}
   m_Layer: 0
   m_Name: "Kreis-au\xDFen"
@@ -216,54 +215,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &1296909854
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1296909851}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e96cb6065543e43c4a752faaa1468eb1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  FixedSendsPerSecond: 20
-  AssumeSyncedSends: 1
-  InterpolatePosition: 1
-  SnapDistance: 10
-  InterpolateServer: 1
-  MinMeters: 0.15
-  MinDegrees: 1.5
-  ExtrapolatePosition: 0
-  MaxSendsToExtrapolate: 5
-  Channel: 
-  EnableRange: 0
-  EnableNonProvokedResendChecks: 0
-  DistanceSendrate:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 20
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    - serializedVersion: 3
-      time: 500
-      value: 20
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
 --- !u!114 &1296909853
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -803,7 +754,6 @@ GameObject:
   - component: {fileID: 5058995928206062412}
   - component: {fileID: 7848808854026578389}
   - component: {fileID: 819246730900989591}
-  - component: {fileID: 1526955781}
   - component: {fileID: 1526955784}
   m_Layer: 0
   m_Name: Kreis-mitte
@@ -879,54 +829,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &1526955781
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3160526052302502982}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e96cb6065543e43c4a752faaa1468eb1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  FixedSendsPerSecond: 20
-  AssumeSyncedSends: 1
-  InterpolatePosition: 1
-  SnapDistance: 10
-  InterpolateServer: 1
-  MinMeters: 0.15
-  MinDegrees: 1.5
-  ExtrapolatePosition: 0
-  MaxSendsToExtrapolate: 5
-  Channel: 
-  EnableRange: 0
-  EnableNonProvokedResendChecks: 0
-  DistanceSendrate:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 20
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    - serializedVersion: 3
-      time: 500
-      value: 20
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
 --- !u!114 &1526955784
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1040,8 +942,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f3d0faaa81608ed46bcbcfff97049e08, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  AssignedRing: {fileID: 3160526052302502982}
+  RotationSpeed: 30
   isme: 1
+  side: 1
 --- !u!65 &4463654075179755898
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1153,8 +1056,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f3d0faaa81608ed46bcbcfff97049e08, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  AssignedRing: {fileID: 3160526052302502982}
+  RotationSpeed: 30
   isme: 0
+  side: 1
 --- !u!65 &1938075730187916634
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1545,8 +1449,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f3d0faaa81608ed46bcbcfff97049e08, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  AssignedRing: {fileID: 8912710006090220425}
+  RotationSpeed: 30
   isme: 1
+  side: 0
 --- !u!65 &2087290775967749962
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1671,8 +1576,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f3d0faaa81608ed46bcbcfff97049e08, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  AssignedRing: {fileID: 3160526052302502982}
+  RotationSpeed: 0
   isme: 0
+  side: 0
 --- !u!1 &6496726145425000542
 GameObject:
   m_ObjectHideFlags: 0
@@ -1729,9 +1635,16 @@ MonoBehaviour:
     m_InternalValue: 0
   waitForPlayersToRegister:
     m_InternalValue: 0
-  outerRingX:
+  isOnCoolDown: 0
+  innerRingX:
     m_InternalValue: 0
-  outerRingY:
+  innerRingZ:
+    m_InternalValue: 0
+  middleRingX:
+    m_InternalValue: 0
+  middleRingZ:
+    m_InternalValue: 0
+  outerRingX:
     m_InternalValue: 0
   outerRingZ:
     m_InternalValue: 0
@@ -1924,8 +1837,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f3d0faaa81608ed46bcbcfff97049e08, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  AssignedRing: {fileID: 8912710006090220425}
+  RotationSpeed: 0
   isme: 0
+  side: 0
 --- !u!1 &8479832104043052181
 GameObject:
   m_ObjectHideFlags: 0
@@ -2057,8 +1971,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f3d0faaa81608ed46bcbcfff97049e08, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  AssignedRing: {fileID: 8912710006090220425}
+  RotationSpeed: 30
   isme: 0
+  side: 0
 --- !u!65 &2737471265008166788
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2165,7 +2080,6 @@ GameObject:
   - component: {fileID: 6287642786359404786}
   - component: {fileID: 1540345871356103222}
   - component: {fileID: 5394702160987846304}
-  - component: {fileID: 1147771590}
   - component: {fileID: 1147771593}
   m_Layer: 0
   m_Name: Kreis-innen
@@ -2240,54 +2154,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &1147771590
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8912710006090220425}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e96cb6065543e43c4a752faaa1468eb1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  FixedSendsPerSecond: 20
-  AssumeSyncedSends: 1
-  InterpolatePosition: 1
-  SnapDistance: 10
-  InterpolateServer: 1
-  MinMeters: 0.15
-  MinDegrees: 1.5
-  ExtrapolatePosition: 0
-  MaxSendsToExtrapolate: 5
-  Channel: 
-  EnableRange: 0
-  EnableNonProvokedResendChecks: 0
-  DistanceSendrate:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 20
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    - serializedVersion: 3
-      time: 500
-      value: 20
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
 --- !u!114 &1147771593
 MonoBehaviour:
   m_ObjectHideFlags: 0
