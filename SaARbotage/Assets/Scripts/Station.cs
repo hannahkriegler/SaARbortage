@@ -87,7 +87,7 @@ namespace SaARbotage
         {
             _game.registerdPlayers.Value++;
 
-            if (_game.requiredPlayers.Value == _game.registerdPlayers.Value)
+            if (_game.requiredPlayers.Value <= _game.registerdPlayers.Value)
             {
                 uiWaitForPlayersPanel.SetActive(false);
                 _game.waitForPlayersToRegister.Value = false;
