@@ -340,12 +340,11 @@ namespace SaARbotage
                 // Change the network variables affiliated with it and in Update change the rotation of the Rings I guess..
                 //Note: Also need to change the network variables at the start of the minigame. 
                 // Get the online Variables. 
-                if (IsLocalPlayer)
-                {
-                    innerRingX.Value += Rotationspeed;
-                    innerRingZ.Value += Rotationspeed;
-                    middleRingX.Value += Rotationspeed;
-                }
+                
+                innerRingX.Value += Rotationspeed;
+                innerRingZ.Value += Rotationspeed;
+                middleRingX.Value += Rotationspeed;
+                
 
             }
             else
@@ -364,12 +363,11 @@ namespace SaARbotage
                 // Change the network variables affiliated with it and in Update change the rotation of the Rings I guess..
                 //Note: Also need to change the network variables at the start of the minigame. 
 
-                if (IsLocalPlayer)
-                {
-                    middleRingZ.Value += Rotationspeed;
-                    outerRingX.Value += Rotationspeed;
-                    outerRingZ.Value += Rotationspeed;
-                }
+                
+                middleRingZ.Value += Rotationspeed;
+                outerRingX.Value += Rotationspeed;
+                outerRingZ.Value += Rotationspeed;
+                
             }
 
         }
