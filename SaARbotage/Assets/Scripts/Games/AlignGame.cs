@@ -71,7 +71,6 @@ namespace SaARbotage
         // Also hier werden die Winkel erstmals verstellt, dass es replayable is.
         private void SetUpAlign()
         {
-            if (!IsLocalPlayer) return;
             // Changes the solution. So its not always the rings at normal horizontal level, but slightly different. There might be more solutions to it though.
             float OffsetAngl = UnityEngine.Random.Range(1, 359);
             innerRing.transform.Rotate(new Vector3(OffsetAngl, OffsetAngl, OffsetAngl));
@@ -98,6 +97,9 @@ namespace SaARbotage
 
             outerRingX.Value += -OffsetAngle1;
             outerRingZ.Value += -OffsetAngle1;
+
+            middleRingX.OnValueChanged += UpdateRingRotation;
+            middleRingZ.OnValueChanged += UpdateRingRotation;
             Indicator.SetColor("_EmissionColor", new Color (255f, 0f, 0f));
 
         }
@@ -126,10 +128,9 @@ namespace SaARbotage
 
         private void Update()
         {
-            if (!IsLocalPlayer) return;
             if (!launch.Value) return;
             if (isOnCoolDown) return;
-            UpdateRingRotation();
+            //UpdateRingRotation();
             TickingCountDown();  
             if (Input.GetMouseButtonUp(0)) {
                 TestAlignment();
@@ -138,7 +139,7 @@ namespace SaARbotage
             
         }
 
-        private void UpdateRingRotation()
+        void UpdateRingRotation(float oldval, float newvalue)
         {
             Vector3 innerRingRot = new Vector3(innerRingX.Value, 0f,innerRingZ.Value);
             Vector3 middleRingRot = new Vector3(middleRingX.Value, 0f, middleRingZ.Value);
