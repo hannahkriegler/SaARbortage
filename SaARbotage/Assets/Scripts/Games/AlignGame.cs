@@ -168,6 +168,7 @@ namespace SaARbotage
 
         private void Update()
         {
+            GivePermissions();
             if (!launch.Value) return;
             if (isOnCoolDown) return;
             UpdateRingRotation();
@@ -182,9 +183,9 @@ namespace SaARbotage
 
         void UpdateRingRotation()
         {
-            Vector3 innerRingRot = new Vector3(_iRX, 0f,_iRZ);
-            Vector3 middleRingRot = new Vector3(_mRX, 0f, _mRZ);
-            Vector3 outerRingRot = new Vector3(_oRX, 0f, _oRZ);
+            Vector3 innerRingRot = new Vector3(innerRingX.Value, 0f,innerRingZ.Value);
+            Vector3 middleRingRot = new Vector3(middleRingX.Value, 0f, middleRingZ.Value);
+            Vector3 outerRingRot = new Vector3(outerRingX.Value, 0f, outerRingZ.Value);
             innerRing.transform.rotation = Quaternion.Euler(innerRingRot);
             middleRing.transform.rotation = Quaternion.Euler(middleRingRot);
             outerRing.transform.rotation = Quaternion.Euler(outerRingRot);
