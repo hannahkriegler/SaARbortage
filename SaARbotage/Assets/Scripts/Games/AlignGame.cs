@@ -67,7 +67,10 @@ namespace SaARbotage
         public float FairnessThreshold = 5f;
         private void OnEnable()
         {
-            GivePermissions();
+            if (IsHost)
+            {
+                GivePermissions();
+            }
         }
 
         protected override void SetupGame()
