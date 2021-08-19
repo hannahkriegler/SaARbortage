@@ -65,13 +65,18 @@ namespace SaARbotage
         public float RotationSpeed = 20;
 
         public float FairnessThreshold = 5f;
+        private void OnEnable()
+        {
+            GivePermissions();
+        }
 
         protected override void SetupGame()
         {
+            base.SetupGame();
             InnerEmpty = innerRing.transform.GetChild(0).transform;
             middleEmpty = middleRing.transform.GetChild(0).transform;
             OuterEmpty = outerRing.transform.GetChild(0).transform;
-            GivePermissions();
+            //GivePermissions();
             SetUpAlign();
         }
 
