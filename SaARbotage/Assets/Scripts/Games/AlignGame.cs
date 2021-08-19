@@ -10,7 +10,7 @@ namespace SaARbotage
     public class AlignGame : Game
     {
 
-        public NetworkVariable<float> innerRingX = new NetworkVariable<float>();        
+        public NetworkVariable<float> innerRingX;        
         public NetworkVariable<float> innerRingZ = new NetworkVariable<float>();
 
 
@@ -144,6 +144,15 @@ namespace SaARbotage
 
         private void GivePermissions()
         {
+            innerRingX = new NetworkVariable<float>();
+            innerRingZ = new NetworkVariable<float>();
+            
+            middleRingX = new NetworkVariable<float>();
+            middleRingZ = new NetworkVariable<float>();
+            
+            outerRingX = new NetworkVariable<float>();
+            outerRingZ = new NetworkVariable<float>();
+            
             innerRingX.Settings.WritePermission = NetworkVariablePermission.Everyone;
             innerRingX.Settings.ReadPermission = NetworkVariablePermission.Everyone;
 
