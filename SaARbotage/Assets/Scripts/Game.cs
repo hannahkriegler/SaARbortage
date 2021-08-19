@@ -11,15 +11,14 @@ namespace SaARbotage
     public class Game : NetworkBehaviour
     {
         //public List<Player> players;
-        public NetworkVariable<int> requiredPlayers;
-        public NetworkVariable<bool> launch ;
-        public NetworkVariable<int> registerdPlayers;
-        public NetworkVariable<int> stationID;
+        public NetworkVariable<int> requiredPlayers = new NetworkVariable<int>();
+        public NetworkVariable<bool> launch = new NetworkVariable<bool>(new NetworkVariableSettings {WritePermission = NetworkVariablePermission.Everyone});
+        public NetworkVariable<int> registerdPlayers = new NetworkVariable<int>((new NetworkVariableSettings {WritePermission = NetworkVariablePermission.Everyone}));
+        public NetworkVariable<int> stationID = new NetworkVariable<int>((new NetworkVariableSettings {WritePermission = NetworkVariablePermission.Everyone}));
         public NetworkVariable<bool> waitForPlayersToRegister;
 
         private Station _station;
         public bool isOnCoolDown;
-        
 
         public void Start()
         {

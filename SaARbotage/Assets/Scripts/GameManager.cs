@@ -72,7 +72,6 @@ namespace SaARbotage
             // assign roles
             AssignRoles();
             
-            
             uiConnection.SetActive(false);
             cam.SetActive(false);
             // Launch custom camera foreach player
@@ -81,7 +80,7 @@ namespace SaARbotage
                 pair.Key.ShowUI(true);
             }
             
-            //SetUpGame();
+            SetUpGame();
             
         }
 
@@ -92,22 +91,22 @@ namespace SaARbotage
             // distribute stations and games
             if (IsHost)
             {
+                // start counter
+                InvokeRepeating(nameof(UpdateOxygen), 1, 1);
+                /*
+                // Call Setup on all stations
+                
                 for (int i = 0; i < stationsPerRoom.Count; i++)
                 {
                     // spawn new rooms with stations
                     SpawnRoomsServerRpc(i, stationsPerRoom[i].name, stationsPerRoom[i].stations, stationsPerRoom[i].status);
                 }
-                
-                // start counter
-                InvokeRepeating(nameof(UpdateOxygen), 1, 1);
-                
-                // Call Setup on all stations
                 var id = 0;
                 foreach (var station in FindObjectsOfType<Station>())
                 {
                     //SetupStationServerRpc(station, id);
                     id++;
-                }
+                }*/
             }
         }
 
