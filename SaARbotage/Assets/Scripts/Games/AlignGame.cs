@@ -65,10 +65,11 @@ namespace SaARbotage
         public float RotationSpeed = 20;
 
         public float FairnessThreshold = 5f;
-        private void OnEnable()
+        private void Start()
         {
             if (IsHost)
             {
+                Debug.Log("Giving permissions to everyone.");
                 GivePermissions();
             }
         }
