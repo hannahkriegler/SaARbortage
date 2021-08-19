@@ -11,14 +11,14 @@ namespace SaARbotage
     {
 
         public NetworkVariable<float> innerRingX;        
-        public NetworkVariable<float> innerRingZ = new NetworkVariable<float>();
+        public NetworkVariable<float> innerRingZ;
 
 
-        public NetworkVariable<float> middleRingX = new NetworkVariable<float>();
-        public NetworkVariable<float> middleRingZ = new NetworkVariable<float>();
+        public NetworkVariable<float> middleRingX ;
+        public NetworkVariable<float> middleRingZ;
 
-        public NetworkVariable<float> outerRingX = new NetworkVariable<float>();
-        public NetworkVariable<float> outerRingZ = new NetworkVariable<float>();
+        public NetworkVariable<float> outerRingX;
+        public NetworkVariable<float> outerRingZ;
 
         private float _iRX;
         private float _iRZ;
@@ -150,8 +150,8 @@ namespace SaARbotage
             middleRingX = new NetworkVariable<float>();
             middleRingZ = new NetworkVariable<float>();
             
-            outerRingX = new NetworkVariable<float>();
-            outerRingZ = new NetworkVariable<float>();
+            middleRingX = new NetworkVariable<float>();
+            middleRingZ = new NetworkVariable<float>();
             
             innerRingX.Settings.WritePermission = NetworkVariablePermission.Everyone;
             innerRingX.Settings.ReadPermission = NetworkVariablePermission.Everyone;
