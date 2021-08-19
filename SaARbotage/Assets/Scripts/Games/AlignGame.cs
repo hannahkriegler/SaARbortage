@@ -65,18 +65,15 @@ namespace SaARbotage
         public float RotationSpeed = 20;
 
         public float FairnessThreshold = 5f;
-        private void Start()
+
+        protected override void SetupGame()
         {
+            base.SetupGame();
             if (IsHost)
             {
                 Debug.Log("Giving permissions to everyone.");
                 GivePermissions();
             }
-        }
-
-        protected override void SetupGame()
-        {
-            base.SetupGame();
             InnerEmpty = innerRing.transform.GetChild(0).transform;
             middleEmpty = middleRing.transform.GetChild(0).transform;
             OuterEmpty = outerRing.transform.GetChild(0).transform;
@@ -383,7 +380,6 @@ namespace SaARbotage
 
         private void TestAlignment()
         {
-
             Debug.Log(Vector3.Distance(InnerEmpty.position, OuterEmpty.position));
             if (Vector3.Distance(InnerEmpty.position, middleEmpty.position) <= _targetdistance1 + FairnessThreshold/100 && Vector3.Distance(middleEmpty.position, OuterEmpty.position) <= _targetdistance2 + FairnessThreshold / 100) FinishGame(true);
             /*//Problem: Manchmal tackt das beim rotieren doch noch die angles slighty. Also wird die achse die bspw. nicht rotiert werden soll auf einmal -179,999 anstatt 0 bspw. Das k�nnte problematisch werden..

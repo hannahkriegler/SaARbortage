@@ -189,7 +189,7 @@ namespace SaARbotage
 
             var playersList = players.Keys.ToList();
 
-            for (var i = numAndroid; i >= 0; i --)
+            for (var i = numAndroid; i > 0; i --)
             {
                 var randomIndex = Random.Range(0, playersList.Count);
                 var player = playersList[randomIndex];

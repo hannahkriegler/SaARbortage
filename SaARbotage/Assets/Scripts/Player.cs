@@ -18,8 +18,14 @@ namespace SaARbotage
         public Sprite icon;
         public Color color;
         
-        public void AssignPlayer(Role role)
+        public void AssignPlayerToRole()
         {
+            if (roleString.Value.Length < 1) 
+                Debug.Log("Player has no role!");
+            if (roleString.Value.Equals("Crew"))
+            {
+                role = new Crewmate();
+            }
             this.role = role;
             this.isAlive = true;
         }
