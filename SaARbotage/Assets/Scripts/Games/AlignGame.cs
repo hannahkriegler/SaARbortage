@@ -168,8 +168,8 @@ namespace SaARbotage
 
         private void Update()
         {
-            GivePermissions();
-            if (!launch.Value) return;
+            if (!launch.Value){ GivePermissions();
+            return; }
             if (isOnCoolDown) return;
             UpdateRingRotation();
             TickingCountDown();  
