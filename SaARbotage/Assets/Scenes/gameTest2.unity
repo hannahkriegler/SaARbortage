@@ -2278,7 +2278,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 713752459, guid: 81ab7fcb50fdaf14089fb6befa2c9731, type: 3}
   m_PrefabInstance: {fileID: 3212272268557338478}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 3212272268557338479}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8807844bbee52874eae6d902cbdd2247, type: 3}
@@ -3173,7 +3173,6 @@ MonoBehaviour:
     ProtocolVersion: 0
     NetworkTransport: {fileID: 1008496028}
     RegisteredScenes:
-    - gameTest
     - gameTest2
     AllowRuntimeSceneChanges: 0
     NetworkPrefabs:
@@ -7183,6 +7182,28 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 81ab7fcb50fdaf14089fb6befa2c9731, type: 3}
+--- !u!1 &3212272268557338479 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3212272268196985060, guid: 81ab7fcb50fdaf14089fb6befa2c9731, type: 3}
+  m_PrefabInstance: {fileID: 3212272268557338478}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &3212272268557338480
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3212272268557338479}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  NetworkInstanceId: 0
+  PrefabHash: 8040852387598736495
+  PrefabHashGenerator: CommunicationGame_Descriptor
+  AlwaysReplicateAsRoot: 0
+  DontDestroyWithOwner: 0
 --- !u!1001 &3282453143975398661
 PrefabInstance:
   m_ObjectHideFlags: 0
