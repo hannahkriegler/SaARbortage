@@ -55,7 +55,8 @@ namespace SaARbotage
             GameObject Solution;
             dic.TryGetValue((shapeindex.Value, shapekey.Value), out Solution);
             if (Solution != null) {
-                GameObject solution = Instantiate(Solution, Spawnpoint.transform.position, Spawnpoint.transform.rotation);
+                var newrot = Quaternion.Euler(0f , UnityEngine.Random.Range(0,180), 0f);
+                GameObject solution = Instantiate(Solution, Spawnpoint.transform.position, newrot);
                 solution.transform.parent = Spawnpoint.transform;
                 solution.transform.localScale = solution.transform.localScale * 2;
                 Spawnpoint.GetComponent<Animator>().SetTrigger("Spawn");

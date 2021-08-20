@@ -32,6 +32,15 @@ namespace SaARbotage
         public Color failColor;
         public Color winColor;
 
+        [Header("Soundfiles")]
+
+        public AudioClip[] keys;
+        public AudioClip Success;
+        public AudioClip Failure;
+
+        private AudioSource _audiosrc;
+
+
         private void Awake()
         {
             _solution = new int[solutionLength];
@@ -49,7 +58,17 @@ namespace SaARbotage
             }
             _statusUI = GetComponentInChildren<Text>();
             _oldroundTimer = roundTimer;
+            _audiosrc = GetComponent<AudioSource>();
 
+
+        }
+
+        private void PlaySound(AudioClip clip)
+        {
+            if (clip == null) return;
+            _audiosrc.Stop();
+            _audiosrc.clip = clip;
+            _audiosrc.Play();
 
         }
 
@@ -130,6 +149,7 @@ namespace SaARbotage
                 if (rounds <= 0)
                 {
                     //TODO: Wird hier sonst noch was gemacht?
+                    PlaySound(Success);
                     base.FinishGame(true);
                     Debug.Log("Complete Success!!");
                 }
@@ -160,7 +180,7 @@ namespace SaARbotage
                 int num = (int)UnityEngine.Random.Range(0, imageField.Length);
                 _solution[i] = num;
                 //Start Color animation which goes to Color X and back to standard.
-                StartCoroutine(Colorchange((float) i, imageField[num] ));
+                StartCoroutine(Colorchange((float) i, imageField[num], num ));
                 //imageField[_solution[i]].color = signalColor;
                 Debug.Log("the " + i.ToString() + " value is: " + num.ToString());
             }
@@ -177,12 +197,14 @@ namespace SaARbotage
             {
                 Debug.Log("Correct");
                 _counter++;
+                PlaySound(keys[numb]);
                 imageField[numb].color = winColor;
                 //this.CrossFadeColor(Color.green, speed, false, false);
 
             }
             else {
                 Debug.Log("false");
+                PlaySound(Failure);
                 life -= 1;
                 imageField[numb].color = failColor;
                 //TDODO Sollte man irgendwie die Reihenfolge wiederholen.
@@ -190,7 +212,7 @@ namespace SaARbotage
 
         }
 
-        IEnumerator Colorchange(float order, Image im)
+        IEnumerator Colorchange(float order, Image im, int num)
         {
             //TODO: Mehr Richtung LERP undso.. Ist mir noch zu hart von der transition.
             float timeelapsed = 0f;
@@ -202,6 +224,7 @@ namespace SaARbotage
             {
                 im.color = signalColor;
                 timeelapsed += Time.deltaTime;
+                PlaySound(keys[num]);
                 yield return null;
             }
             im.color = _initialCol;
