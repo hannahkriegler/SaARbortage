@@ -67,8 +67,7 @@ namespace SaARbotage
         {
             if (clip == null) return;
             _audiosrc.Stop();
-            _audiosrc.clip = clip;
-            _audiosrc.Play();
+            _audiosrc.PlayOneShot(clip);
 
         }
 
@@ -216,6 +215,7 @@ namespace SaARbotage
         {
             //TODO: Mehr Richtung LERP undso.. Ist mir noch zu hart von der transition.
             float timeelapsed = 0f;
+            bool playedSound = false;
             while(timeelapsed < order) {
                 timeelapsed += Time.deltaTime;
                 yield return null;
@@ -224,11 +224,16 @@ namespace SaARbotage
             {
                 im.color = signalColor;
                 timeelapsed += Time.deltaTime;
-                PlaySound(keys[num]);
+                if (!playedSound)
+                {
+                    PlaySound(keys[num]);
+                    playedSound = true;
+                }
                 yield return null;
             }
             im.color = _initialCol;
             _rdyCheck[(int)order] = true;
+            _audiosrc.Stop();
         }
     }
 }

@@ -1465,7 +1465,7 @@ MonoBehaviour:
     m_InternalValue: 0
   isOnCoolDown: 0
   rounds: 3
-  solutionLength: 5
+  solutionLength: 4
   animTime: 1
   life: 3
   roundTimer: 15
@@ -1485,24 +1485,21 @@ MonoBehaviour:
   signalColor: {r: 0.84602845, g: 0.9056604, b: 0, a: 1}
   failColor: {r: 0.7924528, g: 0, b: 0, a: 1}
   winColor: {r: 0, g: 0.7735849, b: 0.02426933, a: 1}
-  Key1: {fileID: 0}
-  Key2: {fileID: 0}
-  Key3: {fileID: 0}
-  Key4: {fileID: 0}
-  Key5: {fileID: 0}
-  Key6: {fileID: 0}
-  Key7: {fileID: 0}
-  Key8: {fileID: 0}
-  Key9: {fileID: 0}
-  Key10: {fileID: 0}
-  Key11: {fileID: 0}
-  Key12: {fileID: 0}
-  Key13: {fileID: 0}
-  Key14: {fileID: 0}
-  Key15: {fileID: 0}
-  Key16: {fileID: 0}
-  Success: {fileID: 0}
-  Failure: {fileID: 0}
+  keys:
+  - {fileID: 8300000, guid: 68939957006e86f48868fbe780e537bb, type: 3}
+  - {fileID: 8300000, guid: 273242087bcf0974e9280ced3ce52e7e, type: 3}
+  - {fileID: 8300000, guid: 9fe68ce73d796264daba163ce26bffaf, type: 3}
+  - {fileID: 8300000, guid: feb39dfadd7e59944860fe9e2871a438, type: 3}
+  - {fileID: 8300000, guid: c288402a344407b4ebea22f2350eef45, type: 3}
+  - {fileID: 8300000, guid: d3140200a8bd8fb40b32c35efd7f5296, type: 3}
+  - {fileID: 8300000, guid: 58d7e36b3103a9f4eaf10749700bf8de, type: 3}
+  - {fileID: 8300000, guid: 902fcfdc5f7dbb64ba5bd2a8259e1965, type: 3}
+  - {fileID: 8300000, guid: 58b72bdaba9721c4c8442a82993120b2, type: 3}
+  - {fileID: 8300000, guid: 26ebaba3b80c6c947aab5a126abbc8c3, type: 3}
+  - {fileID: 8300000, guid: e055942df0323364ab086332c6fd50de, type: 3}
+  - {fileID: 8300000, guid: e7aa9dee05ba3944aac4630d882200ca, type: 3}
+  Success: {fileID: 8300000, guid: 28faf2619d670104bb632abf3a089944, type: 3}
+  Failure: {fileID: 8300000, guid: 0ce66d70e96d51e46971a309da1c8e1a, type: 3}
 --- !u!82 &3863344384738428274
 AudioSource:
   m_ObjectHideFlags: 0
@@ -1515,7 +1512,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
-  m_Volume: 0.309
+  m_Volume: 1
   m_Pitch: 1
   Loop: 0
   Mute: 0
