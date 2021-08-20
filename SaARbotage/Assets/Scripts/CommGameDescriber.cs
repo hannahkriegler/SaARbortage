@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using MLAPI.NetworkVariable;
 
 namespace SaARbotage
@@ -14,6 +15,9 @@ namespace SaARbotage
         public List<GameObject> Objectlist1;
         public List<GameObject> Objectlist2;
         public List<GameObject> Objectlist3;
+
+        public Text timer;
+        public float timeTillFailure = 60F;
 
         private Dictionary< (int, int), GameObject> dic;
 
@@ -54,8 +58,31 @@ namespace SaARbotage
                 GameObject solution = Instantiate(Solution, Spawnpoint.transform.position, Spawnpoint.transform.rotation);
                 solution.transform.parent = Spawnpoint.transform;
                 solution.transform.localScale = solution.transform.localScale * 2;
+                Spawnpoint.GetComponent<Animator>().SetTrigger("Spawn");
                 //Play Sound and maybe Animation
                 }
+        }
+
+        private void Update()
+        {
+            if (!launch.Value) return;
+            if (timeTillFailure <= 0)
+            {
+                timer.text = "Time is over";
+                base.FinishGame(false);
+            }
+            else
+            {
+                timeTillFailure -= Time.deltaTime;
+                timer.text = ((int)(timeTillFailure / 60f)).ToString() + ":" + ((int)(timeTillFailure % 60f)).ToString();
+
+            }
+
+        }
+
+        public void IsSelected (bool succesful)
+        {
+            base.FinishGame(succesful);
         }
 
         public Dictionary< (int,int), GameObject > GetDic()

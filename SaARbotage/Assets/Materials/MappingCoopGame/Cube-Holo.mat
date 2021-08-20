@@ -21,8 +21,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Cube-Holo
-  m_Shader: {fileID: -6465566751694194690, guid: 477d99059e3906e47b51a94cb9e53330,
-    type: 3}
+  m_Shader: {fileID: -6465566751694194690, guid: 477d99059e3906e47b51a94cb9e53330, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 2
   m_EnableInstancingVariants: 0
@@ -95,7 +94,7 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - InnerPointStrength: 0
+    - InnerPointStrength: 3.2
     - Scrollingspeed: 0.021
     - TextureLeftRight: 1
     - Turnaround: 1

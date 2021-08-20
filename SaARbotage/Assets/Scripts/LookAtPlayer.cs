@@ -14,6 +14,6 @@ public class LookAtPlayer : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.LookAt(_maincam.transform.position);
+        transform.LookAt(transform.position - (_maincam.transform.position - transform.position));
     }
 }

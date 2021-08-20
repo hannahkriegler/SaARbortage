@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using MLAPI.NetworkVariable;
 
 namespace SaARbotage { 
@@ -9,7 +10,10 @@ namespace SaARbotage {
         public GameObject[] Spawnpoints;
 
         //this should be changed in the future to allow random spawns.
-        public CommGameDescriber describer; 
+        public CommGameDescriber describer;
+
+        public Text timer;
+        public float timeTillFailure = 60;
 
         private int _shapeindex;
         private int _shapekey;
@@ -85,15 +89,35 @@ namespace SaARbotage {
            
         }
 
+        private void Update()
+        {
+            if (!launch.Value) return;
+            if (timeTillFailure <= 0)
+            {
+                timer.text = "Time is over";
+                base.FinishGame(false);
+            } else
+            {
+                timeTillFailure -= Time.deltaTime;
+                timer.text = ((int)(timeTillFailure / 60f)).ToString() + ":" + ((int)(timeTillFailure % 60f)).ToString();
+
+            }
+            
+        }
+
         public bool CheckAnswer(int key, int index)
         {
             if (key == _shapekey && index == _shapeindex)
             {
                 Debug.Log("right answer");
+                describer.IsSelected(true);
+                base.FinishGame(true);
                 return true;
             } else
             {
                 Debug.Log("Wrong Answer");
+                describer.IsSelected(false);
+                base.FinishGame(false);
                 return false;
             }
         }

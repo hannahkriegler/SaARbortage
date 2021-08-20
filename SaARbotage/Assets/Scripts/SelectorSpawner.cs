@@ -8,6 +8,8 @@ namespace SaARbotage
     {
         public CommGameSelector selectror;
 
+        public AnswerCanvas answerCanv;
+
         private GameObject _myObject;
         private int _key;
         private int _index;
@@ -16,6 +18,7 @@ namespace SaARbotage
         {
             _myObject = Instantiate(tospawn, transform.position, transform.rotation);
             _myObject.transform.parent = this.transform;
+            GetComponent<Animator>().SetTrigger("Spawn");
             _key = key;
             _index = index;
             //Activate UI, Play Animation.
@@ -24,6 +27,13 @@ namespace SaARbotage
         public void TurnInAnswer()
         {
             selectror.CheckAnswer(_key, _index);
+        }
+
+        private void OnMouseDown()
+        {
+            //activate UI which asks if sure. Give UI script the answer. 
+            answerCanv.gameObject.SetActive(true);
+            answerCanv.SetAnswer(_key, _index);
         }
     }
 }
