@@ -44,11 +44,11 @@ namespace SaARbotage
             {
                 dic.Add((2, Objectlist3.IndexOf(obj)), obj);
             }
-            if (IsHost)
-            {
+            //if (IsHost)
+            //{
                 shapeindex.Value = (int)UnityEngine.Random.Range(0, 3);
                 shapekey.Value = (int)UnityEngine.Random.Range(0, Objectlist1.Count);
-            }
+            //}
         }
 
         public override void LaunchGame()
