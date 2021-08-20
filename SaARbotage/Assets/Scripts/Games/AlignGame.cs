@@ -107,14 +107,14 @@ namespace SaARbotage
             // Here we randomly set the angle of the Rings.
             // This may need a pure rework for the network variables.
             float OffsetAngle1 = UnityEngine.Random.Range(45,90);
-            innerRingX.Value +=  OffsetAngle1;
-            innerRingZ.Value +=  OffsetAngle1;
+            innerRingX.Value = innerRing.transform.rotation.x + OffsetAngle1;
+            innerRingZ.Value =  innerRing.transform.rotation.z + OffsetAngle1;
 
-            middleRingX.Value += OffsetAngle1;
-            middleRingZ.Value += -OffsetAngle1;
+            middleRingX.Value = middleRing.transform.rotation.x + OffsetAngle1;
+            middleRingZ.Value = middleRing.transform.rotation.z - OffsetAngle1;
 
-            outerRingX.Value += -OffsetAngle1;
-            outerRingZ.Value += -OffsetAngle1;
+            outerRingX.Value = outerRing.transform.rotation.x - OffsetAngle1;
+            outerRingZ.Value = outerRing.transform.rotation.z - OffsetAngle1;
 
             Indicator.SetColor("_EmissionColor", new Color (255f, 0f, 0f));
 
@@ -350,9 +350,9 @@ namespace SaARbotage
                 //Note: Also need to change the network variables at the start of the minigame. 
                 // Get the online Variables. 
                 
-                innerRingX.Value += Rotationspeed;
-                innerRingZ.Value += Rotationspeed;
-                middleRingX.Value += Rotationspeed;
+                innerRingX.Value = _iRX + Rotationspeed;
+                innerRingZ.Value = _iRZ + Rotationspeed;
+                middleRingX.Value = _mRX + Rotationspeed;
                 
 
             }
@@ -373,9 +373,9 @@ namespace SaARbotage
                 //Note: Also need to change the network variables at the start of the minigame. 
 
                 
-                middleRingZ.Value += Rotationspeed;
-                outerRingX.Value += Rotationspeed;
-                outerRingZ.Value += Rotationspeed;
+                middleRingZ.Value = _mRZ + Rotationspeed;
+                outerRingX.Value = _oRX + Rotationspeed;
+                outerRingZ.Value = _oRZ + Rotationspeed;
                 
             }
 

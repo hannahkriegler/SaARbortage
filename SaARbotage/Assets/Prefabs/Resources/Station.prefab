@@ -321,14 +321,14 @@ MonoBehaviour:
   m_Script: {fileID: -1631628248, guid: 1e108ae5f2133934f948edded555f03e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mTrackableName: Bridge
+  mTrackableName: S6
   mInitializedInEditor: 1
   mDataSetPath: Vuforia/SaARbotage.xml
-  mAspectRatio: 1.418764
+  mAspectRatio: 1.4187635
   mImageTargetType: 0
-  mWidth: 1
-  mHeight: 1.418764
-  mRuntimeTexture: {fileID: 2800000, guid: 109bfd80cbf804340b1afa48bb873343, type: 3}
+  mWidth: 0.148
+  mHeight: 0.209977
+  mRuntimeTexture: {fileID: 2800000, guid: 5c785b482b1f58f4caa9722f743c72cb, type: 3}
 --- !u!114 &3282453143333718338
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -342,11 +342,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stationId:
-    m_InternalValue: 1
+    m_InternalValue: 6
   stationName:
-    m_InternalValue: 1_Station
+    m_InternalValue: 6_Station
   _isActive:
-    m_InternalValue: 0
+    m_InternalValue: 1
   _isDone:
     m_InternalValue: 0
   _isManipulated:
