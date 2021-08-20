@@ -14,10 +14,10 @@ namespace SaARbotage
     {
         public NetworkVariable<int> stationId;
         public NetworkVariable<string> stationName;
-        public NetworkVariable<bool> _isActive = new NetworkVariable<bool>();
-        public NetworkVariable<bool> _isDone = new NetworkVariable<bool>();
-        public NetworkVariable<bool> _isManipulated = new NetworkVariable<bool>();
-        public NetworkVariable<bool> _isCurrentlyPlaying = new NetworkVariable<bool>();
+        public NetworkVariable<bool> _isActive = new NetworkVariable<bool>(new NetworkVariableSettings {WritePermission = NetworkVariablePermission.Everyone});
+        public NetworkVariable<bool> _isDone = new NetworkVariable<bool>(new NetworkVariableSettings {WritePermission = NetworkVariablePermission.Everyone});
+        public NetworkVariable<bool> _isManipulated = new NetworkVariable<bool>(new NetworkVariableSettings {WritePermission = NetworkVariablePermission.Everyone});
+        public NetworkVariable<bool> _isCurrentlyPlaying = new NetworkVariable<bool>(new NetworkVariableSettings {WritePermission = NetworkVariablePermission.Everyone});
         public bool _iCurrentlyPlayIt = false;
         public bool _isInCooldown;
         private Room _room;
@@ -26,11 +26,14 @@ namespace SaARbotage
         private StationStatus _stationStatus;
         private enum StationStatus
         {
-            Active, Inactive, Manipulated, Completed, Cooldown
+            Active, // station is active for this day
+            Inactive, // station is not active for this day
+            Manipulated, // station is manipulated
+            Completed, // station is active for this day and completed
+            Cooldown // the current player tried the station, but failed
         }
 
-        //public GameObject vuforiaTargetObj;
-        private NetworkVariable<int> _failures = new NetworkVariable<int>();
+        private NetworkVariable<int> _failures = new NetworkVariable<int>(new NetworkVariableSettings {WritePermission = NetworkVariablePermission.Everyone});
 
         [Header("UI")] public GameObject uiStationPanel;
 
@@ -55,18 +58,22 @@ namespace SaARbotage
         
         [Header("Game Finished Status UI")] 
         public GameObject uiStatusPanel;
-        
-        [Header("Game Played by Another Player")] 
+
+        [Header("Game Played by Another Player")]
         public GameObject uiPlayedByAnotherPanel;
+
+        [Header("Station is not Active")] 
+        public GameObject uiStationNotActivePanel;
         
+        [Header("Station is Manipulated")] 
+        public GameObject uiStationIsManipulatedPanel;
 
         private void Start()
         {
-            //_isManipulated = new NetworkVariable<bool>(false);
-            //_isActive = new NetworkVariable<bool>();
             _isManipulated.OnValueChanged += UpdateStationUi;
             _isActive.OnValueChanged += UpdateStationUi;
             _isDone.OnValueChanged += UpdateStationUi;
+            _isCurrentlyPlaying.OnValueChanged += UpdateStationUi;
             _game = GetComponentInChildren<Game>();
             _isInCooldown = false;
             
@@ -83,11 +90,11 @@ namespace SaARbotage
             //_isActive.Value = status;
         }
 
-        public void StartGame()
+        public void StartGame()  // run on Start button click
         {
             _game.registerdPlayers.Value++;
 
-            if (_game.requiredPlayers.Value <= _game.registerdPlayers.Value)
+            if (_game.requiredPlayers.Value >= _game.registerdPlayers.Value)
             {
                 uiWaitForPlayersPanel.SetActive(false);
                 _game.waitForPlayersToRegister.Value = false;
@@ -159,14 +166,17 @@ namespace SaARbotage
             uiCooldownPanel.SetActive(false);
             uiStatusPanel.SetActive(false);
             uiPlayedByAnotherPanel.SetActive(false);
+            uiStationNotActivePanel.SetActive(false);
+            uiStationIsManipulatedPanel.SetActive(false);
 
             // Station is not active
-            if (!_isActive.Value || _iCurrentlyPlayIt)
+            if (!_isActive.Value)
             {
                 uiStationInfoPanel.SetActive(true);
-                uiGameInfoPanel.SetActive(false);
+                uiGameInfoPanel.SetActive(true);
+                uiStationNotActivePanel.SetActive(true);
             }
-            else
+            else 
             {
                 uiGameInfoPanel.SetActive(true);
                 // Station is active - someone is playing already
@@ -174,15 +184,21 @@ namespace SaARbotage
                 {
                     uiPlayedByAnotherPanel.SetActive(true);
                 }
-                // Station is active, game is finished successfully
+                // Station is active, game is finished successfully or not
                 else if (_isDone.Value)
                 {
                     uiStatusPanel.SetActive(true);
+                    // TODO value here
                 }
                 // Station is active, game is on cooldown because it failed previously
                 else if (_isInCooldown)
                 {
                     uiCooldownPanel.SetActive(true);
+                }
+                // Station is active and manipulated
+                else if (_isManipulated.Value)
+                {
+                    uiStationIsManipulatedPanel.SetActive(true);
                 }
                 // Station is active, no one plays / it requires players
                 else
@@ -191,14 +207,13 @@ namespace SaARbotage
                 }
             }
 
-            // Station is manipulated
-            //if (_isManipulated.Value)
-            //{
-                
-            //}
-            
-            
-            if (_game is EnergyBallReturnGame && (!_isInCooldown && !_isManipulated.Value))
+            if (_iCurrentlyPlayIt)
+            {
+                uiStationPanel.SetActive(false);
+            }
+
+
+                if (_game is EnergyBallReturnGame && (!_isInCooldown && !_isManipulated.Value))
             {
                 //Debug.Log("###### HERE");
                 uiGameInfoPanel.SetActive(false);
