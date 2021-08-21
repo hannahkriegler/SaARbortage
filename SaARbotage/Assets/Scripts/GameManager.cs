@@ -20,13 +20,22 @@ namespace SaARbotage
         public GameObject arCam;
         public GameObject uiConnection;
         
-        public NetworkVariable<float> syncTime = new NetworkVariable<float>();
+        [Header("Days:")]
+        public NetworkVariable<int> currentDay = new NetworkVariable<int>(0);
         public NetworkVariable<int> openStationsForDay = new NetworkVariable<int>();
         public List<Station> stations;
+        public int[] timesForDays = new int[3];
 
         [Header("Oxygen:")]
+        public NetworkVariable<float> syncTime = new NetworkVariable<float>();
         public float time;
-
+        public float timeFailedStation;
+        public float timeSucceedStation;
+        public float timeManipulatedStationmodificator;
+        public NetworkVariable<int> manipulatedStationCounter = new NetworkVariable<int>(new NetworkVariableSettings {WritePermission = NetworkVariablePermission.Everyone}, 0);
+        public float timeManipulatedStationFactor;
+        public bool _decreaseOxygen = false;
+        
         [Header("Game Settings")]
         [SerializeField]
         public List<RoomSettings> stationsPerRoom;
@@ -46,12 +55,40 @@ namespace SaARbotage
         }
 
         public override void NetworkStart()
-        {
+        { 
+            
             syncTime.Value = time;
             syncTime.Settings.WritePermission = NetworkVariablePermission.Everyone;
             syncTime.Settings.ReadPermission = NetworkVariablePermission.Everyone;
             openStationsForDay.Settings.WritePermission = NetworkVariablePermission.Everyone;
             openStationsForDay.Settings.ReadPermission = NetworkVariablePermission.Everyone;
+            currentDay.Settings.ReadPermission = NetworkVariablePermission.Everyone;
+            //StartNewDay();
+        }
+
+        public void StartNewDay()
+        {
+            if(!IsHost) return;
+            Debug.Log("### Start a new Day! ###");
+            
+            currentDay.Value++;
+            
+            // reset oxygen
+            syncTime.Value = time;
+
+            // reset stations with games
+        }
+
+        public void EndDay()
+        {
+            _decreaseOxygen = false;
+            timesForDays[currentDay.Value] = (int) syncTime.Value;
+            if (currentDay.Value == 3)
+            {
+                // TODO, implement finish game method here
+            }
+            
+            // TODO, start the voting
         }
 
         [ClientRpc]
@@ -84,6 +121,12 @@ namespace SaARbotage
             
         }
 
+        private void Update()
+        {
+            if(!_decreaseOxygen) return;
+            syncTime.Value -= (Time.deltaTime * (1+ manipulatedStationCounter.Value) * (1 + timeManipulatedStationFactor));
+        }
+
         public void SetUpGame()
         {
             // distribute roles
@@ -92,7 +135,7 @@ namespace SaARbotage
             if (IsHost)
             {
                 // start counter
-                InvokeRepeating(nameof(UpdateOxygen), 1, 1);
+                //InvokeRepeating(nameof(UpdateOxygen), 1, 1);
                 /*
                 // Call Setup on all stations
                 
@@ -157,21 +200,37 @@ namespace SaARbotage
         public void PlayGame()
         {
             dummyScannedStation.GetComponent<Station>().StartGame();
-            
         }
     
 
         #region Oxygen and ui
-        public void ChangeTime(float value)
+
+        public void TimeFailedStation()
+        {
+            ChangeTime(timeFailedStation);
+        }
+
+        public void TimeSucceedStation()
+        {
+            ChangeTime(timeSucceedStation);
+        }
+
+        /// <summary>
+        /// if b, then a new station got manipulated.
+        /// if not b, then a station got freed from manipulation
+        /// </summary>
+        /// <param name="b"></param>
+        public void TimeManipulatedStation(bool b)
+        {
+            if (b) manipulatedStationCounter.Value++;
+            else manipulatedStationCounter.Value--;
+        }
+        
+        private void ChangeTime(float value)
         {
             syncTime.Value += value;
         }
 
-        private void UpdateOxygen()
-        {
-            syncTime.Value --;
-        }
-        
         #endregion
         
         private void AssignRoles()

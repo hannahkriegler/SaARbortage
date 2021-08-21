@@ -12,12 +12,13 @@ namespace SaARbotage
     [Serializable]
     public class Station : NetworkBehaviour
     {
-        public NetworkVariable<int> stationId;
-        public NetworkVariable<string> stationName;
+        public NetworkVariable<int> stationId = new NetworkVariable<int>(new NetworkVariableSettings {WritePermission = NetworkVariablePermission.OwnerOnly});
+        public NetworkVariable<string> stationName = new NetworkVariable<string>(new NetworkVariableSettings {WritePermission = NetworkVariablePermission.OwnerOnly});
         public NetworkVariable<bool> _isActive = new NetworkVariable<bool>(new NetworkVariableSettings {WritePermission = NetworkVariablePermission.Everyone});
         public NetworkVariable<bool> _isDone = new NetworkVariable<bool>(new NetworkVariableSettings {WritePermission = NetworkVariablePermission.Everyone});
         public NetworkVariable<bool> _isManipulated = new NetworkVariable<bool>(new NetworkVariableSettings {WritePermission = NetworkVariablePermission.Everyone});
         public NetworkVariable<bool> _isCurrentlyPlaying = new NetworkVariable<bool>(new NetworkVariableSettings {WritePermission = NetworkVariablePermission.Everyone});
+        public NetworkVariable<int> gameIndex = new NetworkVariable<int>(new NetworkVariableSettings {WritePermission = NetworkVariablePermission.OwnerOnly});
         public bool _iCurrentlyPlayIt = false;
         public bool _isInCooldown;
         private Room _room;
@@ -90,6 +91,26 @@ namespace SaARbotage
             //_isActive.Value = status;
         }
 
+        public void ResetDay()
+        {
+            // if game index > 0, this station has a playable game. otherwise this station will be inactive
+            if (gameIndex.Value < 0)
+            {
+                _isActive.Value = false;
+            }
+            else
+            {
+                // TODO add game from gamemanager list to rest day method
+                _game.RestartGame();
+                _isActive.Value = true;
+                _isDone.Value = false;
+                _isManipulated.Value = false;
+                _isCurrentlyPlaying.Value = false;
+                _iCurrentlyPlayIt = false;
+                _isInCooldown = false;
+            }
+        }
+
         public void StartGame()  // run on Start button click
         {
             _game.registerdPlayers.Value++;
@@ -110,37 +131,22 @@ namespace SaARbotage
             }
         }
 
-        IEnumerator WaitUntilAllPlayersAreRegistered()
-        {
-            uiWaitForPlayersPanel.SetActive(true);
-            //yield return new WaitUntil(_game.registerdPlayers.Value == _game.requiredPlayers.Value);
-            while (_game.registerdPlayers.Value < _game.requiredPlayers.Value)
-            {
-                // TODO
-            }
-            uiWaitForPlayersPanel.SetActive(false);
-            _game.waitForPlayersToRegister.Value = false;
-            uiStationPanel.SetActive(false);
-            _game.LaunchGame();
-            yield break;
-        }
-
         public void FinishedGame(bool successful)
         {
-            Debug.Log("### Station is called Finish ###" + successful);
+            _iCurrentlyPlayIt = false;
+            _isCurrentlyPlaying.Value = false;
             if (!successful)
+            {
+                _failures.Value++;
                 _isInCooldown = true;
+                _game.RestartGame();
+            }
             else
             {
                 _isInCooldown = false;
                 _isDone.Value = true;
             }
             ScanStation();
-            
-            if (!successful)
-            {
-                _failures.Value++;
-            }
         }
         
 
@@ -158,6 +164,7 @@ namespace SaARbotage
         
         public void ScanStation()
         {
+            this.gameObject.SetActive(true);
             uiStationPanel.SetActive(true);
             
             // set all to false, and only enable the one that is needed:
@@ -213,7 +220,7 @@ namespace SaARbotage
             }
 
 
-                if (_game is EnergyBallReturnGame && (!_isInCooldown && !_isManipulated.Value))
+            if (_game is EnergyBallReturnGame && (!_isInCooldown && !_isManipulated.Value))
             {
                 //Debug.Log("###### HERE");
                 uiGameInfoPanel.SetActive(false);

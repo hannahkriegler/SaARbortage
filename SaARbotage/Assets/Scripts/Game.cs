@@ -43,6 +43,11 @@ namespace SaARbotage
             
         }
 
+        public virtual void RestartGame()
+        {
+            
+        }
+
         private void OnEnable()
         {
             foreach (var station in FindObjectsOfType<Station>())
