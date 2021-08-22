@@ -93,6 +93,10 @@ namespace SaARbotage
             UnScrubScribe();
             ScrubScribe();
 
+            innerRing.transform.rotation = Quaternion.Euler(Vector3.zero);
+            middleRing.transform.rotation = Quaternion.Euler(Vector3.zero);
+            outerRing.transform.rotation = Quaternion.Euler(Vector3.zero);
+
             // Changes the solution. So its not always the rings at normal horizontal level, but slightly different. There might be more solutions to it though.
             float OffsetAngl = UnityEngine.Random.Range(1, 359);
             innerRing.transform.Rotate(new Vector3(OffsetAngl, OffsetAngl, OffsetAngl));
