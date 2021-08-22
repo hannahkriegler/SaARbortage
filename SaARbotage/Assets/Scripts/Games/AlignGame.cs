@@ -174,7 +174,7 @@ namespace SaARbotage
         {
             if (!launch.Value){ GivePermissions();
             return; }
-            if (isOnCoolDown) return;
+            //if (isOnCoolDown) return;
             UpdateRingRotation();
             TickingCountDown();  
             if (Input.GetMouseButtonUp(0)) {

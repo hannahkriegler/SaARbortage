@@ -157,6 +157,7 @@ namespace SaARbotage
             {
                 _failures.Value++;
                 _isInCooldown = true;
+                StartCooldownCounter();
                 _game.RestartGame();
             }
             else
@@ -254,8 +255,8 @@ namespace SaARbotage
 
         public void StartCooldownCounter()
         {
-            ShowCooldownUi(true);
-            StartCoroutine(Countdown(20));
+            //ShowCooldownUi(true);
+            StartCoroutine(Countdown(5));
         }
 
         private IEnumerator Countdown(float timeToWait)
@@ -264,17 +265,17 @@ namespace SaARbotage
             {
                 timeToWait -= Time.deltaTime;
                 uiCooldownValue.text = ((int) timeToWait).ToString() + "s";
+                yield return null;
+                
+                if (timeToWait < 1)
+                {
+                    break;
+                }
             }
             _game.isOnCoolDown = false;
-            ShowCooldownUi(false);
-            yield break;
+            ScanStation();
         }
         
-        private void ShowCooldownUi(bool b)
-        {
-            uiCooldownPanel.SetActive(b);
-        }
-
         #endregion
 
         
