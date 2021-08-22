@@ -37,16 +37,17 @@ namespace SaARbotage
         public bool _decreaseOxygen = false;
         
         [Header("Game Settings")]
-        [SerializeField]
-        public List<RoomSettings> stationsPerRoom;
-        public GameObject stationPrefab;
-        public GameObject roomHolder;
-        public GameObject roomPrefab;
+        //[SerializeField]
+        //public List<RoomSettings> stationsPerRoom;
+        //public GameObject stationPrefab;
+        //public GameObject roomHolder;
+        //public GameObject roomPrefab;
 
-        public GameObject[] gamePrefabsMultiplayer;
-
-
-        public GameObject dummyScannedStation;
+        public GameObject[] gamePrefabs;
+        public Dictionary<Room, List<Station>> rooms = new Dictionary<Room, List<Station>>();
+        
+        
+        //public GameObject dummyScannedStation;
 
         public void Awake()
         {
@@ -55,15 +56,27 @@ namespace SaARbotage
         }
 
         public override void NetworkStart()
-        { 
-            
+        {
             syncTime.Value = time;
             syncTime.Settings.WritePermission = NetworkVariablePermission.Everyone;
             syncTime.Settings.ReadPermission = NetworkVariablePermission.Everyone;
             openStationsForDay.Settings.WritePermission = NetworkVariablePermission.Everyone;
             openStationsForDay.Settings.ReadPermission = NetworkVariablePermission.Everyone;
             currentDay.Settings.ReadPermission = NetworkVariablePermission.Everyone;
-            //StartNewDay();
+            
+            // get initial room distribution
+
+            var roomsObj = FindObjectsOfType<Room>();
+
+            foreach (var room in roomsObj)
+            {
+                rooms.Add(room, new List<Station>());
+                var stationFromRoom = room.gameObject.GetComponentsInChildren<Station>();
+                foreach (var station in stationFromRoom)
+                {
+                    rooms[room].Add(station);
+                }
+            }
         }
 
         public void StartNewDay()
@@ -75,8 +88,69 @@ namespace SaARbotage
             
             // reset oxygen
             syncTime.Value = time;
+            
+            ResetGameIndexFromStations();
+            // reset all game indexies to -1, which means inactive
+            foreach (var station in rooms.SelectMany(room => room.Value))
+            {
+                station.ResetDay();
+            }
+            
+        }
 
-            // reset stations with games
+        private void ResetGameIndexFromStations()
+        {
+            // reset all game indexies to -1, which means inactive
+            foreach (var station in rooms.SelectMany(room => room.Value))
+            {
+                station.gameIndex.Value = -1;
+            }
+            
+            // distribute new games to stations
+            var keys = rooms.Keys.ToList();
+            for (var i = 0; i < gamePrefabs.Length; i++)
+            {
+                var randomRoom = keys[Random.Range(0, rooms.Keys.Count)];
+                var stations = rooms[randomRoom];
+                while (IsRoomFull(stations))
+                {
+                    randomRoom = keys[Random.Range(0, rooms.Keys.Count)];
+                    stations = rooms[randomRoom];
+                }
+               
+                var randomStation = stations[Random.Range(0, stations.Count)];
+                while (randomStation.gameIndex.Value > 0)
+                {
+                    randomStation = stations[Random.Range(0, stations.Count)];
+                }
+
+                randomStation.gameIndex.Value = i;
+                
+                // game 0 is specific and needs two stations
+                if (i == 0)
+                {
+                    while (randomStation.gameIndex.Value >= 0)
+                    {
+                        randomStation = stations[Random.Range(0, stations.Count)];
+                    }
+                    randomStation.gameIndex.Value = i + 1;
+                    i++;
+                }
+            }
+        }
+        
+
+        private bool IsRoomFull(List<Station> stations)
+        {
+            foreach (var station in stations)
+            {
+                if (station.gameIndex.Value < 0)
+                {
+                    return false;
+                }
+            }
+
+            return true;
         }
 
         public void EndDay()
@@ -164,7 +238,7 @@ namespace SaARbotage
         private void SetupStationClientRpc(Station station, int id)
         {
             station.Setup(null, id, true );
-        }*/
+        }
 
         [ServerRpc]
         private void SpawnRoomsServerRpc(int roomId, string roomName, int numStations, bool stationStatus)
@@ -200,7 +274,7 @@ namespace SaARbotage
         public void PlayGame()
         {
             dummyScannedStation.GetComponent<Station>().StartGame();
-        }
+        }*/
     
 
         #region Oxygen and ui

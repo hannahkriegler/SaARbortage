@@ -33,9 +33,6 @@ namespace SaARbotage
             timeText.text = "Day " + day + " - " + (int) time + "s left";
         }
         
-        public void TestPlayGameButton()
-        {
-            GameManager.Instance.PlayGame();
-        }
+        
     }
 }

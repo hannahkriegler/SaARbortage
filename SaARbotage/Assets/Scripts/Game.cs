@@ -22,7 +22,6 @@ namespace SaARbotage
 
         public void Start()
         {
-            Debug.Log("Start() Game");
             launch.Value = false;
             registerdPlayers.Value = 0;
             _station = transform.parent.GetComponent<Station>();
@@ -35,7 +34,6 @@ namespace SaARbotage
             }
             
             SetupGame();
-            Debug.Log("End Start() Game");
         }
 
         protected virtual void SetupGame()

@@ -11,7 +11,7 @@ namespace SaARbotage
     {
         public NetworkVariable<int> roomId = new NetworkVariable<int>();
         public string roomName;
-        public Station[] stations;
+        //public Station[] stations;
         private Player[] _players;
         private bool _isClosed;
         private Roomtask _roomtask;
@@ -25,7 +25,7 @@ namespace SaARbotage
             this.roomId.Value = roomId;
             this.roomName = roomName;
             
-            stations = new Station[numStations];
+            //stations = new Station[numStations];
 
             gameObject.name += this.roomId.Value;
         }

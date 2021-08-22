@@ -68,7 +68,6 @@ namespace SaARbotage
 
         protected override void SetupGame()
         {
-            Debug.Log("Begin StartGame()");
             base.SetupGame();
             if (IsHost)
             {
@@ -80,7 +79,6 @@ namespace SaARbotage
             OuterEmpty = outerRing.transform.GetChild(0).transform;
             //GivePermissions();
             SetUpAlign();
-            Debug.Log("End StartGame()");
         }
 
         // Also hier werden die Winkel erstmals verstellt, dass es replayable is.

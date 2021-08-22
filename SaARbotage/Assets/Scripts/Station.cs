@@ -22,7 +22,7 @@ namespace SaARbotage
         public bool _iCurrentlyPlayIt = false;
         public bool _isInCooldown;
         private Room _room;
-        private Game _game;
+        public Game _game;
         private Item[] _items;
         private StationStatus _stationStatus;
         private enum StationStatus
@@ -93,6 +93,12 @@ namespace SaARbotage
 
         public void ResetDay()
         {
+            // remove current game
+            if (_game != null)
+            {
+                Destroy(_game.gameObject);
+            }
+            
             // if game index > 0, this station has a playable game. otherwise this station will be inactive
             if (gameIndex.Value < 0)
             {
@@ -100,8 +106,18 @@ namespace SaARbotage
             }
             else
             {
-                // TODO add game from gamemanager list to rest day method
-                _game.RestartGame();
+                var gamePrefab = GameManager.Instance.gamePrefabs[gameIndex.Value];
+                Instantiate(gamePrefab, this.gameObject.transform, true);
+                _game = gameObject.GetComponentInChildren<Game>();
+                if (_game != null)
+                {
+                    Debug.Log("Station " + gameObject.name + " found game: " + _game.gameObject.name);
+
+
+                    _game.RestartGame();
+                    _game.gameObject.SetActive(false);
+                }
+
                 _isActive.Value = true;
                 _isDone.Value = false;
                 _isManipulated.Value = false;
@@ -165,6 +181,7 @@ namespace SaARbotage
         public void ScanStation()
         {
             this.gameObject.SetActive(true);
+            _game.gameObject.SetActive(true);
             uiStationPanel.SetActive(true);
             
             // set all to false, and only enable the one that is needed:
