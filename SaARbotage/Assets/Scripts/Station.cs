@@ -97,6 +97,7 @@ namespace SaARbotage
             if (_game != null)
             {
                 Destroy(_game.gameObject);
+                _game = null;
             }
             
             // if game index > 0, this station has a playable game. otherwise this station will be inactive
@@ -107,13 +108,10 @@ namespace SaARbotage
             else
             {
                 var gamePrefab = GameManager.Instance.gamePrefabs[gameIndex.Value];
-                Instantiate(gamePrefab, this.gameObject.transform, true);
-                _game = gameObject.GetComponentInChildren<Game>();
+                _game = Instantiate(gamePrefab, this.gameObject.transform, true).GetComponent<Game>();
+                Debug.Log("Station " + gameObject.name + " found game: " + _game.gameObject);
                 if (_game != null)
                 {
-                    Debug.Log("Station " + gameObject.name + " found game: " + _game.gameObject.name);
-
-
                     _game.RestartGame();
                     _game.gameObject.SetActive(false);
                 }

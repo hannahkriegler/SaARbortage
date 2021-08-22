@@ -420,6 +420,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3414351038230359965}
   - component: {fileID: 2558152078284166159}
+  - component: {fileID: -7081908708460721119}
   m_Layer: 0
   m_Name: Energy-Kannister
   m_TagString: Untagged
@@ -480,6 +481,23 @@ MonoBehaviour:
   outerStrength: 1
   ballthingRigidbody: {fileID: 2947763532338744476}
   threshold: 1.65
+--- !u!114 &-7081908708460721119
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2605867303258338599}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  NetworkInstanceId: 0
+  PrefabHash: 5424339024735013491
+  PrefabHashGenerator: Energy-Kannister
+  AlwaysReplicateAsRoot: 0
+  DontDestroyWithOwner: 0
 --- !u!1 &2690737573895886791
 GameObject:
   m_ObjectHideFlags: 0

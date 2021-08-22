@@ -90,11 +90,13 @@ namespace SaARbotage
             syncTime.Value = time;
             
             ResetGameIndexFromStations();
-            // reset all game indexies to -1, which means inactive
+            var counter = 0;
             foreach (var station in rooms.SelectMany(room => room.Value))
             {
+                counter++;
                 station.ResetDay();
             }
+            Debug.Log("counter: " + counter);
             
         }
 
@@ -119,7 +121,7 @@ namespace SaARbotage
                 }
                
                 var randomStation = stations[Random.Range(0, stations.Count)];
-                while (randomStation.gameIndex.Value > 0)
+                while (randomStation.gameIndex.Value >= 0)
                 {
                     randomStation = stations[Random.Range(0, stations.Count)];
                 }
