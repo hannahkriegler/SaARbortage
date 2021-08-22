@@ -1601,6 +1601,9 @@ MonoBehaviour:
     m_InternalValue: 0
   Sucess: {fileID: 8300000, guid: 28faf2619d670104bb632abf3a089944, type: 3}
   Fail: {fileID: 8300000, guid: 0ce66d70e96d51e46971a309da1c8e1a, type: 3}
+  Title: Align Rings
+  Description: 
+  uiAudioDescription: {fileID: 0}
   innerRingX:
     m_InternalValue: 0
   innerRingZ:

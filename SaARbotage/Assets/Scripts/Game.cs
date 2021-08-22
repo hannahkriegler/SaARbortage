@@ -24,6 +24,11 @@ namespace SaARbotage
         public AudioClip Sucess;
         public AudioClip Fail;
 
+        [Header("Informations")]
+        public String Title;
+        public String Description;
+        public AudioClip uiAudioDescription;
+
         public void Start()
         {
             launch.Value = false;

@@ -42,6 +42,9 @@ namespace SaARbotage
         public Text uiStationTitel;
         public Text uiStationInfo;
         public Text uiStationStatus;
+
+        public Text uiTaskName;
+        public Text uiTaskDescription;
         
         
         [Header("GameInfo UI")]
@@ -126,7 +129,15 @@ namespace SaARbotage
                 _isCurrentlyPlaying.Value = false;
                 _iCurrentlyPlayIt = false;
                 _isInCooldown = false;
+
+                WriteUIText();
             }
+        }
+
+        private void WriteUIText()
+        {
+            uiTaskName.text = _game.Title;
+            uiTaskDescription.text = _game.Description;
         }
 
         public void StartGame()  // run on Start button click
