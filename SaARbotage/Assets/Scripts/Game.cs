@@ -18,7 +18,6 @@ namespace SaARbotage
         public NetworkVariable<bool> waitForPlayersToRegister;
 
         private Station _station;
-        public bool isOnCoolDown;
 
         public void Start()
         {
@@ -79,7 +78,7 @@ namespace SaARbotage
         {
             launch.Value = false;
             _station.FinishedGame(successful);
-            isOnCoolDown = !successful;
+            _station._isInCooldown = !successful;
         }
 
        

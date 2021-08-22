@@ -153,6 +153,7 @@ namespace SaARbotage
         {
             _iCurrentlyPlayIt = false;
             _isCurrentlyPlaying.Value = false;
+            _game.registerdPlayers.Value--;
             if (!successful)
             {
                 _failures.Value++;
@@ -272,7 +273,7 @@ namespace SaARbotage
                     break;
                 }
             }
-            _game.isOnCoolDown = false;
+            _isInCooldown = false;
             ScanStation();
         }
         
