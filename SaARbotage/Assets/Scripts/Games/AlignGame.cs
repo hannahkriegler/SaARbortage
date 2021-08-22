@@ -41,6 +41,7 @@ namespace SaARbotage
         public Material middleMat;
 
         public float timeConstraint = 60f;
+        private float _initTime = 0f;
         public Text timerLeft;
         public Text timerRight;
 
@@ -79,6 +80,11 @@ namespace SaARbotage
             OuterEmpty = outerRing.transform.GetChild(0).transform;
             //GivePermissions();
             SetUpAlign();
+        }
+
+        private void Awake()
+        {
+            _initTime = timeConstraint;
         }
 
         // Also hier werden die Winkel erstmals verstellt, dass es replayable is.
@@ -405,6 +411,19 @@ namespace SaARbotage
                 //Debug.Log("Lost");
             }
             base.FinishGame(successful);
+        }
+
+        public override void RestartGame()
+        {
+            ResetValues();
+            base.RestartGame();
+        }
+
+        void ResetValues()
+        {
+            DeactivatePulse();
+            Indicator.SetColor("_EmissionColor", new Color(255f, 0f, 0f));
+            timeConstraint = _initTime;
         }
 
         public override void LaunchGame()

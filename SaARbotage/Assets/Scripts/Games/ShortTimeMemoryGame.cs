@@ -9,9 +9,11 @@ namespace SaARbotage
     public class ShortTimeMemoryGame : Game
     {
         public int rounds = 1;
+        private int _initrounds = 0;
         public int solutionLength = 5;
         public float animTime = 2f;
         public int life = 3;
+        private int _initlife = 0;
         public float roundTimer = 10f;
         private float _oldroundTimer;
         private bool _isstarted = false;
@@ -40,31 +42,54 @@ namespace SaARbotage
 
         private AudioSource _audiosrc;
 
-
         private void Awake()
         {
             _solution = new int[solutionLength];
             _rdyCheck = new bool[solutionLength];
-            for (int i = 0; i < _rdyCheck.Length; i++)
-            {
-                _rdyCheck[i] = false;
-            }
             _maincam = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
             if (_maincam)
             {
-                Debug.Log("Found");
+                //Debug.Log("Found");
                 transform.GetChild(0).transform.GetChild(0).GetComponent<Canvas>().worldCamera = _maincam;
                 transform.GetChild(0).transform.GetChild(1).GetComponent<Canvas>().worldCamera = _maincam;
             }
             _statusUI = GetComponentInChildren<Text>();
             _oldroundTimer = roundTimer;
             _audiosrc = GetComponent<AudioSource>();
+            _initrounds = rounds;
+            _initlife = life;
+        }
+
+        private void ResetValues()
+        {
+            rounds = _initrounds;
+            life = _initlife;
+            roundTimer = _oldroundTimer;
+            _counter = 0;
+            _isstarted = false;
+            _playing = false;
+        }
+
+        protected override void SetupGame()
+        {
+            base.SetupGame();
+            
+            for (int i = 0; i < _rdyCheck.Length; i++)
+            {
+                _rdyCheck[i] = false;
+            }
 
 
         }
 
         private void PlaySound(AudioClip clip)
         {
+            if(!TryGetComponent<AudioSource>(out _audiosrc))
+            {
+                _audiosrc = gameObject.AddComponent(typeof(AudioSource)) as AudioSource;
+                _audiosrc.playOnAwake = false;
+                _audiosrc.loop = false;
+            }
             if (clip == null) return;
             _audiosrc.Stop();
             _audiosrc.PlayOneShot(clip);
@@ -105,7 +130,7 @@ namespace SaARbotage
 
             if (_playing && rounds > 0)
             {
-                Debug.Log("HI");
+                //Debug.Log("HI");
                 roundTimer -= Time.deltaTime;
                 if(roundTimer<= 0)
                 {
@@ -126,11 +151,11 @@ namespace SaARbotage
 
                 }
                 if (life <= 0) {
-                    Debug.Log("COMPLETE FAILURE!!!");
+                    //Debug.Log("COMPLETE FAILURE!!!");
                     base.FinishGame(false);
                             }
                 if (_counter == solutionLength) {
-                    Debug.Log("ROUND SUCCEESSS!!!");
+                    //Debug.Log("ROUND SUCCEESSS!!!");
                     _isstarted = false;
                     _playing = false;
                     _counter = 0;
@@ -150,12 +175,12 @@ namespace SaARbotage
                     //TODO: Wird hier sonst noch was gemacht?
                     PlaySound(Success);
                     base.FinishGame(true);
-                    Debug.Log("Complete Success!!");
+                    //Debug.Log("Complete Success!!");
                 }
             }
 
             PrintStatus();
-            LookAtPlayer();
+            //LookAtPlayer();
 
 
         }
@@ -181,20 +206,26 @@ namespace SaARbotage
                 //Start Color animation which goes to Color X and back to standard.
                 StartCoroutine(Colorchange((float) i, imageField[num], num ));
                 //imageField[_solution[i]].color = signalColor;
-                Debug.Log("the " + i.ToString() + " value is: " + num.ToString());
+                //Debug.Log("the " + i.ToString() + " value is: " + num.ToString());
             }
             _isstarted = true;
+        }
+
+        public override void RestartGame()
+        {
+            ResetValues();
+            base.RestartGame();
         }
 
 
 
         public void InputField(int numb)
         {
-            Debug.Log("Hi");
+            //Debug.Log("Hi");
             if (!_playing) return;
             if (numb == _solution[_counter])
             {
-                Debug.Log("Correct");
+                //Debug.Log("Correct");
                 _counter++;
                 PlaySound(keys[numb]);
                 imageField[numb].color = winColor;
@@ -202,7 +233,7 @@ namespace SaARbotage
 
             }
             else {
-                Debug.Log("false");
+                //Debug.Log("false");
                 PlaySound(Failure);
                 life -= 1;
                 imageField[numb].color = failColor;

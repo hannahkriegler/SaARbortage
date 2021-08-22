@@ -26,6 +26,7 @@ namespace SaARbotage
         
         public override void FinishGame(bool successful)
         {
+            // ehm this is kinda not needed..
             launch.Value = false;
             capsule = GameObject.FindWithTag("EnergyBallParent");
             capsule.transform.SetParent(gameObject.transform);
@@ -38,9 +39,10 @@ namespace SaARbotage
             //capsule.transform.parent = _targetHolding;
             //capsule.transform.localPosition = _mypos;
             capsule.transform.localRotation = Quaternion.Euler(0, 0, 0);
+            _firstPart.FinishGame(successful);
             //endmessage.gameObject.SetActive(true);
             //_finished = true;
-            base.FinishGame(false);
+            base.FinishGame(successful);
         }
     }
 }

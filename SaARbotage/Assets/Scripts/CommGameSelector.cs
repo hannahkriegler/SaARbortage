@@ -14,6 +14,7 @@ namespace SaARbotage {
 
         public Text timer;
         public float timeTillFailure = 60;
+        private float _maxtime = 0f;
 
         private int _shapeindex;
         private int _shapekey;
@@ -30,12 +31,22 @@ namespace SaARbotage {
         private List<(GameObject, int, int)> _options;
 
 
-
+        private void Awake()
+        {
+            _maxtime = timeTillFailure;
+        }
         public override void LaunchGame()
         {
             base.LaunchGame();
             // Take the needed Variables and instantiate the objects. 
             //Activate UI after all is done.
+            //Find Describer. 
+            describer = FindObjectOfType<CommGameDescriber>();
+            if (describer == null)
+            {
+                Debug.LogError("Describer not found");
+                return;
+            }
             _dic = describer.GetDic();
             _shapeindex = describer.GetShapeIndex();
             _shapekey = describer.GetShapeKey();
@@ -121,5 +132,13 @@ namespace SaARbotage {
                 return false;
             }
         }
+
+        public override void RestartGame()
+        {
+            // Do we need to reset the network launch variable? or is it in Finishgame false
+            timeTillFailure = _maxtime;
+            base.RestartGame();
+        }
+
     }
 }

@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 4270156758677693002}
   m_Layer: 0
   m_Name: BezierCurve
-  m_TagString: Untagged
+  m_TagString: EnergyBall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -98,7 +98,7 @@ GameObject:
   - component: {fileID: 2947763532338744476}
   m_Layer: 0
   m_Name: inner-tesseract
-  m_TagString: Untagged
+  m_TagString: EnergyBall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -111,7 +111,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1354843431304831535}
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: -0.024, z: 0}
   m_LocalScale: {x: 0.20332599, y: 0.20332599, z: 0.20332599}
   m_Children:
   - {fileID: 6962290921838192603}
@@ -191,7 +191,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1354843431304831535}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 36aa02d38bb10b548bc7b8879596b15c, type: 3}
   m_Name: 
@@ -205,13 +205,13 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1354843431304831535}
   serializedVersion: 2
-  m_Mass: 0.3
+  m_Mass: 3
   m_Drag: 0
   m_AngularDrag: 0.05
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 8
   m_CollisionDetection: 0
 --- !u!1 &1733046304279021964
 GameObject:
@@ -306,7 +306,7 @@ GameObject:
   - component: {fileID: 8730024594460392973}
   m_Layer: 0
   m_Name: EnergyBall
-  m_TagString: Untagged
+  m_TagString: EnergyBall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -386,7 +386,7 @@ GameObject:
   - component: {fileID: 1846022087485864546}
   m_Layer: 0
   m_Name: Capsule-Father-withoutcable
-  m_TagString: Untagged
+  m_TagString: EnergyBall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -436,7 +436,7 @@ Transform:
   m_GameObject: {fileID: 2605867303258338599}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 1.85, y: 0.33, z: -2.68}
-  m_LocalScale: {x: 5, y: 5, z: 5}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 3500414664980157233}
   m_Father: {fileID: 0}
@@ -464,18 +464,22 @@ MonoBehaviour:
     m_InternalValue: 0
   waitForPlayersToRegister:
     m_InternalValue: 0
+  isOnCoolDown: 0
   hpBar: {fileID: 2947763533606452426}
   startButton: {fileID: 2947763533710640661}
   finishButton: {fileID: 2947763532488188551}
   endmessage: {fileID: 1207991385118595124}
+  timeConstraint: 60
   capsule: {fileID: 2690737573895886791}
+  austausch: {fileID: 0}
+  HoldingAperation: {fileID: 4312240877512001931}
   balanceMultiplier: 0.303
   energyBall: {fileID: 2100000, guid: 1afc1f246d6adfb44957b5d3c846602e, type: 2}
   outerTesseract: {fileID: 2100000, guid: fa4d674f3e376ad4cb2c11d6590bb9f1, type: 2}
   oldcol: {r: 0.024262428, g: 0, b: 1, a: 0}
   outerStrength: 1
   ballthingRigidbody: {fileID: 2947763532338744476}
-  threshold: 0.65
+  threshold: 1.65
 --- !u!1 &2690737573895886791
 GameObject:
   m_ObjectHideFlags: 0
@@ -487,7 +491,7 @@ GameObject:
   - component: {fileID: 9160451093837626895}
   m_Layer: 0
   m_Name: EnergyBall
-  m_TagString: Untagged
+  m_TagString: EnergyBallParent
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -521,7 +525,7 @@ GameObject:
   - component: {fileID: 2947763532122149081}
   m_Layer: 0
   m_Name: Water-cyl
-  m_TagString: Untagged
+  m_TagString: EnergyBall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -601,7 +605,7 @@ GameObject:
   - component: {fileID: 2947763532388524799}
   m_Layer: 0
   m_Name: GameObject
-  m_TagString: Untagged
+  m_TagString: EnergyBall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1243,7 +1247,7 @@ GameObject:
   - component: {fileID: 2947763533726262217}
   m_Layer: 0
   m_Name: Water Helper
-  m_TagString: Untagged
+  m_TagString: EnergyBall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1255,7 +1259,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2947763533726262219}
-  m_LocalRotation: {x: 0.7071069, y: -0, z: -0, w: 0.70710677}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: -0.00163}
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_Children:
@@ -1325,7 +1329,7 @@ CapsuleCollider:
   m_Enabled: 1
   m_Radius: 0.5000001
   m_Height: 2
-  m_Direction: 1
+  m_Direction: 2
   m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}
 --- !u!114 &2947763533726262214
 MonoBehaviour:
@@ -1450,7 +1454,7 @@ GameObject:
   - component: {fileID: 2947763532405715916}
   m_Layer: 0
   m_Name: Cylinder
-  m_TagString: Untagged
+  m_TagString: EnergyBall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1548,7 +1552,7 @@ GameObject:
   - component: {fileID: 6784949907163320194}
   m_Layer: 0
   m_Name: outer-Tesseract
-  m_TagString: Untagged
+  m_TagString: EnergyBall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1794,7 +1798,7 @@ GameObject:
   - component: {fileID: 2917786763498935154}
   m_Layer: 0
   m_Name: Ballthing
-  m_TagString: Untagged
+  m_TagString: EnergyBall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1825,7 +1829,7 @@ GameObject:
   - component: {fileID: 7723529563559787547}
   m_Layer: 0
   m_Name: Capsule-Father
-  m_TagString: Untagged
+  m_TagString: EnergyBall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

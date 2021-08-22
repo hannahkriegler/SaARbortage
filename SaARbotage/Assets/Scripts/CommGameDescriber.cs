@@ -18,10 +18,16 @@ namespace SaARbotage
 
         public Text timer;
         public float timeTillFailure = 60F;
+        private float _maxtime = 0f;
 
         private Dictionary< (int, int), GameObject> dic;
 
-        public GameObject Spawnpoint; 
+        public GameObject Spawnpoint;
+
+        private void Awake()
+        {
+            _maxtime = timeTillFailure;
+        }
         protected override void SetupGame()
         {
             //Here we search for one random Object out of the different Shapes we got. 
@@ -107,6 +113,15 @@ namespace SaARbotage
         public float GetListLength()
         {
             return Objectlist1.Count;
+        }
+
+        public override void RestartGame()
+        {
+            //Will setupGame be called here at the end? 
+            timeTillFailure = _maxtime;
+            base.RestartGame();
+
+
         }
     }
 }

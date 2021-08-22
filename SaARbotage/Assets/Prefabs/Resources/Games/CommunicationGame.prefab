@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3212272268196985061}
   - component: {fileID: 713752459}
+  - component: {fileID: 3212272268557338480}
   m_Layer: 0
   m_Name: CommunicationGame
   m_TagString: Untagged
@@ -62,26 +63,43 @@ MonoBehaviour:
   shapekey:
     m_InternalValue: 0
   Objectlist1:
-  - {fileID: 7234995096765521339, guid: bf7ff1a92d1163247ac8dd836b0f2423, type: 3}
-  - {fileID: 6813305836380549866, guid: 51d9a77f46558c94d8b55ef8f42fed3e, type: 3}
-  - {fileID: 594049177887689259, guid: ee9b0fbc6f83df2418004b50cdde4115, type: 3}
-  - {fileID: 2085858085324960126, guid: 1ff8b722a54d259458496147aa7a4c0a, type: 3}
-  - {fileID: 5101811763639551389, guid: ca4ecc7d7bd820249b5dfadce93fac7b, type: 3}
+  - {fileID: 7345454197108631697, guid: 483bb7c6881c6f144afab4ef6db76504, type: 3}
+  - {fileID: 1631987571891208771, guid: 3471af07821cf0747931df675e681a5f, type: 3}
+  - {fileID: 8637954083499862481, guid: e37f2b78c69a349449c1470859185c09, type: 3}
+  - {fileID: 4772076671406170464, guid: 6640cfdb9450d6940a6a14212f83045c, type: 3}
+  - {fileID: 5361065033691014776, guid: 92f16f5b5c1a51041bb7145925b76f53, type: 3}
   Objectlist2:
-  - {fileID: 6692500715532602437, guid: 940eb402ee4e6294b904745268038990, type: 3}
-  - {fileID: 428350740519678246, guid: 1c600bc36f53f6342bff0634401da253, type: 3}
-  - {fileID: 2980579342279300461, guid: 427e7bfc0c67bd641adfafbf7de2dae0, type: 3}
-  - {fileID: 466474816335700101, guid: 12d8517272d4ef045abc901dd6ba735c, type: 3}
-  - {fileID: 6659410342243321621, guid: a19f96e6afa605844acc3758bca39bbf, type: 3}
+  - {fileID: 2925547087805772961, guid: 9f55f862cf359674596b8d368dd3eb44, type: 3}
+  - {fileID: 1660913375918879675, guid: ce6821a804559c24f9b7832997d556e3, type: 3}
+  - {fileID: 7259461071351891838, guid: c39a152b64989e04a8859ace409a0741, type: 3}
+  - {fileID: 4526210465509699494, guid: 869a8462c9a76b940b953121a396aa31, type: 3}
+  - {fileID: 3678262401860334552, guid: db4765d70b33b8c4eb6652a3361ba6f8, type: 3}
   Objectlist3:
-  - {fileID: 1605335833954836762, guid: 778b1127df2a57442bf94e92c6cb7151, type: 3}
-  - {fileID: 2920996323220274777, guid: f2ca890a2f2ac0f4cafc6ecce7b382bd, type: 3}
-  - {fileID: 6325336570577329479, guid: 45df727eb879ea54e8e16edfeefbc2ce, type: 3}
-  - {fileID: 2243400103361339441, guid: 6051ee587d10cd54a948054890ed6a57, type: 3}
-  - {fileID: 5829212622968501450, guid: 844434f3fadc92c42af0ed6c1261fcf5, type: 3}
+  - {fileID: 7701423615718985474, guid: d4864152b2ddafe45a36f8e0a20a2f43, type: 3}
+  - {fileID: 1322514816672996558, guid: 1445dd91f349858468a97155604650d3, type: 3}
+  - {fileID: 6654509235748743038, guid: c4d403a91cd38e44ca4f1f1fd263c8a5, type: 3}
+  - {fileID: 5440590566279469767, guid: 92314fb8e33192a43a9e44e0fe3f8c3d, type: 3}
+  - {fileID: 1546483216387925353, guid: 67abb2a0f0cc6fd4b90cffed94a823ee, type: 3}
   timer: {fileID: 7156433312445378449}
   timeTillFailure: 60
   Spawnpoint: {fileID: 5539430233235349172}
+--- !u!114 &3212272268557338480
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3212272268196985060}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  NetworkInstanceId: 0
+  PrefabHash: 8040852387598736495
+  PrefabHashGenerator: CommunicationGame_Descriptor
+  AlwaysReplicateAsRoot: 0
+  DontDestroyWithOwner: 0
 --- !u!1 &5539430233235349172
 GameObject:
   m_ObjectHideFlags: 0

@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 8446074233718526375}
   - component: {fileID: 8446074233718526374}
   - component: {fileID: 8446074233718526369}
+  - component: {fileID: 439886836}
   m_Layer: 0
   m_Name: Holding-Ziel
   m_TagString: Cannister
@@ -26,13 +27,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8446074233718526373}
-  m_LocalRotation: {x: -0.7071068, y: -0, z: -0, w: 0.7071067}
+  m_LocalRotation: {x: -0.7069834, y: 0, z: 0, w: 0.7072302}
   m_LocalPosition: {x: 1.85, y: 0.33, z: 7.55}
-  m_LocalScale: {x: 100, y: 99.999985, z: 99.999985}
+  m_LocalScale: {x: 5, y: 5, z: 5}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -89.98, y: 0, z: 0}
 --- !u!33 &8446074233718526375
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -97,3 +98,26 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.05, y: 0.05, z: 0.05}
   m_Center: {x: 0, y: -0.002463233, z: 0.015681213}
+--- !u!114 &439886836
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8446074233718526373}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a2c1c4c8292bc4841a1b2735f7ae2dc1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  requiredPlayers:
+    m_InternalValue: 1
+  launch:
+    m_InternalValue: 0
+  registerdPlayers:
+    m_InternalValue: 0
+  stationID:
+    m_InternalValue: 0
+  waitForPlayersToRegister:
+    m_InternalValue: 0
+  isOnCoolDown: 0

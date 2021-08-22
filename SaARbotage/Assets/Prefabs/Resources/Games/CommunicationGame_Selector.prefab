@@ -746,7 +746,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   requiredPlayers:
-    m_InternalValue: 0
+    m_InternalValue: 1
   launch:
     m_InternalValue: 0
   registerdPlayers:
@@ -1731,7 +1731,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3385694153131142519, guid: ff72d4fe86907334fba200ab5fa1f217, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 0.0806
       objectReference: {fileID: 0}
     - target: {fileID: 3385694153131142519, guid: ff72d4fe86907334fba200ab5fa1f217, type: 3}
       propertyPath: m_LocalPosition.z
