@@ -109,11 +109,15 @@ namespace SaARbotage
             {
                 var gamePrefab = GameManager.Instance.gamePrefabs[gameIndex.Value];
                 _game = Instantiate(gamePrefab, this.gameObject.transform, true).GetComponent<Game>();
+                _game.gameObject.transform.localPosition = Vector3.zero;
                 Debug.Log("Station " + gameObject.name + " found game: " + _game.gameObject);
                 if (_game != null)
                 {
                     _game.RestartGame();
-                    _game.gameObject.SetActive(false);
+                    foreach (var mesh in GetComponentsInChildren<MeshRenderer>())
+                    {
+                        mesh.enabled = false;
+                    }
                 }
 
                 _isActive.Value = true;
@@ -179,7 +183,10 @@ namespace SaARbotage
         public void ScanStation()
         {
             this.gameObject.SetActive(true);
-            _game.gameObject.SetActive(true);
+            foreach (var mesh in GetComponentsInChildren<MeshRenderer>())
+            {
+                mesh.enabled = true;
+            }
             uiStationPanel.SetActive(true);
             
             // set all to false, and only enable the one that is needed:

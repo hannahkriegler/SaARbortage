@@ -22,7 +22,7 @@ namespace SaARbotage
         
         [Header("Days:")]
         public NetworkVariable<int> currentDay = new NetworkVariable<int>(0);
-        public NetworkVariable<int> openStationsForDay = new NetworkVariable<int>();
+        public NetworkVariable<int> openStationsForDay = new NetworkVariable<int>(new NetworkVariableSettings {WritePermission = NetworkVariablePermission.Everyone});
         public List<Station> stations;
         public int[] timesForDays = new int[3];
 
@@ -88,16 +88,20 @@ namespace SaARbotage
             
             // reset oxygen
             syncTime.Value = time;
+            _decreaseOxygen = true;
+
+            openStationsForDay.Value = 0;
             
             ResetGameIndexFromStations();
-            var counter = 0;
+
             foreach (var station in rooms.SelectMany(room => room.Value))
             {
-                counter++;
                 station.ResetDay();
+                if (station._isActive.Value)
+                {
+                    openStationsForDay.Value++;
+                }
             }
-            Debug.Log("counter: " + counter);
-            
         }
 
         private void ResetGameIndexFromStations()
