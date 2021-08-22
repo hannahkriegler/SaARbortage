@@ -18,6 +18,11 @@ namespace SaARbotage
         public NetworkVariable<bool> waitForPlayersToRegister;
 
         private Station _station;
+        private AudioSource _audiosrc;
+
+        [Header("Audio-Game")]
+        public AudioClip Sucess;
+        public AudioClip Fail;
 
         public void Start()
         {
@@ -76,12 +81,47 @@ namespace SaARbotage
 
         public virtual void FinishGame(bool successful)
         {
+            if (successful) PlaySuccessSound();
+            else PlayFailSound();
             launch.Value = false;
             _station.FinishedGame(successful);
             _station._isInCooldown = !successful;
         }
 
-       
-       
+        protected virtual void PlaySound(AudioClip clip)
+        {
+            if (!TryGetComponent<AudioSource>(out _audiosrc))
+            {
+                _audiosrc = gameObject.AddComponent(typeof(AudioSource)) as AudioSource;
+                _audiosrc.playOnAwake = false;
+                _audiosrc.loop = false;
+            }
+            if (clip == null) return;
+            _audiosrc.Stop();
+            _audiosrc.PlayOneShot(clip);
+
+        }
+
+        protected void PlaySuccessSound()
+        {
+            PlaySound(Sucess);
+            _audiosrc.volume = 1.0f;
+        }
+
+        protected void PlayFailSound()
+        {
+            PlaySound(Fail);
+            _audiosrc.volume = 0.5f;
+        }
+
+        protected void PlaySoundWithVolume(AudioClip clip, float volume)
+        {
+            PlaySound(clip);
+            _audiosrc.volume = volume;
+
+        }
+
+
+
     }
 }

@@ -30,7 +30,7 @@ namespace SaARbotage
             launch.Value = false;
             capsule = GameObject.FindWithTag("EnergyBallParent");
             capsule.transform.SetParent(gameObject.transform);
-            capsule.transform.position = new Vector3(0,0,0.0012f);
+            capsule.transform.localPosition = new Vector3(0,0,0.0012f);
             //finishButton.gameObject.SetActive(true);
             //B_targetHolding = other.transform;
             

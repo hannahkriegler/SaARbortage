@@ -94,7 +94,6 @@ GameObject:
   - component: {fileID: 1046374808593052692}
   - component: {fileID: 669307298710786872}
   - component: {fileID: 1354843431304831533}
-  - component: {fileID: 1354843431304831532}
   - component: {fileID: 2947763532338744476}
   m_Layer: 0
   m_Name: inner-tesseract
@@ -184,19 +183,6 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 3500832629482019071, guid: 24c42e7853cc67e41abbd19dad7bb18a, type: 3}
---- !u!114 &1354843431304831532
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1354843431304831535}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 36aa02d38bb10b548bc7b8879596b15c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  WaterVolumeHelper: {fileID: 2947763533726262217}
 --- !u!54 &2947763532338744476
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -465,7 +451,8 @@ MonoBehaviour:
     m_InternalValue: 0
   waitForPlayersToRegister:
     m_InternalValue: 0
-  isOnCoolDown: 0
+  Sucess: {fileID: 8300000, guid: 28faf2619d670104bb632abf3a089944, type: 3}
+  Fail: {fileID: 8300000, guid: 0ce66d70e96d51e46971a309da1c8e1a, type: 3}
   hpBar: {fileID: 2947763533606452426}
   startButton: {fileID: 2947763533710640661}
   finishButton: {fileID: 2947763532488188551}

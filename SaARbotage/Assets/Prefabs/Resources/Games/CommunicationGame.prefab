@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 3212272268196985061}
   - component: {fileID: 713752459}
   - component: {fileID: 3212272268557338480}
+  - component: {fileID: 7251521799195342571}
   m_Layer: 0
   m_Name: CommunicationGame
   m_TagString: Untagged
@@ -57,7 +58,8 @@ MonoBehaviour:
     m_InternalValue: 0
   waitForPlayersToRegister:
     m_InternalValue: 0
-  isOnCoolDown: 0
+  Sucess: {fileID: 8300000, guid: 28faf2619d670104bb632abf3a089944, type: 3}
+  Fail: {fileID: 8300000, guid: 0ce66d70e96d51e46971a309da1c8e1a, type: 3}
   shapeindex:
     m_InternalValue: 0
   shapekey:
@@ -84,6 +86,23 @@ MonoBehaviour:
   timeTillFailure: 60
   Spawnpoint: {fileID: 5539430233235349172}
 --- !u!114 &3212272268557338480
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3212272268196985060}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  NetworkInstanceId: 0
+  PrefabHash: 8040852387598736495
+  PrefabHashGenerator: CommunicationGame_Descriptor
+  AlwaysReplicateAsRoot: 0
+  DontDestroyWithOwner: 0
+--- !u!114 &7251521799195342571
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

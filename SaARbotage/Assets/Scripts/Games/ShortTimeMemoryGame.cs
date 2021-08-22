@@ -34,16 +34,17 @@ namespace SaARbotage
         public Color failColor;
         public Color winColor;
 
-        [Header("Soundfiles")]
+        [Header("Additional Soundfiles")]
 
         public AudioClip[] keys;
-        public AudioClip Success;
-        public AudioClip Failure;
+        [Range(0f,1f)]
+        public float keyVolume = 0f;
 
         private AudioSource _audiosrc;
 
         private void Awake()
         {
+            _initialCol = imageField[0].color;
             _solution = new int[solutionLength];
             _rdyCheck = new bool[solutionLength];
             _maincam = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
@@ -68,6 +69,10 @@ namespace SaARbotage
             _counter = 0;
             _isstarted = false;
             _playing = false;
+            foreach (Image im in imageField)
+            {
+                im.color = _initialCol;
+            }
         }
 
         protected override void SetupGame()
@@ -82,25 +87,10 @@ namespace SaARbotage
 
         }
 
-        private void PlaySound(AudioClip clip)
-        {
-            if(!TryGetComponent<AudioSource>(out _audiosrc))
-            {
-                _audiosrc = gameObject.AddComponent(typeof(AudioSource)) as AudioSource;
-                _audiosrc.playOnAwake = false;
-                _audiosrc.loop = false;
-            }
-            if (clip == null) return;
-            _audiosrc.Stop();
-            _audiosrc.PlayOneShot(clip);
-
-        }
-
         //TODO: Lebensanzeige und Zeit für jede Runde left.
 
         public override void LaunchGame()
         {
-            _initialCol = imageField[0].color;
             SetUpRound();
             base.LaunchGame();
         }
@@ -173,7 +163,6 @@ namespace SaARbotage
                 if (rounds <= 0)
                 {
                     //TODO: Wird hier sonst noch was gemacht?
-                    PlaySound(Success);
                     base.FinishGame(true);
                     //Debug.Log("Complete Success!!");
                 }
@@ -234,7 +223,7 @@ namespace SaARbotage
             }
             else {
                 //Debug.Log("false");
-                PlaySound(Failure);
+                base.PlayFailSound();
                 life -= 1;
                 imageField[numb].color = failColor;
                 //TDODO Sollte man irgendwie die Reihenfolge wiederholen.
@@ -257,7 +246,7 @@ namespace SaARbotage
                 timeelapsed += Time.deltaTime;
                 if (!playedSound)
                 {
-                    PlaySound(keys[num]);
+                    base.PlaySoundWithVolume(keys[num], keyVolume);
                     playedSound = true;
                 }
                 yield return null;

@@ -1464,7 +1464,8 @@ MonoBehaviour:
     m_InternalValue: 0
   waitForPlayersToRegister:
     m_InternalValue: 0
-  isOnCoolDown: 0
+  Sucess: {fileID: 8300000, guid: 28faf2619d670104bb632abf3a089944, type: 3}
+  Fail: {fileID: 8300000, guid: 0ce66d70e96d51e46971a309da1c8e1a, type: 3}
   rounds: 3
   solutionLength: 4
   animTime: 1
@@ -1499,8 +1500,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 26ebaba3b80c6c947aab5a126abbc8c3, type: 3}
   - {fileID: 8300000, guid: e055942df0323364ab086332c6fd50de, type: 3}
   - {fileID: 8300000, guid: e7aa9dee05ba3944aac4630d882200ca, type: 3}
-  Success: {fileID: 8300000, guid: 28faf2619d670104bb632abf3a089944, type: 3}
-  Failure: {fileID: 8300000, guid: 0ce66d70e96d51e46971a309da1c8e1a, type: 3}
+  keyVolume: 0.2
 --- !u!82 &3863344384738428274
 AudioSource:
   m_ObjectHideFlags: 0
