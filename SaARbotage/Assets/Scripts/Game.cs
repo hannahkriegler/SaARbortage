@@ -45,7 +45,7 @@ namespace SaARbotage
 
         public virtual void RestartGame()
         {
-            
+            SetupGame();
         }
 
         private void OnEnable()

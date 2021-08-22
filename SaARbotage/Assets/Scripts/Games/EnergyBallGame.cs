@@ -18,10 +18,12 @@ public class EnergyBallGame : Game
     public Text endmessage;
 
     public float timeConstraint = 60f;
+    private float _initTimeConstraint = 0f;
 
     public GameObject capsule;
     public GameObject austausch;
     private Vector3 _mypos;
+    public GameObject HoldingAperation;
     private GameObject _maincam;
     private Transform _targetHolding;
     private Boolean _finished = false;
@@ -42,7 +44,19 @@ public class EnergyBallGame : Game
 
     protected override void SetupGame()
     {
-        //ballthingRigidbody = GetComponent<Rigidbody>();
+        base.SetupGame();
+    }
+
+    private void ResetValues()
+    {
+        _hp = 100f;
+        timeConstraint = _initTimeConstraint;
+        capsule.transform.parent = HoldingAperation.transform;
+        capsule.transform.localPosition = _mypos;
+    }
+    private void Awake()
+    {
+        austausch = GameObject.Find("Austausch");
         if (ballthingRigidbody == null)
         {
             Debug.Log("No RB!!");
@@ -50,6 +64,7 @@ public class EnergyBallGame : Game
         _grav = Input.acceleration;
         _mypos = capsule.transform.localPosition;
         _maincam = GameObject.FindGameObjectWithTag("MainCamera");
+        _initTimeConstraint = timeConstraint;
     }
 
     private void Update()
@@ -74,7 +89,7 @@ public class EnergyBallGame : Game
             //Do the Failstate
             hpBar.text = "0";
             // TODO INTERRUPT GAME! 
-            //FinishGame(false);
+            FinishGame(false);
         }
         else
         {
@@ -143,6 +158,12 @@ public class EnergyBallGame : Game
         }
         _finished = true;
         base.FinishGame(successful);
+    }
+
+    public override void RestartGame()
+    {
+        ResetValues();
+        base.RestartGame();
     }
 
     /*private void OnTriggerEnter(Collider other)
