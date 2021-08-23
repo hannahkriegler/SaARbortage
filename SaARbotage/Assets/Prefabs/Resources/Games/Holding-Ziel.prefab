@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 439886836}
   - component: {fileID: -6376889527265282583}
   - component: {fileID: 4936708531020230268}
+  - component: {fileID: 1564249342104342983}
   m_Layer: 0
   m_Name: Holding-Ziel
   m_TagString: Cannister
@@ -125,7 +126,10 @@ MonoBehaviour:
   Sucess: {fileID: 8300000, guid: 28faf2619d670104bb632abf3a089944, type: 3}
   Fail: {fileID: 8300000, guid: 0ce66d70e96d51e46971a309da1c8e1a, type: 3}
   Title: Transport Core - Target
-  Description: 
+  Description: "This stations energy-levels are dangerously low. Place an energy
+    core into it's power relay system to supply it with power.  But who would be
+    noble enough to give such a gift? \n\nTLDR: \n- Place the core here to finish
+    the transport core minigame."
   uiAudioDescription: {fileID: 0}
 --- !u!114 &-6376889527265282583
 MonoBehaviour:
@@ -145,6 +149,33 @@ MonoBehaviour:
   AlwaysReplicateAsRoot: 0
   DontDestroyWithOwner: 0
 --- !u!114 &4936708531020230268
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8446074233718526373}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a2c1c4c8292bc4841a1b2735f7ae2dc1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  requiredPlayers:
+    m_InternalValue: 1
+  launch:
+    m_InternalValue: 0
+  registerdPlayers:
+    m_InternalValue: 0
+  stationID:
+    m_InternalValue: 0
+  waitForPlayersToRegister:
+    m_InternalValue: 0
+  Sucess: {fileID: 0}
+  Fail: {fileID: 0}
+  Title: 
+  Description: 
+  uiAudioDescription: {fileID: 0}
+--- !u!114 &1564249342104342983
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

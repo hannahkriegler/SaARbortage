@@ -1602,7 +1602,16 @@ MonoBehaviour:
   Sucess: {fileID: 8300000, guid: 28faf2619d670104bb632abf3a089944, type: 3}
   Fail: {fileID: 8300000, guid: 0ce66d70e96d51e46971a309da1c8e1a, type: 3}
   Title: Align Rings
-  Description: 
+  Description: "Well... this is unexpected.. \nThis station controls the ship's shield
+    systems and guarantees the safety of the ship and crew.  The karma core of this
+    module has caught wind of the disagreements among the human and android crew
+    members and is confused by the bad vibes.  As a result, it consumes more oxygen
+    than usual...\nTo improve the vibes, two members must act in harmony and realign
+    the karma core.\n\nTLDR:\n\n- This is a 2 player minigame.\n- The goal is to
+    work together and align the rings.\n- Each player takes control over one control-device.\n-
+    Turning the inner gears of the device results in two corresponding rings rotating
+    forward.\n- Turning the outer gears results in them rotating backward.\n- You
+    have 60 seconds."
   uiAudioDescription: {fileID: 0}
   innerRingX:
     m_InternalValue: 0

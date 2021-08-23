@@ -34,6 +34,8 @@ namespace SaARbotage
         public Color failColor;
         public Color winColor;
 
+        private bool waiting = false;
+
         [Header("Additional Soundfiles")]
 
         public AudioClip[] keys;
@@ -72,6 +74,10 @@ namespace SaARbotage
             foreach (Image im in imageField)
             {
                 im.color = _initialCol;
+            }
+            for (int i = 0; i < _rdyCheck.Length; i++)
+            {
+                _rdyCheck[i] = false;
             }
         }
 
@@ -125,44 +131,25 @@ namespace SaARbotage
                 if(roundTimer<= 0)
                 {
                     life -= 1;
-                    _isstarted = false;
-                    _playing = false;
-                    _counter = 0;
-                    rounds--;
-                    for (int i = 0; i < _rdyCheck.Length; i++)
-                    {
-                        _rdyCheck[i] = false;
-                    }
-                    foreach (Image im in imageField)
-                    {
-                        im.color = _initialCol;
-                    }
-                    if (rounds > 0) SetUpRound();
+                    RestartRound();
 
                 }
                 if (life <= 0) {
                     //Debug.Log("COMPLETE FAILURE!!!");
+                    _playing = false;
                     base.FinishGame(false);
+                    return;
                             }
                 if (_counter == solutionLength) {
                     //Debug.Log("ROUND SUCCEESSS!!!");
-                    _isstarted = false;
-                    _playing = false;
-                    _counter = 0;
+                    
                     rounds--;
-                    for (int i = 0; i <_rdyCheck.Length; i++)
-                    {
-                        _rdyCheck[i] = false;
-                    }
-                    foreach(Image im in imageField)
-                    {
-                        im.color = _initialCol;
-                    }
-                    if (rounds >0) SetUpRound();
+                    RestartRound();
                 }
                 if (rounds <= 0)
                 {
                     //TODO: Wird hier sonst noch was gemacht?
+                    _playing = false;
                     base.FinishGame(true);
                     //Debug.Log("Complete Success!!");
                 }
@@ -210,24 +197,66 @@ namespace SaARbotage
 
         public void InputField(int numb)
         {
-            //Debug.Log("Hi");
-            if (!_playing) return;
-            if (numb == _solution[_counter])
+            if (!waiting)
             {
-                //Debug.Log("Correct");
-                _counter++;
-                PlaySound(keys[numb]);
-                imageField[numb].color = winColor;
-                //this.CrossFadeColor(Color.green, speed, false, false);
+                //Debug.Log("Hi");
+                if (!_playing) return;
+                if (numb == _solution[_counter])
+                {
+                    //Debug.Log("Correct");
+                    _counter++;
+                    PlaySound(keys[numb]);
+                    imageField[numb].color = winColor;
+                    //this.CrossFadeColor(Color.green, speed, false, false);
 
+                }
+                else
+                {
+                    //Debug.Log("false");
+                    base.PlayFailSound();
+                    life -= 1;
+                    imageField[numb].color = failColor;
+                    FalseInput();
+                    //TDODO Sollte man irgendwie die Reihenfolge wiederholen.
+                }
             }
-            else {
-                //Debug.Log("false");
-                base.PlayFailSound();
-                life -= 1;
-                imageField[numb].color = failColor;
-                //TDODO Sollte man irgendwie die Reihenfolge wiederholen.
+
+        }
+
+        private void FalseInput()
+        {
+            waiting = true;
+            StartCoroutine(WaitTillFailOver());
+
+        }
+
+        private void RestartRound()
+        {
+            _isstarted = false;
+            _playing = false;
+            _counter = 0;
+            for (int i = 0; i < _rdyCheck.Length; i++)
+            {
+                _rdyCheck[i] = false;
             }
+            foreach (Image im in imageField)
+            {
+                im.color = _initialCol;
+            }
+            if (rounds > 0 && life > 0) SetUpRound();
+        }
+
+        IEnumerator WaitTillFailOver()
+        {
+            if (life > 0)
+            {
+                while (base.IsStillPlayingSound())
+                {
+                    yield return null;
+                }
+                RestartRound();
+            }
+            waiting = false;
 
         }
 

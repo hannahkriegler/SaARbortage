@@ -72,6 +72,8 @@ namespace SaARbotage
         [Header("Station is Manipulated")] 
         public GameObject uiStationIsManipulatedPanel;
 
+        private InformationCanvasControl _infoCanvas;
+
         private void Start()
         {
             _isManipulated.OnValueChanged += UpdateStationUi;
@@ -79,6 +81,7 @@ namespace SaARbotage
             _isDone.OnValueChanged += UpdateStationUi;
             _isCurrentlyPlaying.OnValueChanged += UpdateStationUi;
             _game = GetComponentInChildren<Game>();
+            _infoCanvas = GameObject.FindObjectOfType<InformationCanvasControl>() as InformationCanvasControl;
             _isInCooldown = false;
             
             Setup(null, 0, true);
@@ -169,11 +172,15 @@ namespace SaARbotage
             {
                 _failures.Value++;
                 _isInCooldown = true;
+                _infoCanvas.gameObject.SetActive(true);
+                _infoCanvas.ShowFailure();
                 StartCooldownCounter();
                 _game.RestartGame();
             }
             else
             {
+                _infoCanvas.gameObject.SetActive(true);
+                _infoCanvas.ShowSuccess();
                 _isInCooldown = false;
                 _isDone.Value = true;
             }

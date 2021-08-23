@@ -42,9 +42,6 @@ public class EnergyBallGame : Game
     [Range(0, 5f)]
     public float threshold = 2f;
 
-    public Canvas UICanvas;
-    public Text UIText;
-
     protected override void SetupGame()
     {
         base.SetupGame();
@@ -153,16 +150,11 @@ public class EnergyBallGame : Game
             //capsule.transform.localPosition = _mypos;
             //capsule.transform.localRotation = Quaternion.Euler(0, 0, 0);
             //endmessage.gameObject.SetActive(true);
-            UICanvas.gameObject.SetActive(true);
-            UIText.text = "You have successfully transported the energy core to the energy relay system.";
         }
         else
         {
             //@TODO: Failstate, Es soll was aufploppen, das machen wir aber lieber über Game weil ja bei allen was aufploppt.. Die Station sollte ausserdem für den Spieler gesperrt werden. Machen wir das lokal oder Network?
             //hpBar.color = Color.red;
-
-            UICanvas.gameObject.SetActive(true);
-            UIText.text = "You have failed in transporting the energy core to the energy relay system.";
         }
         _finished = true;
         base.FinishGame(successful);
@@ -172,11 +164,6 @@ public class EnergyBallGame : Game
     {
         ResetValues();
         base.RestartGame();
-    }
-
-    public void CloseCanvas()
-    {
-        UICanvas.gameObject.SetActive(false);
     }
 
     /*private void OnTriggerEnter(Collider other)

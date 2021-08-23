@@ -1467,13 +1467,13 @@ MonoBehaviour:
   Sucess: {fileID: 8300000, guid: 28faf2619d670104bb632abf3a089944, type: 3}
   Fail: {fileID: 8300000, guid: 0ce66d70e96d51e46971a309da1c8e1a, type: 3}
   Title: Memory Test
-  Description: Oh no.. \\nThe AI responsible for allocating the ships lifesystem
-    resources has been confused.\n Its human memory simulation core has been damaged.
-    Please recalibrate the simulation by repeating the shown pattern on the Holo-Keyboard.
-    \n \n TLDR:\n - You will see a pattern on the Holo-Keyboard \n -Repeat the pattern
-    by pressing the correct buttons.\n - A sound will inform you if the pressed button
-    was wrong. \n -Multiple rounds are needed to succeed.\n- Each round takes 15
-    seconds\n - You have 3 lifes for this task
+  Description: "Oh no..\nThe AI responsible for allocating the ships lifesystem resources
+    has been confused.\nIts human memory simulation core has been damaged. Please
+    recalibrate the simulation by repeating the shown pattern on the Holo-Keyboard.\n\n
+    TLDR:\n- You will see a pattern on the Holo-Keyboard\n- Repeat the pattern by
+    pressing the correct buttons.\n- A sound will inform you if the pressed button
+    was wrong.\n- Multiple rounds are needed to succeed.\n- Each round takes 15 seconds\n
+    - You have 3 lifes for this task"
   uiAudioDescription: {fileID: 0}
   rounds: 3
   solutionLength: 4

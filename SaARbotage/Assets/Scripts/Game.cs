@@ -26,6 +26,7 @@ namespace SaARbotage
 
         [Header("Informations")]
         public String Title;
+        [TextArea]
         public String Description;
         public AudioClip uiAudioDescription;
 
@@ -124,6 +125,11 @@ namespace SaARbotage
             PlaySound(clip);
             _audiosrc.volume = volume;
 
+        }
+
+        protected bool IsStillPlayingSound()
+        {
+            return (_audiosrc.isPlaying);
         }
 
 
