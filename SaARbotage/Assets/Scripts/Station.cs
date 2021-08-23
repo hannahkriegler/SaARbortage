@@ -115,6 +115,7 @@ namespace SaARbotage
             {
                 var gamePrefab = GameManager.Instance.gamePrefabs[gameIndex.Value];
                 _game = Instantiate(gamePrefab, this.gameObject.transform, true).GetComponent<Game>();
+                _game.gameObject.GetComponent<NetworkObject>().Spawn();
                 _game.gameObject.transform.localPosition = Vector3.zero;
                 Debug.Log("Station " + gameObject.name + " found game: " + _game.gameObject);
                 if (_game != null)
