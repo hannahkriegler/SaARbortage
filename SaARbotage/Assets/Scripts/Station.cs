@@ -105,7 +105,7 @@ namespace SaARbotage
             // if game index > 0, this station has a playable game. otherwise this station will be inactive
             if (gameIndex.Value < 0)
             {
-                SetStationsInactiveClientRpc();
+                _isActive.Value = false;
             }
             else
             {
@@ -134,19 +134,13 @@ namespace SaARbotage
                 _game = null;
             }
         }
-        
-        [ClientRpc]
-        private void SetStationsInactiveClientRpc()
-        {
-            _isActive.Value = false;
-        }
-        
+
         [ClientRpc]
         private void SpawnAndResetStationClientRpc()
         {
             var gamePrefab = GameManager.Instance.gamePrefabs[gameIndex.Value];
             _game = Instantiate(gamePrefab, this.gameObject.transform, true).GetComponent<Game>();
-            if (IsHost)
+            if (IsHost && IsLocalPlayer)
             {
                 _game.gameObject.GetComponent<NetworkObject>().Spawn();
             }
@@ -162,8 +156,6 @@ namespace SaARbotage
                 }
             }
         }
-        
-        
 
         [ClientRpc]
         private void WriteUiTextClientRpc()
