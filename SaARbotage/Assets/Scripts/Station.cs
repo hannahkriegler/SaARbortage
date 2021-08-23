@@ -101,37 +101,15 @@ namespace SaARbotage
         public void ResetDay()
         {
             RemoveGamesClientRpc();
-            // remove current game
-            if (_game != null)
-            {
-                Destroy(_game.gameObject);
-                _game = null;
-            }
-            
+
             // if game index > 0, this station has a playable game. otherwise this station will be inactive
             if (gameIndex.Value < 0)
             {
-                _isActive.Value = false;
+                SetStationsInactiveClientRpc();
             }
             else
             {
-                var gamePrefab = GameManager.Instance.gamePrefabs[gameIndex.Value];
-                _game = Instantiate(gamePrefab, this.gameObject.transform, true).GetComponent<Game>();
-                if (IsHost)
-                {
-                    _game.gameObject.GetComponent<NetworkObject>().Spawn();
-                }
-
-                _game.gameObject.transform.localPosition = Vector3.zero;
-                Debug.Log("Station " + gameObject.name + " found game: " + _game.gameObject);
-                if (_game != null)
-                {
-                    _game.RestartGame();
-                    foreach (var mesh in GetComponentsInChildren<MeshRenderer>())
-                    {
-                        mesh.enabled = false;
-                    }
-                }
+                SpawnAndResetStationClientRpc();
 
                 if (IsHost)
                 {
@@ -143,19 +121,52 @@ namespace SaARbotage
                     _isInCooldown = false;
                 }
 
-                WriteUIText();
+                WriteUiTextClientRpc();
             }
         }
 
         [ClientRpc]
         private void RemoveGamesClientRpc()
         {
-            Debug.Log("################# Hello, I can run this!!");
+            if (_game != null)
+            {
+                Destroy(_game.gameObject);
+                _game = null;
+            }
+        }
+        
+        [ClientRpc]
+        private void SetStationsInactiveClientRpc()
+        {
+            _isActive.Value = false;
+        }
+        
+        [ClientRpc]
+        private void SpawnAndResetStationClientRpc()
+        {
+            var gamePrefab = GameManager.Instance.gamePrefabs[gameIndex.Value];
+            _game = Instantiate(gamePrefab, this.gameObject.transform, true).GetComponent<Game>();
+            if (IsHost)
+            {
+                _game.gameObject.GetComponent<NetworkObject>().Spawn();
+            }
+
+            _game.gameObject.transform.localPosition = Vector3.zero;
+            Debug.Log("Station " + gameObject.name + " found game: " + _game.gameObject);
+            if (_game != null)
+            {
+                _game.RestartGame();
+                foreach (var mesh in GetComponentsInChildren<MeshRenderer>())
+                {
+                    mesh.enabled = false;
+                }
+            }
         }
         
         
 
-        private void WriteUIText()
+        [ClientRpc]
+        private void WriteUiTextClientRpc()
         {
             uiTaskName.text = _game.Title;
             uiTaskDescription.text = _game.Description;
