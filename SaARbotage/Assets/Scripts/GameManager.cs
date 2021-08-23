@@ -115,7 +115,7 @@ namespace SaARbotage
             {
                 if (station._isActive.Value)
                 {
-                    var netObj = station.GetComponent<NetworkObject>();
+                    var netObj = station._game.GetComponent<NetworkObject>();
                     netObj.Spawn();
                 }
             }
