@@ -19,7 +19,7 @@ namespace SaARbotage
         public NetworkVariable<bool> _isDone = new NetworkVariable<bool>(new NetworkVariableSettings {WritePermission = NetworkVariablePermission.Everyone});
         public NetworkVariable<bool> _isManipulated = new NetworkVariable<bool>(new NetworkVariableSettings {WritePermission = NetworkVariablePermission.Everyone});
         public NetworkVariable<bool> _isCurrentlyPlaying = new NetworkVariable<bool>(new NetworkVariableSettings {WritePermission = NetworkVariablePermission.Everyone});
-        public NetworkVariable<int> gameIndex = new NetworkVariable<int>(new NetworkVariableSettings {WritePermission = NetworkVariablePermission.OwnerOnly});
+        public NetworkVariable<int> gameIndex = new NetworkVariable<int>(new NetworkVariableSettings {WritePermission = NetworkVariablePermission.Everyone});
         public bool _iCurrentlyPlayIt = false;
         public bool _isInCooldown;
         private Room _room;
@@ -110,18 +110,18 @@ namespace SaARbotage
             else
             {
                 SpawnAndResetStationClientRpc();
-
-                if (IsHost)
-                {
-                    _isActive.Value = true;
-                    _isDone.Value = false;
-                    _isManipulated.Value = false;
-                    _isCurrentlyPlaying.Value = false;
-                    _iCurrentlyPlayIt = false;
-                    _isInCooldown = false;
-                }
-
+                
+                _isActive.Value = true;
+                _isDone.Value = false;
+                _isManipulated.Value = false;
+                _isCurrentlyPlaying.Value = false;
+                _iCurrentlyPlayIt = false;
+                _isInCooldown = false;
+                
                 WriteUiTextClientRpc();
+                
+                _game.gameObject.GetComponent<NetworkObject>().Spawn();
+                
             }
         }
 
@@ -138,13 +138,10 @@ namespace SaARbotage
         [ClientRpc]
         private void SpawnAndResetStationClientRpc()
         {
+            //Debug.Log(gameIndex.Value);
             var gamePrefab = GameManager.Instance.gamePrefabs[gameIndex.Value];
             _game = Instantiate(gamePrefab, this.gameObject.transform, true).GetComponent<Game>();
-            if (IsHost && IsLocalPlayer)
-            {
-                _game.gameObject.GetComponent<NetworkObject>().Spawn();
-            }
-
+            
             _game.gameObject.transform.localPosition = Vector3.zero;
             Debug.Log("Station " + gameObject.name + " found game: " + _game.gameObject);
             if (_game != null)
