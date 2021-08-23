@@ -99,6 +99,7 @@ namespace SaARbotage
 
         public void ResetDay()
         {
+            Debug.Log("################ I CAN RUN THIS");
             // remove current game
             if (_game != null)
             {
