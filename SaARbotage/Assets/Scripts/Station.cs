@@ -84,9 +84,13 @@ namespace SaARbotage
             _game = GetComponentInChildren<Game>();
             _infoCanvas = GameObject.FindObjectOfType<InformationCanvasControl>() as InformationCanvasControl;
             _isInCooldown = false;
+
+            gameIndex.OnValueChanged += ResetDayClients;
             
             Setup(null, 0, true);
         }
+
+        
 
         public void Setup(Room room, int stationNumber, bool status)
         {
@@ -100,7 +104,7 @@ namespace SaARbotage
 
         public void ResetDay()
         {
-            RemoveGamesClientRpc();
+            //RemoveGamesClientRpc();
 
             // if game index > 0, this station has a playable game. otherwise this station will be inactive
             if (gameIndex.Value < 0)
@@ -109,7 +113,7 @@ namespace SaARbotage
             }
             else
             {
-                SpawnAndResetStationClientRpc();
+                //SpawnAndResetStationClientRpc();
                 
                 _isActive.Value = true;
                 _isDone.Value = false;
@@ -118,11 +122,39 @@ namespace SaARbotage
                 _iCurrentlyPlayIt = false;
                 _isInCooldown = false;
                 
-                WriteUiTextClientRpc();
+                //WriteUiTextClientRpc();
                 
-                _game.gameObject.GetComponent<NetworkObject>().Spawn();
+                //_game.gameObject.GetComponent<NetworkObject>().Spawn();
                 
             }
+        }
+        
+        private void ResetDayClients(int previousvalue, int newvalue)
+        {
+            Debug.Log("Resetting client");
+            if (_game != null)
+            {
+                Destroy(_game.gameObject);
+                _game = null;
+            }
+
+            if (newvalue >= 0)
+            {
+                var gamePrefab = GameManager.Instance.gamePrefabs[newvalue];
+                _game = Instantiate(gamePrefab, this.gameObject.transform, true).GetComponent<Game>();
+                _game.gameObject.transform.localPosition = Vector3.zero;
+                //Debug.Log("Station " + gameObject.name + " found game: " + _game.gameObject);
+                if (_game != null)
+                {
+                    _game.RestartGame();
+                    foreach (var mesh in GetComponentsInChildren<MeshRenderer>())
+                    {
+                        mesh.enabled = false;
+                    }
+                }
+            }
+            
+            WriteUiText();
         }
 
         [ClientRpc]
@@ -153,10 +185,10 @@ namespace SaARbotage
                 }
             }
         }
-
-        [ClientRpc]
-        private void WriteUiTextClientRpc()
+        
+        private void WriteUiText()
         {
+            if(_game == null) return;
             uiTaskName.text = _game.Title;
             uiTaskDescription.text = _game.Description;
         }
