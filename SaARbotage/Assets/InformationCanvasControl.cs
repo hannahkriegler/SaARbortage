@@ -32,11 +32,11 @@ namespace SaARbotage {
         public void ShowPlayerInfo()
         {
             PlayerInfo.SetActive(true);
-            _player = GameObject.FindObjectOfType<Player>() as Player;
+            _player = transform.parent.parent.GetComponent<Player>();
             if (_player == null) return;
             role.text = "Your role: " + _player.roleString.Value; 
 
-            if (_player.roleString.Value == "android")
+            if (_player.roleString.Value == "Android")
             {
                 roleDescription.text = androidRole;
             } else
