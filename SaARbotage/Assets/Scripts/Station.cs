@@ -82,7 +82,7 @@ namespace SaARbotage
             _isDone.OnValueChanged += UpdateStationUi;
             _isCurrentlyPlaying.OnValueChanged += UpdateStationUi;
             _game = GetComponentInChildren<Game>();
-            _infoCanvas = GameObject.FindObjectOfType<InformationCanvasControl>() as InformationCanvasControl;
+            
             _isInCooldown = false;
 
             gameIndex.OnValueChanged += ResetDayClients;
@@ -153,7 +153,7 @@ namespace SaARbotage
                     }
                 }
             }
-            
+            _infoCanvas = GameObject.FindObjectOfType<InformationCanvasControl>() as InformationCanvasControl;
             WriteUiText();
         }
 
