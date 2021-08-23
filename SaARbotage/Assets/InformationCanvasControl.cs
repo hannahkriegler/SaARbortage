@@ -12,12 +12,12 @@ namespace SaARbotage {
 
         public Text role;
         //private playerscript;
+        private Player _player;
         public Text roleDescription;
-
-        private void Start()
-        {
-
-        }
+        [TextArea]
+        public string androidRole;
+        [TextArea]
+        public string crewRole;
 
         public void ShowSuccess()
         {
@@ -32,6 +32,17 @@ namespace SaARbotage {
         public void ShowPlayerInfo()
         {
             PlayerInfo.SetActive(true);
+            _player = GameObject.FindObjectOfType<Player>() as Player;
+            if (_player == null) return;
+            role.text = "Your role: " + _player.roleString.Value; 
+
+            if (_player.roleString.Value == "android")
+            {
+                roleDescription.text = androidRole;
+            } else
+            {
+                roleDescription.text = crewRole;
+            }
             // get role and so forth from playerscript and write depending on the Outcome. 
 
         }
@@ -42,7 +53,7 @@ namespace SaARbotage {
             Failure.SetActive(false);
             PlayerInfo.SetActive(false);
 
-            this.gameObject.SetActive(false);
+            //this.gameObject.SetActive(false);
         }
     }
 }

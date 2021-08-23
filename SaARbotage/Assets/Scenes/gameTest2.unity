@@ -283,6 +283,9 @@ MonoBehaviour:
   PlayerInfo: {fileID: 174170094}
   role: {fileID: 316035895}
   roleDescription: {fileID: 1863569836}
+  androidRole: You are an Android. You can do whatever you want and this text isnt
+    final.
+  crewRole: Haha you are just crew. Foooool.
 --- !u!1 &38418540 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7478078706024713961, guid: 743a3808f2ff8c344b704421353599f8, type: 3}
