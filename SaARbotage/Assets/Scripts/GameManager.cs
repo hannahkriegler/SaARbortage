@@ -81,25 +81,22 @@ namespace SaARbotage
 
         public void StartNewDay()
         {
-            if (IsHost)
-            {
-                Debug.Log("### Start a new Day! ###");
+            if(!IsHost) return;
+            Debug.Log("### Start a new Day! ###");
+            
+            currentDay.Value++;
+            
+            // reset oxygen
+            syncTime.Value = time;
+            _decreaseOxygen = true;
 
-                currentDay.Value++;
-
-                // reset oxygen
-                syncTime.Value = time;
-                _decreaseOxygen = true;
-
-                openStationsForDay.Value = 0;
-
-                ResetGameIndexFromStations();
-            }
+            openStationsForDay.Value = 0;
+            
+            ResetGameIndexFromStations();
 
             foreach (var station in rooms.SelectMany(room => room.Value))
             {
                 station.ResetDay();
-                if (!IsHost) continue;
                 if (station._isActive.Value)
                 {
                     openStationsForDay.Value++;

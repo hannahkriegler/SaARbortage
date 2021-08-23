@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using MLAPI;
+using MLAPI.Messaging;
 using MLAPI.NetworkVariable;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -99,7 +100,7 @@ namespace SaARbotage
 
         public void ResetDay()
         {
-            Debug.Log("################ I CAN RUN THIS");
+            RemoveGamesClientRpc();
             // remove current game
             if (_game != null)
             {
@@ -116,7 +117,11 @@ namespace SaARbotage
             {
                 var gamePrefab = GameManager.Instance.gamePrefabs[gameIndex.Value];
                 _game = Instantiate(gamePrefab, this.gameObject.transform, true).GetComponent<Game>();
-                _game.gameObject.GetComponent<NetworkObject>().Spawn();
+                if (IsHost)
+                {
+                    _game.gameObject.GetComponent<NetworkObject>().Spawn();
+                }
+
                 _game.gameObject.transform.localPosition = Vector3.zero;
                 Debug.Log("Station " + gameObject.name + " found game: " + _game.gameObject);
                 if (_game != null)
@@ -128,16 +133,27 @@ namespace SaARbotage
                     }
                 }
 
-                _isActive.Value = true;
-                _isDone.Value = false;
-                _isManipulated.Value = false;
-                _isCurrentlyPlaying.Value = false;
-                _iCurrentlyPlayIt = false;
-                _isInCooldown = false;
+                if (IsHost)
+                {
+                    _isActive.Value = true;
+                    _isDone.Value = false;
+                    _isManipulated.Value = false;
+                    _isCurrentlyPlaying.Value = false;
+                    _iCurrentlyPlayIt = false;
+                    _isInCooldown = false;
+                }
 
                 WriteUIText();
             }
         }
+
+        [ClientRpc]
+        private void RemoveGamesClientRpc()
+        {
+            Debug.Log("################# Hello, I can run this!!");
+        }
+        
+        
 
         private void WriteUIText()
         {
