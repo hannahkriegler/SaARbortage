@@ -34,7 +34,7 @@ Material:
     - _TintOneOn: 1
     - _UnscaledTime: 0
     m_Colors:
-    - _Color: {r: 1, g: 1, b: 1, a: 1}
-    - _Color1: {r: 1, g: 1, b: 1, a: 1}
+    - _Color: {r: 0.254717, g: 0, b: 0, a: 1}
+    - _Color1: {r: 0.055063535, g: 0.2924528, b: 0, a: 1}
     - _VectorValue: {r: 0, g: 0, b: 0, a: 0.2}
   m_BuildTextureStacks: []
