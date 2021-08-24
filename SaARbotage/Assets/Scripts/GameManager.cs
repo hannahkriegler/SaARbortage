@@ -96,27 +96,10 @@ namespace SaARbotage
 
             foreach (var station in rooms.SelectMany(room => room.Value))
             {
-                station.ResetDay();
+                station.ResetNetworkVariables();
                 if (station._isActive.Value)
                 {
                     openStationsForDay.Value++;
-                }
-            }
-
-            StartCoroutine(SpawnNetworkObjectsOnStations());
-        }
-
-        private IEnumerator SpawnNetworkObjectsOnStations()
-        {
-            yield return new WaitForSeconds(2);
-            
-            Debug.Log("Spawn!");
-            foreach (var station in rooms.SelectMany(room => room.Value))
-            {
-                if (station._isActive.Value)
-                {
-                    var netObj = station._game.GetComponent<NetworkObject>();
-                    netObj.Spawn();
                 }
             }
         }

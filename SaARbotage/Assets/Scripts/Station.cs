@@ -85,7 +85,7 @@ namespace SaARbotage
             
             _isInCooldown = false;
 
-            gameIndex.OnValueChanged += ResetDayClients;
+            gameIndex.OnValueChanged += ResetStation;
             
             Setup(null, 0, true);
         }
@@ -102,10 +102,8 @@ namespace SaARbotage
             //_isActive.Value = status;
         }
 
-        public void ResetDay()
+        public void ResetNetworkVariables()
         {
-            //RemoveGamesClientRpc();
-
             // if game index > 0, this station has a playable game. otherwise this station will be inactive
             if (gameIndex.Value < 0)
             {
@@ -113,23 +111,16 @@ namespace SaARbotage
             }
             else
             {
-                //SpawnAndResetStationClientRpc();
-                
                 _isActive.Value = true;
                 _isDone.Value = false;
                 _isManipulated.Value = false;
                 _isCurrentlyPlaying.Value = false;
                 _iCurrentlyPlayIt = false;
                 _isInCooldown = false;
-                
-                //WriteUiTextClientRpc();
-                
-                //_game.gameObject.GetComponent<NetworkObject>().Spawn();
-                
             }
         }
-        
-        private void ResetDayClients(int previousvalue, int newvalue)
+
+        private void ResetStation(int previousvalue, int newvalue)
         {
             Debug.Log("Resetting client");
             if (_game != null)
@@ -138,22 +129,35 @@ namespace SaARbotage
                 _game = null;
             }
 
-            if (newvalue >= 0)
+            StartCoroutine(ResertGameInformation());
+            
+        }
+
+        private IEnumerator ResertGameInformation()
+        {
+            if(gameIndex.Value < 0 ) yield break;
+            
+            // only the host has to instantiate and spawn a prefab
+            if (IsHost)
             {
-                var gamePrefab = GameManager.Instance.gamePrefabs[newvalue];
+                var gamePrefab = GameManager.Instance.gamePrefabs[gameIndex.Value];
                 _game = Instantiate(gamePrefab, this.gameObject.transform, true).GetComponent<Game>();
                 _game.gameObject.transform.localPosition = Vector3.zero;
-                //Debug.Log("Station " + gameObject.name + " found game: " + _game.gameObject);
-                if (_game != null)
-                {
-                    _game.RestartGame();
-                    foreach (var mesh in GetComponentsInChildren<MeshRenderer>())
-                    {
-                        mesh.enabled = false;
-                    }
-                }
+                _game.GetComponent<NetworkObject>().Spawn();
             }
-            _infoCanvas = GameObject.FindObjectOfType<InformationCanvasControl>() as InformationCanvasControl;
+            // wait a bit, until the host is done spawning the prefabs
+            yield return new WaitForSeconds(1);
+            
+            // host spawns objects only into scene, not as child to a corresponding object, so let the clients do it themselves
+            var gameName = GameManager.Instance.gamePrefabs[gameIndex.Value].gameObject.name;
+            _game = GameObject.Find(gameName + "(Clone)").GetComponent<Game>();
+            _game.transform.parent = this.transform;
+            foreach (var mesh in GetComponentsInChildren<MeshRenderer>())
+            {
+                mesh.enabled = false;
+            }
+            
+            _game.RestartGame();
             WriteUiText();
         }
 

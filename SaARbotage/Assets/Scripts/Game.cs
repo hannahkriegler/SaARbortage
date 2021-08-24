@@ -30,7 +30,7 @@ namespace SaARbotage
         public String Description;
         public AudioClip uiAudioDescription;
 
-        public void Start()
+        public void RestartDay()
         {
             launch.Value = false;
             registerdPlayers.Value = 0;

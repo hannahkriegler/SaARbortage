@@ -663,7 +663,7 @@ MonoBehaviour:
   _isCurrentlyPlaying:
     m_InternalValue: 0
   gameIndex:
-    m_InternalValue: 0
+    m_InternalValue: -1
   _iCurrentlyPlayIt: 0
   _isInCooldown: 0
   _game: {fileID: 0}
