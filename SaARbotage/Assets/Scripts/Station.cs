@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using MLAPI;
 using MLAPI.Messaging;
 using MLAPI.NetworkVariable;
@@ -46,6 +47,11 @@ namespace SaARbotage
 
         public Text uiTaskName;
         public Text uiTaskDescription;
+
+        public Image sabotagefill_Instruction;
+        List<Coroutine> sabotages = new List<Coroutine>();
+        public Image sabotagefill_repair;
+        List<Coroutine> repairs = new List<Coroutine>();
         
         
         [Header("GameInfo UI")]
@@ -356,6 +362,104 @@ namespace SaARbotage
             uiGameInfoPanel.SetActive(!b);
             uiCooldownPanel.SetActive(b);
 
+        }
+
+        public void Minimize()
+        {
+            Animator anim = GetComponentInChildren<Animator>();
+            anim.SetBool("isMinimized", !anim.GetBool("isMinimized"));
+        }
+
+        public void onPointerDownSabotage()
+        {
+            var player =    GameManager.Instance.players.FirstOrDefault(
+                    x => x.Value == NetworkManager.Singleton.LocalClientId).Key;
+
+            Debug.Log(player.playerId.ToString());
+            if (player.roleString.Value != "Crew")
+            {
+                if (sabotages.Count < 1)
+                {
+                    Coroutine co = StartCoroutine(sabotage());
+                    sabotages.Add(co);
+
+                    //Debug.Log("Sabotaging");
+                }
+            }
+        }
+
+        public void onPointerDownRepair()
+        {
+            if (repairs.Count <1)
+            {
+                Coroutine co = StartCoroutine(repair());
+                repairs.Add(co);
+            }
+        }
+
+        public void onPointerUpSabotage()
+        {
+            //Debug.Log("Stop Sabotage");
+            foreach (Coroutine co in sabotages) {
+                StopCoroutine(co);
+            }
+            sabotages.Clear();
+            sabotagefill_Instruction.fillAmount = 0;
+        }
+
+        public void onPointerUpRepair()
+        {
+            foreach (Coroutine co in repairs)
+            {
+                StopCoroutine(co);
+            }
+            repairs.Clear();
+            sabotagefill_repair.fillAmount = 0;
+
+        }
+
+        IEnumerator sabotage()
+        {
+            while (sabotagefill_Instruction.fillAmount < 1)
+            {
+            if (uiStationPanel.GetComponent<Canvas>().enabled)
+            {
+                sabotagefill_Instruction.fillAmount += Time.deltaTime * .2f;
+                yield return null;
+            } else
+                {
+                    sabotagefill_Instruction.fillAmount = 0f;
+                    yield return null;
+                }
+            }
+            sabotagefill_Instruction.fillAmount = 1f;
+            sabotagefill_repair.fillAmount = 1f;
+            _isManipulated.Value = true;
+            var player = GameManager.Instance.players.FirstOrDefault(
+                    x => x.Value == NetworkManager.Singleton.LocalClientId).Key;
+            //TODO: Use up the Sabotage Resources.
+            ScanStation();
+            
+            // change the status of the Station to sabotaged.
+        }
+
+        IEnumerator repair()
+        {
+            while (sabotagefill_repair.fillAmount > 0)
+            {
+                if (uiStationPanel.GetComponent<Canvas>().enabled)
+                {
+                    sabotagefill_repair.fillAmount -= Time.deltaTime * .1f;
+                    yield return null;
+                } else
+                {
+                    sabotagefill_repair.fillAmount = 1f;
+                }
+            }
+            sabotagefill_repair.fillAmount = 0f;
+            sabotagefill_Instruction.fillAmount = 0f;
+            _isManipulated.Value = false;
+            ScanStation();
         }
 
     }

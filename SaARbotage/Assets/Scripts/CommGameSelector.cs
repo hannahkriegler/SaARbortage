@@ -94,6 +94,7 @@ namespace SaARbotage {
                 //Instantiate(_options[index], obj.transform.position, obj.transform.rotation);
                 //Play Anim?
                 _options.RemoveAt(index);
+                obj.SetActive(true);
             }
 
             //Play Sounds?
