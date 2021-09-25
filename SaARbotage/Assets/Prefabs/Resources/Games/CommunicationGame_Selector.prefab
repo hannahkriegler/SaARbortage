@@ -759,7 +759,15 @@ MonoBehaviour:
   Sucess: {fileID: 8300000, guid: 28faf2619d670104bb632abf3a089944, type: 3}
   Fail: {fileID: 8300000, guid: 0ce66d70e96d51e46971a309da1c8e1a, type: 3}
   Title: Mapping - Selector
-  Description: "TLDR: \n\n- This is one of two stations for the mapping 2-player
+  Description: "Soooo... um... \nApparently the human researchers thought it would
+    be a good idea to give the ships' AIs the ability to develop feelings that you
+    humans would call love.\n\nThis system is the most popular out of all. Everyone
+    loves it. But there is another station, a cute and shy one, in which this AI
+    here fell in love with.\n\nWhen it received a holo love letter from its' lover
+    it was so happy but too shy to answer straight away.. Unfortunately many more
+    lovers have send their love letters to this station.\nSelect the holo love letter
+    your crew member at the descriptor station describes, so you can bring the two
+    lovers together.\n\nTLDR: \n\n- This is one of two stations for the mapping 2-player
     minigame.\n- This station shows three consteallations of Holo-boxes.\n- The other
     station (describor) shows only one, the solution.\n- Verbally communicate with
     the other player to find the correct solution.\n- Choose the correct constellation

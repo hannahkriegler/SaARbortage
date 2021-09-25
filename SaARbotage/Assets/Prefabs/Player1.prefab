@@ -458,12 +458,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cam: {fileID: 6756152211304781390}
   ui: {fileID: 0}
-  uiPrefab: {fileID: 6088030462034256656, guid: c670d343bb3b1934f8b5f4ae498c409d,
-    type: 3}
+  uiPrefab: {fileID: 6088030462034256656, guid: c670d343bb3b1934f8b5f4ae498c409d, type: 3}
   playerId: 0
   role: {fileID: 0}
+  roleString:
+    m_InternalValue: 
   isAlive: 0
   name: 
+  icon: {fileID: 0}
+  color: {r: 0, g: 0, b: 0, a: 0}
 --- !u!1 &6756152211304781390
 GameObject:
   m_ObjectHideFlags: 0

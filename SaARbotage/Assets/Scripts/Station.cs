@@ -454,6 +454,7 @@ namespace SaARbotage
                 } else
                 {
                     sabotagefill_repair.fillAmount = 1f;
+                    yield return null;
                 }
             }
             sabotagefill_repair.fillAmount = 0f;
