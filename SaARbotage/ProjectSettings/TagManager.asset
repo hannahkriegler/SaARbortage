@@ -8,6 +8,8 @@ TagManager:
   - Cannister
   - EnergyBall
   - EnergyBallParent
+  - StoryUi
+  - GameUi
   layers:
   - Default
   - TransparentFX

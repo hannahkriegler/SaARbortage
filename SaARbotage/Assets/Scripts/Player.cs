@@ -64,6 +64,7 @@ namespace SaARbotage
 
         public void ShowUI(bool b)
         {
+            Debug.Log("CALLED SOW UI");
             if (IsLocalPlayer)
             {
                 if (ui == null)

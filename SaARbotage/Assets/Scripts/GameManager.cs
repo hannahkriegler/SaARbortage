@@ -19,10 +19,13 @@ namespace SaARbotage
         public GameObject cam;
         public GameObject arCam;
         public GameObject uiConnection;
-        
-        [Header("Days:")]
+        public VotingManager votingManager;
+
+        [Header("Days:")] 
+        public const int DAYSTOTAL = 3;
         public NetworkVariable<int> currentDay = new NetworkVariable<int>(0);
         public NetworkVariable<int> openStationsForDay = new NetworkVariable<int>(new NetworkVariableSettings {WritePermission = NetworkVariablePermission.Everyone});
+        private bool isInDaySettings = true;
         public List<Station> stations;
         public int[] timesForDays = new int[3];
 
@@ -63,7 +66,7 @@ namespace SaARbotage
             openStationsForDay.Settings.WritePermission = NetworkVariablePermission.Everyone;
             openStationsForDay.Settings.ReadPermission = NetworkVariablePermission.Everyone;
             currentDay.Settings.ReadPermission = NetworkVariablePermission.Everyone;
-            
+
             // get initial room distribution
 
             var roomsObj = FindObjectsOfType<Room>();
@@ -82,18 +85,23 @@ namespace SaARbotage
         public void StartNewDay()
         {
             if(!IsHost) return;
+            isInDaySettings = true;
             Debug.Log("### Start a new Day! ###");
             
+            // reset day
             currentDay.Value++;
             
             // reset oxygen
             syncTime.Value = time;
             _decreaseOxygen = true;
 
-            openStationsForDay.Value = 0;
+            // reset androids
+            // TODO let them manipulate again
             
+            // reset games
+            
+            openStationsForDay.Value = 0;
             ResetGameIndexFromStations();
-
             foreach (var station in rooms.SelectMany(room => room.Value))
             {
                 station.ResetNetworkVariables();
@@ -102,7 +110,41 @@ namespace SaARbotage
                     openStationsForDay.Value++;
                 }
             }
+
+            isInDaySettings = false;
         }
+        
+        public void EndDay()
+        {
+            isInDaySettings = true;
+            Debug.Log("### CALL END DAY HOST ###");
+            _decreaseOxygen = false;
+            timesForDays[currentDay.Value] = (int) syncTime.Value;
+            if (currentDay.Value == DAYSTOTAL)
+            {
+                EndGame();
+            }
+            if(!IsHost) return;
+            EndDayClientRpc();
+            //votingManager.TriggerVoting();
+        }
+
+        [ClientRpc]
+        public void EndDayClientRpc()
+        {
+            isInDaySettings = true;
+            Debug.Log("### TRIGGERD VOTING FOR CLIENT");
+            votingManager.gameObject.SetActive(true);
+            votingManager.TriggerVoting();
+        }
+
+        public void EndGame()
+        {
+            // TODO Show highscore
+            Debug.Log("### Game Finished! ###");
+        }
+
+        #region day logic helper
 
         private void ResetGameIndexFromStations()
         {
@@ -159,18 +201,10 @@ namespace SaARbotage
             return true;
         }
 
-        public void EndDay()
-        {
-            _decreaseOxygen = false;
-            timesForDays[currentDay.Value] = (int) syncTime.Value;
-            if (currentDay.Value == 3)
-            {
-                // TODO, implement finish game method here
-            }
-            
-            // TODO, start the voting
-        }
 
+        #endregion
+        
+        
         [ClientRpc]
         public void CreateLobbyClientRpc()
         {
@@ -205,32 +239,18 @@ namespace SaARbotage
         {
             if(!_decreaseOxygen) return;
             syncTime.Value -= (Time.deltaTime * (1+ manipulatedStationCounter.Value) * (1 + timeManipulatedStationFactor));
+
+            if (!IsHost) return;
+            if (!isInDaySettings && openStationsForDay.Value == 0)
+            {
+                EndDay();
+            }
+
         }
 
         public void SetUpGame()
         {
-            // distribute roles
-
-            // distribute stations and games
-            if (IsHost)
-            {
-                // start counter
-                //InvokeRepeating(nameof(UpdateOxygen), 1, 1);
-                /*
-                // Call Setup on all stations
-                
-                for (int i = 0; i < stationsPerRoom.Count; i++)
-                {
-                    // spawn new rooms with stations
-                    SpawnRoomsServerRpc(i, stationsPerRoom[i].name, stationsPerRoom[i].stations, stationsPerRoom[i].status);
-                }
-                var id = 0;
-                foreach (var station in FindObjectsOfType<Station>())
-                {
-                    //SetupStationServerRpc(station, id);
-                    id++;
-                }*/
-            }
+            StartNewDay();
         }
 
         /*[ServerRpc]

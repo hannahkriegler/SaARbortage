@@ -7,16 +7,16 @@ namespace SaARbotage
     public class QuestOverview : NetworkBehaviour
     {
         public Text questDayValue;
-        
-        public void UpdateQuestUi(int openStations)
+
+        public override void NetworkStart()
         {
-            if (openStations == 0)
-            {
-                
-            }
-            questDayValue.text = "Open Stations for day:/n" + openStations.ToString();
+            base.NetworkStart();
+            GameManager.Instance.openStationsForDay.OnValueChanged += UpdateQuestUi;
         }
-        
-        
+
+        private void UpdateQuestUi(int prevI, int newI)
+        {
+            questDayValue.text = GameManager.Instance.openStationsForDay.Value.ToString();
+        }
     }
 }
