@@ -60,12 +60,19 @@ MonoBehaviour:
   Sucess: {fileID: 8300000, guid: 28faf2619d670104bb632abf3a089944, type: 3}
   Fail: {fileID: 8300000, guid: 0ce66d70e96d51e46971a309da1c8e1a, type: 3}
   Title: Mapping - Descriptor
-  Description: "TLDR: \n\n- This is one of two stations for the mapping 2-player
-    minigame.\n- This station shows one consteallation of Holo-boxes.\n- The other
-    station (selector) will be presented with three Holo-box constellations. One
-    of them is the same as yours.\n- Verbally describe and communicate the constellation
-    with the player at the other station, so the correct constellation can be chosen
-    by the selector.\n- Fair play: Don't allow peaking! \n- You have 60 seconds."
+  Description: "Soooo... um... \r\nApparently the human researchers thought it would
+    be a good idea to give the ships' AIs the ability to develop feelings that you
+    humans would call love.\r\n\r\nThis little one developed feelings for the most
+    popular system in the bunch.... poor guy...\r\nIt even sent a holo love letter
+    to its beloved counterpart. Describe the holo love letter to your crew member
+    at the selector station so you can bring the two lovers together.\r\n\r\n\r\nTLDR:
+    \r\n\r\n- This is one of two stations for the mapping 2-player minigame.\r Only
+    press START when both players are ready.\n- This station shows one consteallation
+    of Holo-boxes.\r\n- The other station (selector) will be presented with three
+    Holo-box constellations. One of them is the same as yours.\r\n- Verbally describe
+    and communicate the constellation with the player at the other station, so the
+    correct constellation can be chosen by the selector.\r\n- Fair play: Don't allow
+    peaking! \r\n- You have 60 seconds."
   uiAudioDescription: {fileID: 0}
   shapeindex:
     m_InternalValue: 0

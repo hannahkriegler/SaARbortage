@@ -108,6 +108,7 @@ namespace SaARbotage
                 if (station._isActive.Value)
                 {
                     openStationsForDay.Value++;
+                    
                 }
             }
 

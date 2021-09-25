@@ -225,6 +225,8 @@ namespace SaARbotage
 
         public void FinishedGame(bool successful)
         {
+            var playerUi = GameObject.FindWithTag("GameUi");
+            _infoCanvas = playerUi.GetComponentInChildren<InformationCanvasControl>();
             _iCurrentlyPlayIt = false;
             _isCurrentlyPlaying.Value = false;
             _game.registerdPlayers.Value--;
@@ -454,6 +456,7 @@ namespace SaARbotage
                 } else
                 {
                     sabotagefill_repair.fillAmount = 1f;
+                    yield return null;
                 }
             }
             sabotagefill_repair.fillAmount = 0f;
