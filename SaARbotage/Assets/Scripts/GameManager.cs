@@ -111,7 +111,7 @@ namespace SaARbotage
                     
                 }
             }
-
+            
             isInDaySettings = false;
         }
         

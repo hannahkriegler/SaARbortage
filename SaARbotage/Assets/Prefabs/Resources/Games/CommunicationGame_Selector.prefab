@@ -759,12 +759,21 @@ MonoBehaviour:
   Sucess: {fileID: 8300000, guid: 28faf2619d670104bb632abf3a089944, type: 3}
   Fail: {fileID: 8300000, guid: 0ce66d70e96d51e46971a309da1c8e1a, type: 3}
   Title: Mapping - Selector
-  Description: "TLDR: \n\n- This is one of two stations for the mapping 2-player
-    minigame.\n- This station shows three consteallations of Holo-boxes.\n- The other
-    station (describor) shows only one, the solution.\n- Verbally communicate with
-    the other player to find the correct solution.\n- Choose the correct constellation
-    by touching your selected choice.\n- Fair play: Don't allow peaking! \n- You
-    have 60 seconds."
+  Description: "Soooo... um... \r\nApparently the human researchers thought it would
+    be a good idea to give the ships' AIs the ability to develop feelings that you
+    humans would call love.\r\n\r\nThis system is the most popular out of all. Everyone
+    loves it. But there is another station, a cute and shy one, in which this AI
+    here fell in love with.\r\n\r\nWhen it received a holo love letter from its'
+    lover it was so happy but too shy to answer straight away.. Unfortunately many
+    more lovers have send their love letters to this station.\r\nSelect the holo
+    love letter your crew member at the descriptor station describes, so you can
+    bring the two lovers together.\r\n\r\nTLDR: \r\n\r\n- This is one of two stations
+    for the mapping 2-player minigame.\r Only press START if the other player is
+    ready as well.\n- This station shows three consteallations of Holo-boxes.\r\n-
+    The other station (describor) shows only one, the solution.\r\n- Verbally communicate
+    with the other player to find the correct solution.\r\n- Choose the correct constellation
+    by touching your selected choice.\r\n- Fair play: Don't allow peaking! \r\n-
+    You have 60 seconds."
   uiAudioDescription: {fileID: 0}
   Spawnpoints:
   - {fileID: 3301953282558004436}

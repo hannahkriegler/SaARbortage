@@ -261,6 +261,14 @@ namespace SaARbotage
                 _ => uiStationStatus.text
             };
         }
+
+        public void HideStation()
+        {
+            foreach (var mesh in GetComponentsInChildren<MeshRenderer>())
+            {
+                mesh.enabled = false;
+            }
+        }
         
         public void ScanStation()
         {
