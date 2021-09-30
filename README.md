@@ -1,5 +1,5 @@
 # SaARbortage
-It was created as an HBK Saar MAD project during master media informatics at Saarland University by Niklas Braun and Hannah Kriegler.
+The AR mobile game SaARbotage was created as an HBK Saar MAD project during master media informatics at Saarland University by Niklas Braun and Hannah Kriegler. If you want to play it, please download the latest version of our apk. The game requires physically printed out player cards (we recommend A5). But for testing, the digital version of our images are fine as well. You can find them in our [Playcards](Playcards/.) folder in this repository!
 
 ## The Trailer
 [![SaARbotage Teaser Video](Documentation/SaARbotage_Video_TrailerImg.png)](https://drive.google.com/file/d/16-z2WvXbmE5H9gYHiU047nPdK7Py-q56/view)
